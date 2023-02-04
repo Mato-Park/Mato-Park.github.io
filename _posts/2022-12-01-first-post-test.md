@@ -1,5 +1,5 @@
 ---
-title: "첫 포스팅 해기!"
+title: "첫 포스팅 하기!"
 
 categories:
     - Blog

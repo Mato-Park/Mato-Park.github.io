@@ -23,16 +23,18 @@ name                     : "박영준"
 description              : "조금씩 쌓아가다 보면 큰 산이 되겠지" # 설명란
 url                      : "https://Mato-Park.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog" 폴백(예기치 못한 오류)일 때 연결되는 url
-repository               : "Mato-Park/Mato-Park.github.io.git"# GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "Mato-Park/Mato-Park.github.io.git" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : "" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : "disqus"         # Comment 처리 사이트 명칭 기재
+  # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
-    shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
+    shortname            : "matopark-github-io"    # disqus의 shortname 기재
+    # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
     server               : # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
   facebook:
@@ -106,25 +108,22 @@ analytics:
 author:
   name             : "박마토"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg" 프로필 사진 경로
-  bio              : "현생은 주니어 **데이터 분석가**<br>부캐는 개발자?<br>공부하고 배운것들을 나누고 소통하기 위해 블로그를 만들고 운영합니다!"
+  bio              : "주니어 **데이터 분석가**<br>그 여정의 기록"
   location         : "Republic of Korea" # 지역
   email            :
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:dark1432@naver.com
-    - label: "Github"
-      icon: "fas fa-fw fa-github"
-      url: "https://github.com/Mato-Park"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/%EC%98%81%EC%A4%80-%EB%B0%95-9270aa225/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
+      url: "https://github.com/Mato-Park"
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/mato_zz"
@@ -135,21 +134,15 @@ footer:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
       url: mailto:dark1432@naver.com
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/%EC%98%81%EC%A4%80-%EB%B0%95-9270aa225/"
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
-      # url:
+      # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/Mato-Park"
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
     - label: "Instagram"
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/mato_zz"
@@ -221,7 +214,7 @@ sass:
 
 # Outputting
 permalink: /:categories/:title/
-paginate: 5 # amount of posts to show
+paginate: 10 # amount of posts to show, default 5
 paginate_path: /page:num/
 timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
@@ -290,6 +283,13 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments:  true
       share: true
       related: true
+  
+  # _pages
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: single
