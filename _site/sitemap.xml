@@ -34,4 +34,8 @@
 <url>
 <loc>http://localhost:4000/</loc>
 </url>
+<url>
+<loc>http://localhost:4000/assets/image/test.html</loc>
+<lastmod>2023-03-11T01:33:38+09:00</lastmod>
+</url>
 </urlset>
