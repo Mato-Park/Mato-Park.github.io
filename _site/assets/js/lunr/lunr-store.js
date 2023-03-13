@@ -34,4 +34,10 @@ var store = [{
         "tags": ["Data","Projects","Memoir"],
         "url": "/data/projects_memoir2/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 3월 2주차 회고록",
+        "excerpt":"  첫 주차별 회고록입니다. 현재 프로젝트 초반기라 정신없이 지내고 있는데, 기록하고 싶은 것들이 있어 이렇게 회고록을 작성합니다. 이번 회고록은 두 가지 키워드를 중심으로 적고자 하는데, 하나는 데이터의 품질과 다른 하나는 에너지 분석입니다.   본격적인 회고록을 작성하기 전에 현재 어떤 프로젝트를 진행중인지 간단하게 설명하겠습니다. 저는 현재 제조 공장에서 데이터 분석을 통해...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir/",
+        "teaser": null
       }]
