@@ -40,4 +40,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 3월 3주차 회고록",
+        "excerpt":"  출장 업무를 마치고 KTX를 타고 서울로 올라가며 한 주를 마무리하고 있습니다. 출장길은 언제나 고되지만, 좋은 결과를 얻어갈 수 있다면 나름 다닐만?하다고 생각됩니다. 이번 회고록에서는 다음 2가지 얘기를 해보고자 합니다. 커뮤니케이션: 데이터 분석가와 클라이언트 간 회의에 대하여 데이터 리터러시 회고록이다 보니 위 2가지 에 대해 개념을 적는 글이 아니고 업무를...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir_2/",
+        "teaser": null
       }]
