@@ -52,4 +52,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir_2/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 4월 3주차 회고록",
+        "excerpt":"  회고록을 매주 작성하겠다고 다짐했으나 이러저러한 이유로 미루고 미루다 이제야 짬을 내서 작성하네요. 한 주를 글을 쓰며 마무리하는 루틴이 습관이 될 수 있도록 다시 열심히 써보겠습니다!   최근, 제가 예전 프로젝트에서 R을 활용해 개발하고 운영중인 알고리즘에 몇 가지 이슈가 생겨 해결하고 있습니다. 알고리즘 운영 서버 이관 운영 서버에서 개발 서버로...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir/",
+        "teaser": null
       }]

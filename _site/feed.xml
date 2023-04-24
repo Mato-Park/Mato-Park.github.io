@@ -1,4 +1,60 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-03-31T17:52:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[회고록] 23년 3월 3주차 회고록</title><link href="http://localhost:4000/data/weekly_memoir_2/" rel="alternate" type="text/html" title="[회고록] 23년 3월 3주차 회고록" /><published>2023-03-17T00:00:00+09:00</published><updated>2023-03-18T01:01:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_2</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_2/"><![CDATA[<p>  출장 업무를 마치고 KTX를 타고 서울로 올라가며 한 주를 마무리하고 있습니다. 출장길은 언제나 고되지만, 좋은 결과를 얻어갈 수 있다면 나름 다닐만?하다고 생각됩니다. 이번 회고록에서는 다음 2가지 얘기를 해보고자 합니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-04-24T21:10:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[회고록] 23년 4월 3주차 회고록</title><link href="http://localhost:4000/data/weekly_memoir/" rel="alternate" type="text/html" title="[회고록] 23년 4월 3주차 회고록" /><published>2023-04-23T00:00:00+09:00</published><updated>2023-04-24T04:49:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir/"><![CDATA[<p>  회고록을 매주 작성하겠다고 다짐했으나 이러저러한 이유로 미루고 미루다 이제야 짬을 내서 작성하네요. 한 주를 글을 쓰며 마무리하는 루틴이 습관이 될 수 있도록 다시 열심히 써보겠습니다! <br /><br />
+  최근, 제가 예전 프로젝트에서 R을 활용해 개발하고 운영중인 알고리즘에 몇 가지 이슈가 생겨 해결하고 있습니다.</p>
+
+<blockquote>
+  <ol>
+    <li><strong>알고리즘 운영 서버 이관</strong>
+      <ul>
+        <li>운영 서버에서 개발 서버로</li>
+      </ul>
+    </li>
+    <li><strong>데이터베이스 계정정책 변경</strong>
+      <ul>
+        <li>1개의 root 계정 공유(모든 권한) -&gt; 인원별 계정 생성 및 권한 축소</li>
+      </ul>
+    </li>
+  </ol>
+</blockquote>
+
+<h2 id="1-서버-이관">1. 서버 이관</h2>
+<p>  이전에는 저희가 운영하고 있는 서버에서 알고리즘이나 ML 모형을 개발하고 운영했다면, 개발 서버에서 운영하도록 팀 내 정책이 변경됐습니다. 따라서 기존에 운영서버에 있던 알고리즘을 개발 서버로 이관해야 해서 준비중에 있습니다. 현재 가장 이슈가 될 것으로 예상되는 문제는 R과 패키지에 버전 관리입니다. 기존에는 각각 다른 서버에서 개발하고 운영하다보니 알고리즘과 ML모형의 R과 패키지 버전이 모두 제각각인 상황입니다. 이러한 상황에서 한 서버에 모든 알고리즘과 ML모형을 이관하려다보니 버전 관리에 어려움이 있을거라 예상됩니다. 서버 이관은 차후 실제로 적용해보고 생겨난 일들은 다음 회고록에 작성할 수 있도록 하겠습니다.<br /><br /></p>
+
+<p>  문득 든 생각인데, 개발 서버에서 알고리즘이나 ML모형을 운영하는게 맞는걸까요? 현재 서비스 중인 운영서버에 자원을 매우 타이트하게 사용하다보니 부하를 줄이기 위해서 개발서버로 이관하려고 하는건데, 아무래도 개발서버다보니 안정성 면에서 취약하지 않을까 하는 걱정이 문득 듭니다. 개발하다가 뻑나서 서버를 재부팅하게 되면, 하필 그 타이밍이 알고리즘/ML모형 스케쥴링 시간이라면?? 이래저래 걱정이 됩니다.</p>
+
+<h2 id="2-데이터베이스-계정정책-변경">2. 데이터베이스 계정정책 변경</h2>
+<p>  기존 데이터베이스의 계정을 루트 계정 하나를 팀원들이 모두 공유해서 활용하는 방식에서 각자 계정을 발급하여 사용하도록 정책이 변경됐습니다. 개인별로 발급된 계정은 기존 루트 계정에 비해 권한이 많이 축소되어 기존 방식으로는 알고리즘 운영이 불가능하고 수정이 불가피했습니다. db를 관리하고 있는 담당자분께서 rest api 호출하는 방식을 권유했고, 그에 맞게 코드를 수정하고자 했습니다.<br /><br /></p>
+
+<p>  처음에는 csv 형태로 불러와 구분자로 나누어 데이터 프레임으로 변형하고자 했습니다. 하지만 데이터가 이쁜(?) 형태로 오지 않아 한줄한줄 for문을 사용해 처리하다보니 너무 시간이 많이 걸리는 문제가 생겼습니다. 그래서 쿼리를 날릴 때 전체 테이블 중 사용하고자 하는 fields만 불러와 데이터 사이즈를 줄이는 방식으로 변경했습니다. <br /><br /></p>
+
+<p>  문제는 예상치 못한 곳에서 터졌는데 바로 쿼리에 포함된 <strong>“한글”</strong> 때문이었습니다. 아마 인코딩 문제로 추측은 되지만 정확하게 밝혀내진 못했습니다. 다만, 쿼리에 한글이 포함되어 있으니 다 깨진 상태로 날아갔고 데이터가 들어오지 않는 문제가 발생했습니다. 한글을 URL 인코딩하여 시도해봤는데도 해결되지 않았습니다. 이 문제를 데이터 엔지니어 분께 알렸고, 우린 곧 어떻게 문제를 해결할까 논의했습니다.</p>
+<blockquote>
+  <ol>
+    <li><strong>raw data table의 컬럼명을 영문으로 변경</strong>
+      <ul>
+        <li>컬럼명을 변경하면 해당 데이터를 활용하는 모든 프로그램에서 변경해야 하기에 불가</li>
+      </ul>
+    </li>
+    <li><strong>csv 대신 html, xml 형식으로 가져오기</strong>
+      <ul>
+        <li>크롬 브라우저에서 rest api를 호출했을 때, 데이터가 정상적으로 표시되는 것을 확인함</li>
+      </ul>
+    </li>
+  </ol>
+</blockquote>
+
+<p>  오! 2번에서 데이터가 정상적으로 표시되는 것을 확인했을 때, R로 바로 적용해봐야겠다 생각했고 html 형식으로 불러왔습니다. 하지만, 이상하게 R에서 실행했을 때는 정상적으로 데이터를 가져오지 못했습니다. 인코딩도 바꿔보고 이것저것 다 해봤는데 안되더군요. 그렇게 머리 쥐어뜯으며 코드를 짜다가 옆에서 그런 제 모습을 지켜보던 동료분이 한마디 했습니다.</p>
+<blockquote>
+  <p><strong>“그냥 다 불러와서 하면 되지 않아요? 보니깐 데이터 사이즈가 크지 않은데 문제 없을 것 같아요~”</strong></p>
+</blockquote>
+
+<p>  그 순간 머리가 띵했습니다. 실제로 해보니 생각보다 빠르게 잘 처리됐습니다. 당장 발생한 문제를 해결해야 겠다는 생각에 매몰되어 원래 목적을 잊어버렸던 겁니다. 데이터를 잘 불러오기만 하면 되는 것을! 물론 한글 문제를 해결했다면 더 좋았겠지만, 지금은 제 주 프로젝트에 더 큰 시간과 에너지를 쏟아야 할 상황이라 이것만 물고 늘어질 수는 없는 상황이었습니다. 한글이 깨지는 것은 긴 시간을 갖고 고민해봐야겠습니다! <br /><br /></p>
+
+<p>  너무 경직된 생각과 태도로 질질 끌기 보다는 문제가 안 풀릴 때는 한 발자국 물러서서 보는 것도 좋을 것 같다는 생각을 해봅니다. 문제를 해결하는 방식에는 여러가지가 있을 겁니다. 주변 분들에게 도움을 요청하는 것도 훌룡한 방법일테고, 돌아가는 방법도 좋은 방법일 겁니다. 앞으로는 너무 한 문제에 매몰되지 말고 큰 목적을 먼저 생각해 봐야겠습니다. 생각보다 시간을 많이 쏟았거든요 ㅎㅎ 마지막으로 데이터 엔지니어분과 제가 코드 스크립트를 보면서 고민할 때, 뒤로 지나가시던 부장님의 말씀을 전하며 글을 마치겠습니다.</p>
+<blockquote>
+  <p>야, 코드 짤 때 한글 적지마~ 다 빼!</p>
+</blockquote>
+
+<p>ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  회고록을 매주 작성하겠다고 다짐했으나 이러저러한 이유로 미루고 미루다 이제야 짬을 내서 작성하네요. 한 주를 글을 쓰며 마무리하는 루틴이 습관이 될 수 있도록 다시 열심히 써보겠습니다!   최근, 제가 예전 프로젝트에서 R을 활용해 개발하고 운영중인 알고리즘에 몇 가지 이슈가 생겨 해결하고 있습니다.]]></summary></entry><entry><title type="html">[회고록] 23년 3월 3주차 회고록</title><link href="http://localhost:4000/data/weekly_memoir_2/" rel="alternate" type="text/html" title="[회고록] 23년 3월 3주차 회고록" /><published>2023-03-17T00:00:00+09:00</published><updated>2023-03-18T01:01:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_2</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_2/"><![CDATA[<p>  출장 업무를 마치고 KTX를 타고 서울로 올라가며 한 주를 마무리하고 있습니다. 출장길은 언제나 고되지만, 좋은 결과를 얻어갈 수 있다면 나름 다닐만?하다고 생각됩니다. 이번 회고록에서는 다음 2가지 얘기를 해보고자 합니다.</p>
 <blockquote>
   <ol>
     <li>커뮤니케이션: 데이터 분석가와 클라이언트 간 회의에 대하여</li>
