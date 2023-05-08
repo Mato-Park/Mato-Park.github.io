@@ -58,4 +58,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 5월 1주차 회고록",
+        "excerpt":"  이번 회고록은 조금은 다른 내용에 대해서 적어보고자 합니다. 일과 관련된 얘기지만 업무나 기술, 테크와 관련된 얘기가 아닌 마음가짐?에 대한 얘기를 적어보고자 합니다.   4월 초부터 최근 1달간은 개인적인 사정으로 멘탈이 굉장히 좋지 않았습니다. 무던한 성격이라 웬만한 일에는 감정적으로 동요가 되지 않는 편인데도 불구하고 최근에는 감정적으로 좋지 않았습니다. 멘탈도 많이...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir/",
+        "teaser": null
       }]
