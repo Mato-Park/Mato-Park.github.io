@@ -70,4 +70,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir_5/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?",
+        "excerpt":"  최근 SNS 중 하나인 링크드인을 자주 봅니다. 따로 글을 쓰거나 하진 않지만, 제가 몸담고 있는 업계에 다른 동료분들이 어떤 생각을 가지고 일하는 지 알 수 있어서 꽤 재밌게 보고 있습니다. 링크드인 속에는 수많은 데이터 분석가(+데이터 전문가) 분들이 있고, 저마다의 업무 역량, 분석 역량을 뽐내고 계십니다. 피드들을 열심히 눈팅하다보니 문득...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir_6/",
+        "teaser": null
       }]
