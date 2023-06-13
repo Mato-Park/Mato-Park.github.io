@@ -1,4 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-12T21:42:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?</title><link href="http://localhost:4000/data/weekly_memoir_6/" rel="alternate" type="text/html" title="[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?" /><published>2023-06-12T00:00:00+09:00</published><updated>2023-06-13T05:40:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_6</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_6/"><![CDATA[<p>  최근 SNS 중 하나인 링크드인을 자주 봅니다. 따로 글을 쓰거나 하진 않지만, 제가 몸담고 있는 업계에 다른 동료분들이 어떤 생각을 가지고 일하는 지 알 수 있어서 꽤 재밌게 보고 있습니다. 링크드인 속에는 수많은 데이터 분석가(+데이터 전문가) 분들이 있고, 저마다의 업무 역량, 분석 역량을 뽐내고 계십니다. 피드들을 열심히 눈팅하다보니 문득 그런 생각이 들더군요. <strong>그렇다면 과연 분석 능력이란 뭘까요?</strong> 나의 분석 능력은 뛰어나다고 할 수 있는 건가? 나는 좋은 분석가인가? 라는 고민이 이어지게 됩니다.<br /><br /></p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-13T23:52:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[하루일기] 23년 6월 13일: 감정적인 대응</title><link href="http://localhost:4000/data/daily_memo/" rel="alternate" type="text/html" title="[하루일기] 23년 6월 13일: 감정적인 대응" /><published>2023-06-13T00:00:00+09:00</published><updated>2023-06-14T06:55:00+09:00</updated><id>http://localhost:4000/data/daily_memo</id><content type="html" xml:base="http://localhost:4000/data/daily_memo/"><![CDATA[<p>  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다. <br /><br /></p>
+
+<p>  상황은 이러했다. 팀장님은 답답한 마음에 타 사업부에 분석 사례를 클라이언트가 참고할 수 있도록 공유하라 지시했고, 짧은 메시지와 함꼐 자료를 첨부하여 메일을 보냈다. 문제는 클라이언트가 굉장히 불편하게 받아들이면서 발생했다. 클라이언트가 마치 자기보고 배우라는 듯이 자료를 보낸거냐부터 시작해서 엔지니어 입장에서 택도 없는 분석이라면서 말도 안되는 거라면서 따졌다. (물론, 숨은 의도는 그게 맞다. 게다가 자료는 공장 엔지니어가 직접 작성한 자료라 아예 틀린 말은 아닐 것이다.) 여기서 나의 올바른 대응은 나도 팀장님의 지시사항을 수행한 것이며, 도움이 될 수 있도록 자료를 공유하고자 한 것이라고 어필을 해야 했다. 하지만 그 동안 답답한 마음이 쌓였던 탓인지 자그마한 설전이 오고가게 됐다. 도메인 영역 지식으로 논리를 펼치니 난 더 할 말이 없었고, 알겠다고 수긍하며 일단락 지었다. <br /><br /></p>
+
+<p>  오늘 일련의 해프닝을 겪으며 스스로에게 아쉬었던 점은 다음과 같다</p>
+<blockquote>
+  <ol>
+    <li>감정적으로 대응한 점
+      <ul>
+        <li>내 뜻대로 안된다고 답답해하거나 조급해 하지 말기</li>
+        <li>감정적인 반응에 감정적으로 맞대응 하지 말기</li>
+      </ul>
+    </li>
+    <li>나의 역할은 중간 커뮤니케이선
+      <ul>
+        <li>클라이언트와 팀장 사이에 중간 커뮤니케이션 분배 잘하기</li>
+        <li>책임과 역할 소재 분명히 하기</li>
+      </ul>
+    </li>
+    <li>어설픈 논리와 근거로 커뮤니케이션 하지 않기
+      <ul>
+        <li>상대방은 한 분야의 전문가이므로 어설픈 얘기는 통하지 않음</li>
+        <li>적어도 최소한의 논리로 무장하기</li>
+      </ul>
+    </li>
+  </ol>
+</blockquote>
+
+<p>  일을 하다보면 클라이언트와 의견 충돌이 발생하고 언쟁이 발생할 수 있다고 생각하고 실제로 벌어졌습니다. 갈등 상황을 피하는 것이 능사는 아니라 생각합니다. 서로의 의견을 논리정연하게 피력하고 건설적으로 대화하는 것이 중요하겠죠. 다만, 감정적으로 대응하는 것은 프로답지 못한 행동이라 생각되고 반성하게 되네요. 앞으로는 오늘같은 일이 일어나더라도 차분하고 이성적으로 대응할 수 있는 사람이 되도록 노력하겠습니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다.]]></summary></entry><entry><title type="html">[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?</title><link href="http://localhost:4000/data/weekly_memoir_6/" rel="alternate" type="text/html" title="[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?" /><published>2023-06-12T00:00:00+09:00</published><updated>2023-06-13T05:40:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_6</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_6/"><![CDATA[<p>  최근 SNS 중 하나인 링크드인을 자주 봅니다. 따로 글을 쓰거나 하진 않지만, 제가 몸담고 있는 업계에 다른 동료분들이 어떤 생각을 가지고 일하는 지 알 수 있어서 꽤 재밌게 보고 있습니다. 링크드인 속에는 수많은 데이터 분석가(+데이터 전문가) 분들이 있고, 저마다의 업무 역량, 분석 역량을 뽐내고 계십니다. 피드들을 열심히 눈팅하다보니 문득 그런 생각이 들더군요. <strong>그렇다면 과연 분석 능력이란 뭘까요?</strong> 나의 분석 능력은 뛰어나다고 할 수 있는 건가? 나는 좋은 분석가인가? 라는 고민이 이어지게 됩니다.<br /><br /></p>
 
 <p>  생각하면 할수록 정말 답하기 어려운 질문인 것 같습니다. 업무 분야도 다 다르고 각자 생각하는 기준이 다 다르기 떄문이기에 딱 하나의 정답은 없는 것 같습니다. 별다른 구분 없이 생각나는대로 나열해보겠습니다.</p>
 
@@ -465,60 +493,4 @@
 </blockquote>
 
 <h2 id="4-맺음말">4. 맺음말</h2>
-<p>  회고록을 정리하다보니 2년 전 첫 프로젝트를 수행하던 당시의 기록이 새록새록 떠오른다. 프로젝트를 거듭하다보니 문제 정의와 가설 설정의 중요성이 점점 더 크게 느껴지고 있는 요즘이다. 귀찮다고, 급하다고, 그냥, 귀찮으니깐, 문제 정의와 가설 설정을 대충 하지 말자는 다짐과 함께 회고록을 여기서 이만 마무리 하겠습니다. 긴 글 읽어주셔서 감사합니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Projects" /><category term="Memoir" /><summary type="html"><![CDATA[  회고록 시리즈는 수행했던 프로젝트를 정리하고 기록하기 위한 시리즈입니다. 자세한 내용은 회사의 기밀 유지를 위하여 오픈하기 어렵지만, 문제에 어떻게 접근했고, 문제를 어떻게 해결했고, 어떤 인사이트를 도출했고, 아쉬운 점 등 쓸 수 있는 만큼 정리하겠습니다.]]></summary></entry><entry><title type="html">[하루일기] ‘23/02/23 - 엑셀도 DB일 수 있을까?!(ft. 데이터 전처리)</title><link href="http://localhost:4000/data/daily-memo/" rel="alternate" type="text/html" title="[하루일기] ‘23/02/23 - 엑셀도 DB일 수 있을까?!(ft. 데이터 전처리)" /><published>2023-02-23T00:00:00+09:00</published><updated>2023-02-24T08:39:00+09:00</updated><id>http://localhost:4000/data/daily-memo</id><content type="html" xml:base="http://localhost:4000/data/daily-memo/"><![CDATA[<p>안녕하세요.<br /><br />
-데이터 분석 실무를 하다보니 어느새부턴가 개인적으로 엑셀로 저장된 데이터를 기피하게 되더군요. 이번 분석 프로젝트에서 클라이언트사의 중요한 데이터가 엑셀로 보관되어 있었고,
-최근 5년치의 데이터를 엑셀로부터 가져와야 했습니다. 데이터 수집 프로그램을 짜다가 발생하는 수많은 오류를 마주하면서 얼마 전 팀장님이 고객에게 지나가듯이 했던 말이 떠올랐습니다.</p>
-<blockquote>
-  <p>“엑셀도 DB의 일종이죠. “<br /></p>
-</blockquote>
-
-<p>정말로 엑셀도 DB일 수 있을까? 곰곰이 곱씹어보다가 엑셀이 DB의 일종일 수 있으나 DB로서의 기능을 완벽하게 구현하기 어렵다 생각했습니다. 사실 엄격하게 보자면 DB라고 보기 어렵다고 생각합니다.
-제 나름대로 그 이유를 생각해봤습니다. <br /></p>
-<ol>
-  <li><strong>수기 입력</strong>
-    <ul>
-      <li>Human Error로 인하여 오타 혹은 데이터가 누락될 확률이 높음</li>
-      <li>데이터 입력 제한/제약을 가할 수 있는 기능 부재</li>
-      <li>분석가 입장에서 데이터를 전적으로 신뢰하기 어려움</li>
-    </ul>
-  </li>
-  <li><strong>데이터 수집 속도</strong>
-    <ul>
-      <li>DB와 비교했을 때, 데이터 처리 속도가 매우 떨어짐</li>
-    </ul>
-  </li>
-  <li><strong>안정적인 운영 담보 어려움</strong>
-    <ul>
-      <li>엑셀 데이터를 지속적으로 활용한다 했을 때, 위 1번의 문제가 없으리라고 장담할 수 없음</li>
-    </ul>
-  </li>
-</ol>
-
-<p>제가 요 몇일동안 했던 작업도 데이터가 엑셀이 아닌 DB에 있었다면 1시간도 안되서 끝났을 일이라 생각합니다. 엑셀로부터 가져오다보니 수많은 오류를 일일이 프로그래밍을 통해 대응해야 했고,
-속도는 더디고 하다보니 길어지네요. 제가 모든 발생 가능한 에러에 대해 미리 대응할 수 있었다면 좋았겠지만, 아직 그 정도 수준은 무리인 것 같습니다. <br /><br />
-그럼에도 왜 엑셀을 사용할까요? 이것도 지극히 개인적인 견해이지만 풀어보겠습니다.</p>
-
-<ol>
-  <li>관성
-    <ul>
-      <li>예전부터 써왔으니 편하니 별 생각없이 씀</li>
-      <li>안그래도 본업에 치이는데 초기 시스템 구축을 위하여 짬을 내기 힘듬</li>
-    </ul>
-  </li>
-  <li>비용
-    <ul>
-      <li>기업 입장에서는 시스템 구축을 위해서 비용이 투자되어야 하지만 투자 대비 정량적인 성과가 뚜렷하지 않음</li>
-      <li>실무자, 관리자 모두 필요성에는 공감하나 비용 문제로 결정권자에 승인이 떨어지지 않는 경우</li>
-    </ul>
-  </li>
-  <li>역량
-    <ul>
-      <li>노후화된 조직일수록 새로운 시스템을 받아들이기 힘들어 함</li>
-      <li>리더가 의지를 갖고 조직원을 설득하고 적극적으로 밀어붙여야함</li>
-    </ul>
-  </li>
-</ol>
-
-<p>쓰다보니 엑셀에 대해서 너무 안좋게만 쓴 것 같네요. 무조건 나쁘다는 것은 아닙니다. 엑셀은 다양한 기능을 제공하며 사용하기 편한 장점이 있습니다. 적절하게 활용한다면 더할나위 없는 툴이겠죠.
-하지만, 이제는 엑셀 데이터는 그만… 노노… 물론 분석가로서 데이터 수집과 전처리도 척척 해내야하지만, 좋은 것을 놔두고 굳이 돌아가야할 필요가 있을까요?<br />
-앞으로도 당분간은 시스템화 하지 않고 임시방편으로 특정 서버에 올려놓은 엑셀 데이터를 처리해서 가져오기로 했는데, 앞날이 뻔히 보이는 건 저만의 착각일까요? 잘 되겠죠ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="DB" /><summary type="html"><![CDATA[안녕하세요. 데이터 분석 실무를 하다보니 어느새부턴가 개인적으로 엑셀로 저장된 데이터를 기피하게 되더군요. 이번 분석 프로젝트에서 클라이언트사의 중요한 데이터가 엑셀로 보관되어 있었고, 최근 5년치의 데이터를 엑셀로부터 가져와야 했습니다. 데이터 수집 프로그램을 짜다가 발생하는 수많은 오류를 마주하면서 얼마 전 팀장님이 고객에게 지나가듯이 했던 말이 떠올랐습니다. “엑셀도 DB의 일종이죠. “]]></summary></entry></feed>
+<p>  회고록을 정리하다보니 2년 전 첫 프로젝트를 수행하던 당시의 기록이 새록새록 떠오른다. 프로젝트를 거듭하다보니 문제 정의와 가설 설정의 중요성이 점점 더 크게 느껴지고 있는 요즘이다. 귀찮다고, 급하다고, 그냥, 귀찮으니깐, 문제 정의와 가설 설정을 대충 하지 말자는 다짐과 함께 회고록을 여기서 이만 마무리 하겠습니다. 긴 글 읽어주셔서 감사합니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Projects" /><category term="Memoir" /><summary type="html"><![CDATA[  회고록 시리즈는 수행했던 프로젝트를 정리하고 기록하기 위한 시리즈입니다. 자세한 내용은 회사의 기밀 유지를 위하여 오픈하기 어렵지만, 문제에 어떻게 접근했고, 문제를 어떻게 해결했고, 어떤 인사이트를 도출했고, 아쉬운 점 등 쓸 수 있는 만큼 정리하겠습니다.]]></summary></entry></feed>
