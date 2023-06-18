@@ -82,4 +82,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/daily_memo/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이",
+        "excerpt":"  안녕하세요. 데이터 분석가에게 SQL 활용 능력은 필수적이라 생각됩니다. 웬만한 데이터 분석가 JD 요구사항에 SQL 활용능력이 없는 경우는 없더군요. 저도 데이터 분석가 업무를 하면서 실무에서 유사(?) SQL을 활용해 데이터 마트를 만들지만 내가 SQL을 제대로 다루고 있는지 항상 의문이 따라왔습니다. 게다가 제 SQL 활용 능력이 어느정도인지 궁금하기도 했습니다. 따라서 실무 외에...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode1/",
+        "teaser": null
       }]
