@@ -88,4 +88,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode1/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Basic Joins",
+        "excerpt":"  안녕하세요. LeetCode SQL50 두번째 파트인 Basic Joins입니다. Join은 2개 이상의 테이블을 Key를 활용해 하나로 합치는 기능입니다. Join의 방법은 left, inner, outer 등이 있으며 굉장히 많이 활용되는 기능입니다. 2. Basic Joins 2.1 Replace Employee ID With The Unique Identifier 2.1.1 Table Description &amp; Question Table description table: Employees Colum Name...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode2/",
+        "teaser": null
       }]
