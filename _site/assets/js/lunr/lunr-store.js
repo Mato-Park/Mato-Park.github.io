@@ -94,4 +94,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode2/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Basic Joins(2/2)",
+        "excerpt":"  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다. 2. Basic Joins 2.5 Average Time of Process per Machine 2.5.1 Table Description &amp; Question Table description table: Activity Colum Name Type machine_id(PK) int process_id(PK) int activity_type(PK) enum timestamp float The table shows the user activities for a factory website. machine_id is the...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode3(Join2)/",
+        "teaser": null
       }]
