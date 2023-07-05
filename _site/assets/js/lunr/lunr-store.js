@@ -98,6 +98,12 @@ var store = [{
         "title": "[SQL] LeetCode 풀이: Basic Joins(2/2)",
         "excerpt":"  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다. 2. Basic Joins 2.5 Average Time of Process per Machine 2.5.1 Table Description &amp; Question Table description table: Activity Colum Name Type machine_id(PK) int process_id(PK) int activity_type(PK) enum timestamp float The table shows the user activities for a factory website. machine_id is the...","categories": ["Data"],
         "tags": ["Data","SQL","LeetCode"],
-        "url": "/data/SQL_LeetCode3(Join2)/",
+        "url": "/data/SQL_LeetCode3_Join2/",
+        "teaser": null
+      },{
+        "title": "[회고록] 23년 7월 2주차: 분석 모델링 수행",
+        "excerpt":"  지난 2주는 에너지 사용량 증감 원인 분석하고 그 결과를 문서화 하느라 정신 없이 지나갔네요. 월간 보고회를 진행하기 위해 쳇바퀴 처럼 반복되는 매월이지만 최근 꽤나 재미있는 분석을 진행했습니다. 이번에는 분석 모델링을 통해서 Y인자의 변동을 설명하고자 하였고 흥미로운 결과가 나와서 기록하고자 합니다. 1. 배경/이유   저는 현재 공장 에너지 절감 프로젝트를...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir_7/",
         "teaser": null
       }]
