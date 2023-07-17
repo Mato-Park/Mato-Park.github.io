@@ -112,4 +112,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir_8/",
         "teaser": null
+      },{
+        "title": "[데이터분석] 4개 인자를 한 산점도에 나타내기",
+        "excerpt":"  4개 인자를 한 산점도 차트에 표현하는 미션이 주어졌습니다. 4개 인자를 한 산점도에..?? 왜 4개의 인자를 한 산점도로 표현해야했는지 그리고 어떻게 해결했는지 기록하고자 합니다. 1. 배경   데이터 분석을 통한 에너지 사용 절감 프로젝트의 일환으로 에너지 사용량을 모니터링 할 수 있는 대시보드 화면을 개발하던 중, 팀장님께서 현재 에너지 사용량이 적정한...","categories": ["Data"],
+        "tags": ["Data","Data Analysis","Visualization","Scatter Plot"],
+        "url": "/data/data_analysis1/",
+        "teaser": null
       }]
