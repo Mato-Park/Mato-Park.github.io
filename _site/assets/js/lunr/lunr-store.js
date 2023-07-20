@@ -118,4 +118,10 @@ var store = [{
         "tags": ["Data","Data Analysis","Visualization","Scatter Plot"],
         "url": "/data/data_analysis1/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Basic Aggregate Functions",
+        "excerpt":"  안녕하세요. 이번 포스트부터는 LeetCode50 Aggregate Functions 이어 가겠습니다. 문제를 풀어보다가 중간중간 막히는 부분이 많았던 구간인 것 같습니다.😂 집계 함수(Aggregate Funstion)란?   집계 함수란 테이블 전체 혹은 여러 행으로부터 하나의 결과값을 반환하는 함수입니다. 예를 들어, Avg, Sum, Max, Min, Count 등 함수가 집계 함수이며, GROUP BY 절과 함께 사용됩니다. 3....","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode4/",
+        "teaser": null
       }]

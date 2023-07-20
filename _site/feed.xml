@@ -1,4 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-17T22:13:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[데이터분석] 4개 인자를 한 산점도에 나타내기</title><link href="http://localhost:4000/data/data_analysis1/" rel="alternate" type="text/html" title="[데이터분석] 4개 인자를 한 산점도에 나타내기" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-17T08:52:00+09:00</updated><id>http://localhost:4000/data/data_analysis1</id><content type="html" xml:base="http://localhost:4000/data/data_analysis1/"><![CDATA[<p>  4개 인자를 한 산점도 차트에 표현하는 미션이 주어졌습니다. 4개 인자를 한 산점도에..?? 왜 4개의 인자를 한 산점도로 표현해야했는지 그리고 어떻게 해결했는지 기록하고자 합니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-20T23:42:30+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Basic Aggregate Functions</title><link href="http://localhost:4000/data/SQL_LeetCode4/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Basic Aggregate Functions" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-21T07:08:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode4</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode4/"><![CDATA[<p>  안녕하세요. 이번 포스트부터는 LeetCode50 Aggregate Functions 이어 가겠습니다. 문제를 풀어보다가 중간중간 막히는 부분이 많았던 구간인 것 같습니다.😂</p>
+
+<h1 id="집계-함수aggregate-funstion란">집계 함수(Aggregate Funstion)란?</h1>
+<p>  집계 함수란 <strong>테이블 전체 혹은 여러 행으로부터 하나의 결과값을 반환하는 함수</strong>입니다. 예를 들어, Avg, Sum, Max, Min, Count 등 함수가 집계 함수이며, GROUP BY 절과 함께 사용됩니다.</p>
+
+<h1 id="3-basic-aggregate-functions">3. Basic Aggregate Functions</h1>
+<h2 id="31-not-boring-movies">3.1 Not Boring Movies</h2>
+<h3 id="311-table-description--question">3.1.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Cinema</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Colum Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>movie</td>
+      <td>varchar</td>
+    </tr>
+    <tr>
+      <td>description</td>
+      <td>varchar</td>
+    </tr>
+    <tr>
+      <td>rating</td>
+      <td>float</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Each row contains information about the name of a movie, its genre, and its rating.<br />
+rating is a 2 decimal places float in the range [0, 10]</p>
+</blockquote>
+
+<p><strong>Question</strong><br /></p>
+<ul>
+  <li>Write an SQL query to report the movies with an odd-numbered ID and a description that is not “boring”.</li>
+  <li>Return the result table ordered by rating in descending order..<br /></li>
+</ul>
+
+<h3 id="312-solution">3.1.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">id</span><span class="p">,</span>
+    <span class="n">movie</span><span class="p">,</span>
+    <span class="n">description</span><span class="p">,</span>
+    <span class="n">rating</span>
+<span class="k">FROM</span> 
+    <span class="n">Cinema</span>
+<span class="k">Where</span>
+    <span class="n">description</span> <span class="o">!=</span> <span class="s1">'boring'</span> <span class="k">and</span>
+    <span class="n">id</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">&lt;&gt;</span> <span class="mi">0</span> <span class="c1">-- or mod(id, 2) &lt;&gt; 0</span>
+<span class="k">Order</span> <span class="k">By</span>
+    <span class="n">rating</span> <span class="k">desc</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  간단한 문제이다. 지루하지 않은 영화를 필터링하기 위하여 <code class="language-plaintext highlighter-rouge">description != 'boring'</code> 조건절을 추가한 다음, 홀수인 id를 추출하기 위한 조건절을 추가하면 된다.<br />
+  홀수인 id를 고르기 위해서는 id(int)를 2로 나눴을 때 나머지가 0인지 1인지 체크하면 된다.<br /></p>
+
+<h3 id="313-good-to-know">3.1.3 Good to Know</h3>
+<p>  나머지를 구하는 방법은 여러가지가 있다. 우선 ‘%’ 연산자도 나머지를 반환하는 연산자인데 위 풀이에서 <code class="language-plaintext highlighter-rouge">id % 2</code>는 id를 2로 나눈 나머지를 반환한다. mod(a,b)함수도 나머지를 반환하는 함수이며 a를 b로 나눈 나머지를 반환한다.</p>
+
+<h2 id="32-average-selling-price">3.2 Average Selling Price</h2>
+<h3 id="321-table-description--question">3.2.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Prices</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Colum Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>product_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>start_date(PK)</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td>end_date(PK)</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td>price</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Each row of this table indicates the price of the product_id in the period from start_date to end_date.<br />
+For each product_id there will be no two overlapping periods. That means there will be no two intersecting periods for the same product_id.<br /></p>
+</blockquote>
+
+<p>table: UnitsSold</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>product_id</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>purchase_date</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td>units</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>There is no primary key for this table, it may contain duplicates.<br />
+Each row of this table indicates the date, units, and product_id of each product sold.</p>
+</blockquote>
+
+<p><strong>Question</strong><br />
+Write an SQL query to find the average selling price for each product. average_price should be rounded to 2 decimal places.<br />
+Return the result table in any order.</p>
+
+<h3 id="322-solution">3.2.2 Solution</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">product_id</span>    <span class="k">As</span> <span class="n">product_id</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="k">sum</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">price</span> <span class="o">*</span> <span class="n">b</span><span class="p">.</span><span class="n">units</span><span class="p">)</span> <span class="o">/</span> <span class="k">sum</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">units</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>         <span class="k">as</span> <span class="n">average_price</span>
+<span class="k">From</span>
+    <span class="n">Prices</span> <span class="n">a</span>
+<span class="k">Left</span> <span class="k">Join</span>
+    <span class="n">UnitsSold</span> <span class="n">b</span>
+    <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">product_id</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">.</span><span class="n">purchase_date</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">end_date</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">.</span><span class="n">purchase_date</span>
+<span class="k">GROUP</span> <span class="k">BY</span> 
+    <span class="n">a</span><span class="p">.</span><span class="n">product_id</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  관건은 UnitsSold 테이블의 purchase_date가 Prices 테이블의 start_date와 end_date사이에 오도록 하는 것이다. 어떻게 하면 될까 고민해보다가 JOIN절의 On절에서 처리해보자 생각해보고 무작정해봤다. 그런데 Join이 잘 되길래 문제를 수월하게 풀 수 있었다. <br />
+  기존에 쓰던 툴은 이렇게 특정 Column이 어떤 기간 내에 오도록 Join하는 경우 제공하는 기능이 있었다. WildMatch라는 함수가 제공되어서 Key와 start인수, end인수를 입력하면 자동으로 매칭해줬다. 그래서 SQL도 유사한 함수가 있나 찾아봤는데 제공하는 함수는 없길래 다른 방법을 생각해봤고 적용했다.</p>
+
+<h3 id="323-improve">3.2.3 Improve</h3>
+<p>  무작정 적은 코드라 맞는지 틀린지 알 수가 없어 문제를 풀어보고나면 다른 사람들의 풀이를 참조해보곤 하는데 좋은 코드가 있었다!</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">-- 내가 작성한 쿼리문</span>
+<span class="k">Left</span> <span class="k">Join</span>
+    <span class="n">UnitsSold</span> <span class="n">b</span>
+    <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">product_id</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">start_date</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">.</span><span class="n">purchase_date</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">end_date</span> <span class="o">&gt;=</span> <span class="n">b</span><span class="p">.</span><span class="n">purchase_date</span>
+<span class="c1">-- 다름 사람들의 solution 참조해서 개선</span>
+<span class="k">Left</span> <span class="k">Join</span>
+    <span class="n">UnitsSold</span> <span class="n">b</span>
+    <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">product_id</span> <span class="k">and</span>  <span class="n">b</span><span class="p">.</span><span class="n">purchase_date</span> <span class="k">Between</span> <span class="n">a</span><span class="p">.</span><span class="n">start_date</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">end_date</span>
+</code></pre></div></div>
+<p>  Between구문이 있는지 몰랐었다. 속도가 뭐가 빠른지는 대용량 데이터를 테스트 해보지 않아서 잘 모르겠다. 다만, 아래 코드가 직관적으로 읽기 수월하다고 생각한다.</p>
+
+<h2 id="33-project-employees-i">3.3 Project Employees I</h2>
+<h3 id="331-table-description--question">3.3.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Project</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>project_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>employee_id(PK)</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>employee_id is a foreign key to Employee table.<br />
+Each row of this table indicates that the employee with employee_id is working on the project with project_id.</p>
+</blockquote>
+
+<p>table: Employee</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>employee_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>varchar</td>
+    </tr>
+    <tr>
+      <td>experience_years</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>employee_id is the primary key of this table. It’s guaranteed that experience_years is not NULL.<br />
+Each row of this table contains information about one employee.</p>
+</blockquote>
+
+<p><strong>Question</strong> <br />
+Write an SQL query that reports the average experience years of all the employees for each project, rounded to 2 digits.<br />
+Return the result table ordered by student_id and subject_name.</p>
+
+<h3 id="332-solution">3.3.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">project_id</span>                          <span class="k">as</span> <span class="n">project_id</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="k">Avg</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">experience_years</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>     <span class="k">as</span> <span class="n">average_years</span>
+<span class="k">FROM</span>
+    <span class="n">Project</span> <span class="n">a</span>
+<span class="k">Left</span> <span class="k">Join</span>
+    <span class="n">Employee</span> <span class="n">b</span>
+    <span class="k">On</span> <span class="n">a</span><span class="p">.</span><span class="n">employee_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">employee_id</span>
+<span class="k">Group</span> <span class="k">By</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">project_id</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  기본적인 문제로 어려운 문제는 아니라 생각한다.</p>
+
+<h2 id="34-percentage-of-users-attended-a-contest">3.4 Percentage of Users Attended a Contest</h2>
+<h3 id="341-table-descriptoin--question">3.4.1 Table descriptoin &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Users</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>user_name</td>
+      <td>varchar</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Each row of this table contains the name and the id of a user.</p>
+</blockquote>
+
+<p>table: Register</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>contest_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>user_id(PK)</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>Each row of this table contains the id of a user and the contest they registered into.</p>
+</blockquote>
+
+<p><strong>Question</strong> <br />
+Write an SQL query to find the percentage of the users registered in each contest rounded to two decimals.<br />
+Return the result table ordered by percentage in descending order. In case of a tie, order it by contest_id in ascending order.</p>
+
+<h3 id="342-solution">3.4.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">contest_id</span>                                <span class="k">as</span> <span class="n">contest_id</span><span class="p">,</span>
+    <span class="n">Round</span><span class="p">(</span><span class="k">Count</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">contest_id</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">count</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span> <span class="k">From</span> <span class="n">Users</span> <span class="n">b</span> <span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>     <span class="k">as</span> <span class="n">percentage</span>
+<span class="k">FROM</span>
+    <span class="n">Register</span> <span class="n">a</span>
+<span class="k">Group</span> <span class="k">by</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">contest_id</span>
+<span class="k">Order</span> <span class="k">by</span>
+    <span class="n">percentage</span> <span class="k">desc</span><span class="p">,</span> <span class="n">contest_id</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  이 문제는 쉽지 않았고 고민을 많이 했었다. 각 contest별로 참석율을 구하기 위해서는 총 user_id 수를 구한다음 나눠줘야 했다. 총 user_id를 어떻게 구하기 위해서 2가지 방법을 찾았다.</p>
+
+<h3 id="343-good-to-know">3.4.3 Good to Know</h3>
+<p>  우선 첫번째 방법은 위 SQL코드처럼 subquery를 활용하는 방법이다. SELECT 절에서 사용됐고 단일 상수값을 반환하는 Subquery이다. Subquery는 아직은 생소해서 날잡고 한 번 정리해야 할 것 같다.<br />
+  두번째 방법은 해당 값을 변수로 선언하여 활용하는 방법이다.</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">DECLARE</span> <span class="o">@</span><span class="k">user</span> <span class="nb">int</span> <span class="o">=</span> <span class="p">(</span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">Users</span><span class="p">)</span>
+
+<span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">contest_id</span><span class="p">,</span> <span class="n">round</span><span class="p">((</span><span class="k">count</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="o">@</span><span class="k">user</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>    <span class="k">as</span> <span class="n">percentage</span>
+<span class="k">FROM</span> 
+    <span class="n">Register</span> <span class="n">a</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">a</span><span class="p">.</span><span class="n">contest_id</span> 
+<span class="k">ORDER</span> <span class="k">BY</span>  <span class="n">percentage</span> <span class="k">Desc</span><span class="p">,</span>  <span class="n">a</span><span class="p">.</span><span class="n">contest_id</span> <span class="k">Asc</span>
+</code></pre></div></div>
+<p>변수를 선언해서 활용하는 SQL 구문을 짜는 것도 꽤 깔끔해보인다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 이번 포스트부터는 LeetCode50 Aggregate Functions 이어 가겠습니다. 문제를 풀어보다가 중간중간 막히는 부분이 많았던 구간인 것 같습니다.😂]]></summary></entry><entry><title type="html">[데이터분석] 4개 인자를 한 산점도에 나타내기</title><link href="http://localhost:4000/data/data_analysis1/" rel="alternate" type="text/html" title="[데이터분석] 4개 인자를 한 산점도에 나타내기" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-17T08:52:00+09:00</updated><id>http://localhost:4000/data/data_analysis1</id><content type="html" xml:base="http://localhost:4000/data/data_analysis1/"><![CDATA[<p>  4개 인자를 한 산점도 차트에 표현하는 미션이 주어졌습니다. 4개 인자를 한 산점도에..?? 왜 4개의 인자를 한 산점도로 표현해야했는지 그리고 어떻게 해결했는지 기록하고자 합니다.</p>
 
 <h2 id="1-배경">1. 배경</h2>
 <p>  데이터 분석을 통한 에너지 사용 절감 프로젝트의 일환으로 에너지 사용량을 모니터링 할 수 있는 대시보드 화면을 개발하던 중, 팀장님께서 현재 에너지 사용량이 적정한 수준으로 사용되고 있는지 확인할 수 있는 시각화 차트를 만들어보라고 하셨다. 데이터 분석을 통해 에너지 사용에 영향을 미치는 중요한 3가지 인자를 도출했고, 이를 기반으로 어떻게 하면 클라이언트가 쉽게 볼 수 있는 시각화 차트를 구성할 수 있을지 고민해봤습니다. 우선, 어떤 차트를 통해 표현할 지를 정해야 했는데 인자 간 관계를 볼 때 기본적으로 사용하는 산점도를 활용해 표현해보고자 했습니다.</p>
@@ -1388,34 +1724,4 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
 <p>  에너지 사용 문제점을 진단할 때 반드시 고려해야 할 부분이 바로 <strong>공정 품질</strong>입니다. 에너지 사용량을 절감했지만 공정 품질을 만족하지 못한다면 이는 에너지 사용 과소 상태로 적절한 수준의 에너지 사용량이 아닙니다. 이 상태에서는 오히려 에너지를 더 투입하여 품질을 만족시켜야만 합니다. 반대로 현재 에너지 사용 수준에서 품질 관리 수준 대비 마진이 커 여유가 있다면, 에너지 과다 상태로 에너지 절감안 도출을 검토해 볼 수 있습니다.</p>
 
 <h2 id="4-다음-회고록을-기약하며">4. 다음 회고록을 기약하며…</h2>
-<p>  회고록을 작성하다보니 처음 생각한 것 보다 내용이 너무 길어졌습니다. 현재 진행중인 프로젝트이기도 하고 남은 내용은 다음 회고록에 적을 수 있도록 하겠습니다. 그럼 이번 회고록은 여기서 마치도록 하겠습니다. 감사합니다!</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  안녕하세요. 요즘엔 데이터 분석을 통해 공장에서 사용하는 에너지 절감 프로젝트를 수행중에 있습니다. 최근 에너지 원가 상승으로 인하여 에너지 비용이 증가하여 공장 입장에서는 부담이 되고 있는 상황입니다. 따라서 공장에서는 에너지 절감을 위해 다양한 활동을 수행하고 있고, 그 노력의 일환으로 데이터 분석을 통한 에너지 사용 절감안을 도출하고자 합니다. ‘23년 1년 프로젝트로 기획됐고 2월부터 시작해 현재 진행중에 있습니다. 보안 상 디테일한 부분을 얘기하긴 어렵지만 어떻게 데이터 분석 프로젝트를 진행하고 있는지 간략하게만 기록하겠습니다.   에너지 절감을 위하여 다양한 접근 방법이 있겠지만 우리는 다음과 같은 방식으로 단계로 데이터 분석 프로젝트를 진행했습니다.]]></summary></entry><entry><title type="html">[회고록] 23년 5월 1주차 회고록</title><link href="http://localhost:4000/data/weekly_memoir_4/" rel="alternate" type="text/html" title="[회고록] 23년 5월 1주차 회고록" /><published>2023-05-07T00:00:00+09:00</published><updated>2023-05-08T01:24:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_4</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_4/"><![CDATA[<p>  이번 회고록은 조금은 다른 내용에 대해서 적어보고자 합니다. 일과 관련된 얘기지만 업무나 기술, 테크와 관련된 얘기가 아닌 마음가짐?에 대한 얘기를 적어보고자 합니다.
-<br /><br />
-  4월 초부터 최근 1달간은 개인적인 사정으로 멘탈이 굉장히 좋지 않았습니다. 무던한 성격이라 웬만한 일에는 감정적으로 동요가 되지 않는 편인데도 불구하고 최근에는 감정적으로 좋지 않았습니다.
-멘탈도 많이 흔들리고, 아무래도 잡생각과 고민이 많아지다보니 업무 중에도 집중하기가 쉽지 않았습니다. 업무 중에 다른 생각이 들때마다 “이러면 안돼, 집중해야 해, 프로다운 모습을 보여야 해”하며
-마음을 다잡아봤지만, 생각처럼 쉽지 않았습니다. 심적으로 편하지 않은 상태다보니 육체적인 면에도 안좋은 영향을 끼쳤습니다. 육체적으로 피로해지니 심적으로도 더 안 좋아지구요. 악순환에 빠진 상태였습니다. 
-차라리, 아예 다른 생각을 못하도록 일이 미친듯이 많았으면 집중할 수 있지 않을까란 생각도 해봤습니다. 이렇게 업무에 온전히 집중하지 못한 상태로 시간을 보냈습니다. 그러다가 외부적으로 상황이 해결되고 나니 
-차츰 좋아졌고 다시 정상궤도로 올라올 수 있었습니다. 
-<br /><br />
-  이러한 시간을 겪다보니 개인적으로 느낀 점이 많았습니다.</p>
-<blockquote>
-  <ol>
-    <li>내가 컨트롤 할 수 없는 외부 상황에 의해서 영향을 받을 수 있다는 점</li>
-    <li>멘탈적으로 혼란스러운 시기에 어떻게 하면 안정적으로 업무에 집중할 수 있는지에 대한 고민</li>
-  </ol>
-</blockquote>
-
-<p>  정리하자면, 어떻게 하면 <strong>마인드 컨트롤</strong>을 잘 할 수 있을까에 대한 고민인 것 같습니다. 이 고민은 앞으로도 쭉 해야할 고민일 거라 생각합니다. 특히 내 스스로의 의지로 이 상황을 해결한 것이 아니라
-외부적으로 해결되고 나서 안정된 점을 보았을 때 더욱 고민이 깊어졌습니다. 왜냐하면 앞으로 긴 인생을 살면서 스스로 어찌할 수 없는 상황이 분명히 생길 것이고 심지어 더 큰 문제를 맞닦뜨리게 될 수도 있다고 생각했습니다.
-<br /><br />
-  하나 긍정적인 점이 있다면, 그것은 이렇게 멘탈적으로 흔들릴 수 있는 스스로를 알게 됐고 인정하게 됐다는 점입니다. 이전까지만 해도 진심으로 저는 제가 강철 멘탈을 지닌 줄 알았지만, 전혀 그렇지 않을 수 있다는 것을 
-알았습니다. 그렇지 않을 수 있다는 점을 받아들이고 나니 앞으로 이러한 문제가 발생할 것을 대비해야 겠다는 마음이 들었습니다.
-<br /><br />
-  개인적으로 도움이 많이 된 방법은 <strong>1. 운동하기</strong>와 <strong>2. 가깝고 의지할 수 있는 사람들과 시간 보내기</strong>가 있었습니다. 운동같은 경우에는 러닝이 참 도움이 많이 됐습니다. 언제나 지치고 우울감이 들때면, 억지로라도 
-러닝을 하러 나갑니다. 한강변을 따라 야경을 보면서 러닝을 하다보면 숨이 차기 시작하면서 잡생각이 없어지고 몸이 풀리면서 기분도 한결 나아집니다. 다음으로는 제가 사랑하는 사람들을 만나 대화하고 시간을 보내는 것 입니다.
-특히, 부모님을 찾아뵈어 만나면 그냥 그대로 위안이 되고 의지가 되더군요. 그렇게 주말을 보내면 재충전이 되고 더 나은 한주를 보낼 수 있었습니다.
-<br /><br />
-  반대로 지양해야 될 것은 지나친 음주였습니다. 멘탈이 안좋다보니 지인들과 술자리가 잦아졌습니다. 초반에는 기분도 풀리고 즐겁고 좋았습니다. 다만, 무의미한 술자리가 잦아지게 되면서 점점 숙취로 인한 피로는 쌓여가고 
-반동으로 오는 우울감까지 더해지면서 상황이 나아지진 않더군요. 뭐든지 적당히가 좋은 것 같습니다.
-<br /><br />
-  마지막으로 다음에도 이런 일이 발생한다면 어떻게 하면 좋을까 생각했던 것이 있습니다. 바로, <strong>문제가 되는 상황을 최대한 빠르게 해결하는게 답</strong>일 수도 있겠다 생각이 들었습니다. 나를 힘들게 하는 문제가 있다면 
-더 적극적으로 해결해서 문제를 치울 수 있다면 그렇게 하는게 최선이란 생각이 들었습니다. 보통 업무를 함에도 우선순위를 정하듯이, 조금 더 큰 범위에서 우선순위를 정해보는 것이라 생각합니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  이번 회고록은 조금은 다른 내용에 대해서 적어보고자 합니다. 일과 관련된 얘기지만 업무나 기술, 테크와 관련된 얘기가 아닌 마음가짐?에 대한 얘기를 적어보고자 합니다.   4월 초부터 최근 1달간은 개인적인 사정으로 멘탈이 굉장히 좋지 않았습니다. 무던한 성격이라 웬만한 일에는 감정적으로 동요가 되지 않는 편인데도 불구하고 최근에는 감정적으로 좋지 않았습니다. 멘탈도 많이 흔들리고, 아무래도 잡생각과 고민이 많아지다보니 업무 중에도 집중하기가 쉽지 않았습니다. 업무 중에 다른 생각이 들때마다 “이러면 안돼, 집중해야 해, 프로다운 모습을 보여야 해”하며 마음을 다잡아봤지만, 생각처럼 쉽지 않았습니다. 심적으로 편하지 않은 상태다보니 육체적인 면에도 안좋은 영향을 끼쳤습니다. 육체적으로 피로해지니 심적으로도 더 안 좋아지구요. 악순환에 빠진 상태였습니다. 차라리, 아예 다른 생각을 못하도록 일이 미친듯이 많았으면 집중할 수 있지 않을까란 생각도 해봤습니다. 이렇게 업무에 온전히 집중하지 못한 상태로 시간을 보냈습니다. 그러다가 외부적으로 상황이 해결되고 나니 차츰 좋아졌고 다시 정상궤도로 올라올 수 있었습니다.   이러한 시간을 겪다보니 개인적으로 느낀 점이 많았습니다. 내가 컨트롤 할 수 없는 외부 상황에 의해서 영향을 받을 수 있다는 점 멘탈적으로 혼란스러운 시기에 어떻게 하면 안정적으로 업무에 집중할 수 있는지에 대한 고민]]></summary></entry></feed>
+<p>  회고록을 작성하다보니 처음 생각한 것 보다 내용이 너무 길어졌습니다. 현재 진행중인 프로젝트이기도 하고 남은 내용은 다음 회고록에 적을 수 있도록 하겠습니다. 그럼 이번 회고록은 여기서 마치도록 하겠습니다. 감사합니다!</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  안녕하세요. 요즘엔 데이터 분석을 통해 공장에서 사용하는 에너지 절감 프로젝트를 수행중에 있습니다. 최근 에너지 원가 상승으로 인하여 에너지 비용이 증가하여 공장 입장에서는 부담이 되고 있는 상황입니다. 따라서 공장에서는 에너지 절감을 위해 다양한 활동을 수행하고 있고, 그 노력의 일환으로 데이터 분석을 통한 에너지 사용 절감안을 도출하고자 합니다. ‘23년 1년 프로젝트로 기획됐고 2월부터 시작해 현재 진행중에 있습니다. 보안 상 디테일한 부분을 얘기하긴 어렵지만 어떻게 데이터 분석 프로젝트를 진행하고 있는지 간략하게만 기록하겠습니다.   에너지 절감을 위하여 다양한 접근 방법이 있겠지만 우리는 다음과 같은 방식으로 단계로 데이터 분석 프로젝트를 진행했습니다.]]></summary></entry></feed>
