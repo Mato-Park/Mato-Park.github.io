@@ -1,5 +1,5 @@
 ---
-title: "[SQL] LeetCode 풀이: Basic Aggregate Functions"
+title: "[SQL] LeetCode 풀이: Basic Aggregate Functions(1/2)"
 
 categories:
     - Data
@@ -210,9 +210,9 @@ Order by
     percentage desc, contest_id
 ;
 ```
-&#160; 이 문제는 쉽지 않았고 고민을 많이 했었다. 각 contest별로 참석율을 구하기 위해서는 총 user_id 수를 구한다음 나눠줘야 했다. 총 user_id를 어떻게 구하기 위해서 2가지 방법을 찾았다.
+&#160; 이 문제는 쉽지 않았고 고민을 많이 했었다. 각 contest별로 참석율을 구하기 위해서는 총 user_id 수를 구한다음 나눠줘야 했다. 방법은 위 SQL코드처럼 subquery를 활용하는 방법이다. SELECT 절에서 사용됐고 단일 상수값을 반환하는 Subquery이다. Subquery는 아직은 생소해서 날잡고 한 번 정리해야 할 것 같다.
 
-### 3.4.3 Good to Know
+<!-- ### 3.4.3 Good to Know
 &#160; 우선 첫번째 방법은 위 SQL코드처럼 subquery를 활용하는 방법이다. SELECT 절에서 사용됐고 단일 상수값을 반환하는 Subquery이다. Subquery는 아직은 생소해서 날잡고 한 번 정리해야 할 것 같다.<br>
 &#160; 두번째 방법은 해당 값을 변수로 선언하여 활용하는 방법이다. 
 ```sql
@@ -225,4 +225,4 @@ FROM
 GROUP BY a.contest_id 
 ORDER BY  percentage Desc,  a.contest_id Asc
 ```
-변수를 선언해서 활용하는 SQL 구문을 짜는 것도 꽤 깔끔해보인다.
+변수를 선언해서 활용하는 SQL 구문을 짜는 것도 꽤 깔끔해보인다. -->
