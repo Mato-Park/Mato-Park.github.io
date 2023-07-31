@@ -1,4 +1,260 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-23T15:42:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Basic Aggregate Functions(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode5/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Basic Aggregate Functions(2/2)" /><published>2023-07-23T00:00:00+09:00</published><updated>2023-07-21T07:08:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode5</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode5/"><![CDATA[<p>  안녕하세요. 이번 포스트부터는 LeetCode50 Aggregate Functions 두번째 파트 이어 가겠습니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-31T21:32:29+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Sorting and Grouping(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode6/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Sorting and Grouping(1/2)" /><published>2023-07-31T00:00:00+09:00</published><updated>2023-08-01T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode6</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode6/"><![CDATA[<p>  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다</p>
+
+<h1 id="4-sorting-and-grouping">4. Sorting and Grouping</h1>
+<h2 id="41-number-of-unique-subjects-taught-by-each-teacher">4.1 Number of Unique Subjects Taught by Each Teacher</h2>
+<h3 id="411-table-description--question">4.1.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Teacher</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Colum Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>teacher_id</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>subject_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>dept_id(PK)</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>(subject_id, dept_id) is the primary key for this table.<br />
+Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.</p>
+</blockquote>
+
+<p><strong>Question</strong><br /></p>
+<ul>
+  <li>Calculate the number of unique subjects each teacher teaches in the university.</li>
+  <li>Return the result table in any order.</li>
+</ul>
+
+<h3 id="412-solution">4.1.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">teacher_id</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">subject_id</span><span class="p">)</span>  <span class="k">as</span> <span class="n">cnt</span>
+<span class="k">FROM</span>
+    <span class="n">Teacher</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+    <span class="n">teacher_id</span>
+</code></pre></div></div>
+<p>  선생님 별로 가르치는 과목 수를 구하면 된다. 중복을 제거하기 위하여 count 함수 안에 ‘distinct’를 적어주자 끝!</p>
+
+<h2 id="42-user-activity-for-the-past-30-days-1">4.2 User Activity for the Past 30 Days 1</h2>
+<h3 id="421-table-description--question">4.2.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Activity</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Colum Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>user_id</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>session_id</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>activity_date</td>
+      <td>date</td>
+    </tr>
+    <tr>
+      <td>activity_type</td>
+      <td>enum</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>There is no primary key for this table, it may have duplicate rows.<br />
+The activity_type column is an ENUM of type (‘open_session’, ‘end_session’, ‘scroll_down’, ‘send_message’).<br />
+The table shows the user activities for a social media website. <br />
+Note that each session belongs to exactly one user.</p>
+</blockquote>
+
+<p><strong>Question</strong><br /></p>
+<ul>
+  <li>Write an SQL query to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively. A user was active on someday if they made at least one activity on that day.</li>
+  <li>Return the result table in any order.</li>
+</ul>
+
+<h3 id="422-solution">4.2.2 Solution</h3>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Select</span>
+    <span class="n">activity_date</span>   <span class="k">As</span> <span class="k">day</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">As</span> <span class="n">active_users</span>
+<span class="k">FROM</span>
+    <span class="n">Activity</span>
+<span class="k">WHERE</span>
+    <span class="n">activity_date</span> <span class="k">BETWEEN</span> <span class="n">Date_Sub</span><span class="p">(</span><span class="s1">'2019-07-27'</span><span class="p">,</span> <span class="n">INTERVAL</span> <span class="mi">29</span> <span class="k">DAY</span><span class="p">)</span>
+    <span class="k">AND</span> <span class="s1">'2019-07-27'</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+    <span class="n">activity_date</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  2019년 7월 27일을 기준으로 30일 전부터 기준일까지 일자별로 활성화 유저 수를 계산하면 된다. count를 사용하여 수를 집계하고 기간은 Where 절에 Between과 date_sub를 활용하여 기간 조건을 설정했다.</p>
+
+<h2 id="43-product-sales-analysis-3">4.3 Product Sales Analysis 3</h2>
+<h3 id="431-table-description--question">4.3.1 Table Description &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Sales</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sale_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>product_id(FK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>year(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>quantity</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>price</td>
+      <td>int</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>(sale_id, year) is the primary key of this table.<br />
+product_id is a foreign key to Product table.<br />
+Each row of this table shows a sale on the product product_id in a certain year.<br />
+Note that the price is per unit.</p>
+</blockquote>
+
+<p>table: Product</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>product_id(PK)</td>
+      <td>int</td>
+    </tr>
+    <tr>
+      <td>product_name</td>
+      <td>varchar</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>product_id is the primary key of this table.<br />
+Each row of this table indicates the product name of each product.<br /></p>
+</blockquote>
+
+<p><strong>Question</strong> <br /></p>
+<ul>
+  <li>Write an SQL query that selects the product id, year, quantity, and price for the first year of every product sold.</li>
+  <li>Return the resulting table in any order.</li>
+</ul>
+
+<p>  product별로 첫 해에 판매한 수량과 판매가격을 구하는 문제이다.</p>
+
+<h3 id="432-solution">4.3.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">product_id</span><span class="p">,</span>
+    <span class="nb">year</span>        <span class="k">As</span> <span class="n">first_year</span><span class="p">,</span>
+    <span class="n">quantity</span><span class="p">,</span>
+    <span class="n">price</span>
+<span class="k">FROM</span>
+    <span class="n">Sales</span>
+<span class="k">Where</span>
+    <span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="nb">year</span><span class="p">)</span> <span class="k">in</span> <span class="p">(</span><span class="k">Select</span> <span class="n">product_id</span><span class="p">,</span> <span class="k">Min</span><span class="p">(</span><span class="nb">year</span><span class="p">)</span> <span class="k">as</span> <span class="nb">year</span>
+     <span class="k">From</span> <span class="n">Sales</span> <span class="k">Group</span> <span class="k">By</span> <span class="n">product_id</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  각 Product 별로 첫 해에 해당하는 Record를 어떻게 가져올까 고민을 많이 했었다. 처음에 떠올린 아이디어는 프로덕트 별로 연도를 오름차순으로 정렬한 다음 가장 위에 있는 Record를 가져오는 것이었다. 구글링도 해봤지만 내가 생각했던 솔루션은 찾기 어려웠다. 따라서 다른 방법을 고민하다가 찾은 것이 위 쿼리문이다.<br />
+  아이디어는 간단하다. 프로덕트 별로 첫 해는 year 값이 가장 <strong>낮은</strong> 값일 것이다. 왜냐하면 날짜는 일정한 방향으로 흐르기 때문이다. 따라서 WHERE 절에 subquery를 활용하여 프로덕트 별로 year가 가장 낮은 Record를 가져올 수 있는 조건 절을 추가했다.</p>
+
+<h2 id="44-class-more-than-5-students">4.4 Class More Than 5 Students</h2>
+<h3 id="441-table-descriptoin--question">4.4.1 Table descriptoin &amp; Question</h3>
+<p><strong>Table</strong> description</p>
+
+<p>table: Courses</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Column Name</th>
+      <th>Type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>student(PK)</td>
+      <td>varchar</td>
+    </tr>
+    <tr>
+      <td>class(PK)</td>
+      <td>varchar</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p>(student, class) is the primary key column for this table.<br />
+Each row of this table indicates the name of a student and the class in which they are enrolled.</p>
+</blockquote>
+
+<p><strong>Question</strong> <br /></p>
+<ul>
+  <li>Find all the classes that have at least five students.<br /></li>
+  <li>Return the result table in any order.</li>
+</ul>
+
+<h3 id="382-solution">3.8.2 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="k">class</span>
+<span class="k">FROM</span>
+    <span class="n">Courses</span>
+<span class="k">Group</span> <span class="k">By</span>
+    <span class="k">class</span>
+<span class="k">Having</span>
+    <span class="k">Count</span><span class="p">(</span><span class="n">student</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+<span class="p">;</span>
+</code></pre></div></div>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Basic Aggregate Functions(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode5/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Basic Aggregate Functions(2/2)" /><published>2023-07-23T00:00:00+09:00</published><updated>2023-07-21T07:08:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode5</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode5/"><![CDATA[<p>  안녕하세요. 이번 포스트부터는 LeetCode50 Aggregate Functions 두번째 파트 이어 가겠습니다.</p>
 
 <h1 id="3-basic-aggregate-functions">3. Basic Aggregate Functions</h1>
 <h2 id="35-queries-quality-and-percentage">3.5 Queries Quality and Percentage</h2>
@@ -1917,26 +2173,4 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
   </ol>
 </blockquote>
 
-<p>  일을 하다보면 클라이언트와 의견 충돌이 발생하고 언쟁이 발생할 수 있다고 생각하고 실제로 벌어졌습니다. 갈등 상황을 피하는 것이 능사는 아니라 생각합니다. 서로의 의견을 논리정연하게 피력하고 건설적으로 대화하는 것이 중요하겠죠. 다만, 감정적으로 대응하는 것은 프로답지 못한 행동이라 생각되고 반성하게 되네요. 앞으로는 오늘같은 일이 일어나더라도 차분하고 이성적으로 대응할 수 있는 사람이 되도록 노력하겠습니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다.]]></summary></entry><entry><title type="html">[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?</title><link href="http://localhost:4000/data/weekly_memoir_6/" rel="alternate" type="text/html" title="[회고록] 23년 6월 2주차: 분석 능력이란 뭘까?" /><published>2023-06-12T00:00:00+09:00</published><updated>2023-06-13T05:40:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_6</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_6/"><![CDATA[<p>  최근 SNS 중 하나인 링크드인을 자주 봅니다. 따로 글을 쓰거나 하진 않지만, 제가 몸담고 있는 업계에 다른 동료분들이 어떤 생각을 가지고 일하는 지 알 수 있어서 꽤 재밌게 보고 있습니다. 링크드인 속에는 수많은 데이터 분석가(+데이터 전문가) 분들이 있고, 저마다의 업무 역량, 분석 역량을 뽐내고 계십니다. 피드들을 열심히 눈팅하다보니 문득 그런 생각이 들더군요. <strong>그렇다면 과연 분석 능력이란 뭘까요?</strong> 나의 분석 능력은 뛰어나다고 할 수 있는 건가? 나는 좋은 분석가인가? 라는 고민이 이어지게 됩니다.<br /><br /></p>
-
-<p>  생각하면 할수록 정말 답하기 어려운 질문인 것 같습니다. 업무 분야도 다 다르고 각자 생각하는 기준이 다 다르기 떄문이기에 딱 하나의 정답은 없는 것 같습니다. 별다른 구분 없이 생각나는대로 나열해보겠습니다.</p>
-
-<blockquote>
-  <ol>
-    <li><span style="color:red">데이터 분석을 통해 프로덕트에 유의미한 성장을 이끌어 냄</span></li>
-    <li><span style="color:red">데이터 분석을 통해 클라이언트의 문제를 해결해 냄</span></li>
-    <li>최신 예측 모형에 대하여 꾸준히 학습하고 예측력이 좋은 ML 모형을 개발할 줄 암</li>
-    <li>데이터 분석을 수행할 다양한 Tool을 다룰줄 암</li>
-    <li>데이터 핸들링을 기가막히게 함</li>
-    <li>BI를 활용해 대쉬보드/리포트/분석화면을 설계하고 개발함</li>
-    <li>도메인 지식에 대한 깊이있는 이해가 있음</li>
-    <li>데이터 분석 결과를 타인에게 설득할 수 있는 커뮤니케이션 스킬 혹은 문서 작성 스킬</li>
-    <li>업무를 대하는 태도, 책임감, 성실함 등</li>
-  </ol>
-</blockquote>
-
-<p>  데이터 분석가의 가장 궁극적인 목표는 결국 1 &amp; 2번은 잘 할 수 있는 분석가가 되는 것이겠죠. 다만, 이는 온전히 개인의 역량으로 뭔가를 이루어내기 어렵다는 점에서 분석가의 개인적인 분석 능력이라 평하기는 매우 어렵습니다. 그리고 따지고 보면 1 &amp; 2번 외에 나머지 항목들은 결국 1 &amp; 2번을 잘하기 위한 것들입니다. 데이터 분석을 잘 하기 위한 도구인거죠. 칼을 잘 다룬다고 무조건 맛있는 음식을 만들어 내는 것은 아닌 것처럼 다양한 도구를 잘 다룬다고 데이터 분석을 잘한다고 하기는 어렵습니다. 실제로 IT 기반 &amp; 코딩 능력 하나 없이 셀프서비스 소프트웨어를 활용해 데이터 분석을 기가막히게 본업에 활용해 유의미한 가치를 만들어내는 분들도 봤습니다. 물론, 도구를 잘 다루면 분석을 잘하고 분석 능력이 좋을 확률은 그렇지 않은 사람보다 훨씬 더 높다고 생각합니다. 하지만 중요한 것은 본질을 놓쳐서는 안된다는 것입니다. 너무 기술적인 부분에 집중하다보면 정작 분석에 있어서는 아쉬운 부분이 있을 수도 있다고 생각합니다. <br /><br /></p>
-
-<p>  그렇다보니 시중에 쏟아지는 최신 기술, 동향에 압도되기 보다는 현재 본인 업무에 있어서 필요한 것을 채워가는게 중요하다고 생각합니다. 저도 가끔은 쏟아지는 최신 기술, 트렌드에 압도되는 것 같을 때도 있고 조급해질 떄도 있습니다. 그럴때면 괜히 조바심을 내기보다는 천천히 내가 부족한 것을 채우기 위해, 그리고 내 분석 업무에 도움될 만한 것들을 갖추기 위해 노력하고 있습니다. 그러다 보면 더 나은, 더 뛰어난 분석가가 될 수 있다고 생각하며 계속 채워나가는 중입니다. 개인적으로 요즘 가장 중요하게 생각하는 것은 분석함에 있어서 얼마나 논리적으로 사고하는가 입니다. 우리가 마주한 문제에 있어서 논리적으로 가설을 세우고 정리하여 접근해야지 헤매지 않고 답을 발견해 나갈 수 있다 생각합니다. 논리가 빈약한 채로 분석을 하면 장담컨대 답을 도출해 내기 어려울 뿐만 아니라 클라이언트를 설득하기는 더 어려울 것입니다. 그래서 전 의식적으로라도 더 논리적으로 사고하고 문제에 접근하고자 노력하고 있습니다. 가장 좋은 방법은 훌룡한 선배, 동료들의 방식을 보고 배우는 것입니다. 그렇기에 좋은 동료가 있는 집단으로 가야하는 것이구요. <br /><br /></p>
-
-<p>  앞서 말했듯이 뛰어난 분석 능력은 무엇인가에 대한 하나의 답은 없는 것 같습니다. 하지만 분석가에 존재의의에 대해 고민하다보면 뛰어난 분석가가 되기 위해 무엇을 잘 해야 하는지는 명확한 것 같습니다. 훌룡한 분석가가 되기 위해 꾸준하게 나아가고자 합니다. 우리 모두 화이팅입니다!</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  최근 SNS 중 하나인 링크드인을 자주 봅니다. 따로 글을 쓰거나 하진 않지만, 제가 몸담고 있는 업계에 다른 동료분들이 어떤 생각을 가지고 일하는 지 알 수 있어서 꽤 재밌게 보고 있습니다. 링크드인 속에는 수많은 데이터 분석가(+데이터 전문가) 분들이 있고, 저마다의 업무 역량, 분석 역량을 뽐내고 계십니다. 피드들을 열심히 눈팅하다보니 문득 그런 생각이 들더군요. 그렇다면 과연 분석 능력이란 뭘까요? 나의 분석 능력은 뛰어나다고 할 수 있는 건가? 나는 좋은 분석가인가? 라는 고민이 이어지게 됩니다.]]></summary></entry></feed>
+<p>  일을 하다보면 클라이언트와 의견 충돌이 발생하고 언쟁이 발생할 수 있다고 생각하고 실제로 벌어졌습니다. 갈등 상황을 피하는 것이 능사는 아니라 생각합니다. 서로의 의견을 논리정연하게 피력하고 건설적으로 대화하는 것이 중요하겠죠. 다만, 감정적으로 대응하는 것은 프로답지 못한 행동이라 생각되고 반성하게 되네요. 앞으로는 오늘같은 일이 일어나더라도 차분하고 이성적으로 대응할 수 있는 사람이 되도록 노력하겠습니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다.]]></summary></entry></feed>

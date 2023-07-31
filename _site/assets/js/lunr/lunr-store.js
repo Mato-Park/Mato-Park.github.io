@@ -130,4 +130,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode5/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Sorting and Grouping(1/2)",
+        "excerpt":"  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다 4. Sorting and Grouping 4.1 Number of Unique Subjects Taught by Each Teacher 4.1.1 Table Description &amp; Question Table description table: Teacher Colum Name Type teacher_id int subject_id(PK) int dept_id(PK) int (subject_id,...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode6/",
+        "teaser": null
       }]
