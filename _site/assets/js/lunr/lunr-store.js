@@ -65,7 +65,7 @@ var store = [{
         "url": "/data/weekly_memoir_4/",
         "teaser": null
       },{
-        "title": "[회고록] 23년 5월 3주차: 에너지 절감",
+        "title": "[회고록] 23년 5월 3주차: 에너지 절감(1/2)",
         "excerpt":"  안녕하세요. 요즘엔 데이터 분석을 통해 공장에서 사용하는 에너지 절감 프로젝트를 수행중에 있습니다. 최근 에너지 원가 상승으로 인하여 에너지 비용이 증가하여 공장 입장에서는 부담이 되고 있는 상황입니다. 따라서 공장에서는 에너지 절감을 위해 다양한 활동을 수행하고 있고, 그 노력의 일환으로 데이터 분석을 통한 에너지 사용 절감안을 도출하고자 합니다. ‘23년 1년 프로젝트로...","categories": ["Data"],
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir_5/",
@@ -135,5 +135,11 @@ var store = [{
         "excerpt":"  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다 4. Sorting and Grouping 4.1 Number of Unique Subjects Taught by Each Teacher 4.1.1 Table Description &amp; Question Table description table: Teacher Colum Name Type teacher_id int subject_id(PK) int dept_id(PK) int (subject_id,...","categories": ["Data"],
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode6/",
+        "teaser": null
+      },{
+        "title": "[회고록] 23년 9월 1주차: 에너지 절감(2/2)",
+        "excerpt":"  안녕하세요. 지난 회고록에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 분석 모델링도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다. 4. 에너지 절감 포인트 도출   앞의 과정이 끝났다면 에너지 별로 문제점 진단이 끝났을 것입니다. 그럼 데이터 분석을 통한 에너지 절감이 가능한 경우는 다음과...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/weekly_memoir_9/",
         "teaser": null
       }]

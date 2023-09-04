@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-31T21:32:29+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Sorting and Grouping(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode6/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Sorting and Grouping(1/2)" /><published>2023-07-31T00:00:00+09:00</published><updated>2023-08-01T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode6</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode6/"><![CDATA[<p>  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-04T23:31:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[회고록] 23년 9월 1주차: 에너지 절감(2/2)</title><link href="http://localhost:4000/data/weekly_memoir_9/" rel="alternate" type="text/html" title="[회고록] 23년 9월 1주차: 에너지 절감(2/2)" /><published>2023-09-04T00:00:00+09:00</published><updated>2023-09-05T07:24:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_9</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_9/"><![CDATA[<p>  안녕하세요. 지난 <a href="https://mato-park.github.io/data/weekly_memoir_5/">회고록</a>에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 <a href="https://mato-park.github.io/data/weekly_memoir_7/">분석 모델링</a>도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다. 
+<br /><br /></p>
+
+<h2 id="4-에너지-절감-포인트-도출">4. 에너지 절감 포인트 도출</h2>
+<p>  앞의 과정이 끝났다면 에너지 별로 문제점 진단이 끝났을 것입니다. 그럼 데이터 분석을 통한 에너지 절감이 가능한 경우는 다음과 같이 정리가 될 것입니다.</p>
+<blockquote>
+  <ol>
+    <li>에너지 사용량의 산포(범위, 표준편차, 분산, 사분위 범위 등)가 큰 경우</li>
+    <li>과거 설비 운전 패턴이 다양한 경우</li>
+    <li>공정 품질 수준이 관리선 대비 여유가 큰 경우</li>
+    <li>에너지 관련 관리 지표의 변동이 있는 경우</li>
+  </ol>
+</blockquote>
+
+<p>  각 상황 별로 분석한 내용에 대해서 간략하게 정리하겠습니다.</p>
+
+<h3 id="41-에너지-사용량-산포-원인분석">4.1 에너지 사용량 산포 원인분석</h3>
+<p>  말 그대로 에너지 사용량 산포가 큰 이유를 찾아내는 것입니다. 어떤 공정, 품질 인자로 인하여 에너지 사용량의 변동이 큰지 탐색해 나갑니다. 우선 공정 별로 <strong>공정 메커니즘 이해</strong>가 중요합니다. 왜냐하면 공정 별로 중요한 외생 변수는 무엇인지, 후보인자를 선별해야 하기 때문입니다. 중요 외생변수를 통제해가면서 에너지 사용량과 상관성이 높은 변수들을 탐색해 나갑니다. 주로 EDA를 하면서 인자들을 탐색하고 필요하다면 분석 모델링을 통해 다변량이 에너지 사용량에 미치는 효과를 추정해내기도 합니다.<br /><br />
+  주요 인자들을 통제했음에도 불구하고 산포가 남아있는 경우가 바로 에너지 절감 포인트입니다. 공정 최적화가 되지 못해 에너지 사용량의 낭비가 있거나, 너무 과도하게 품질을 관리하고 있는 경우기 있을 수 있습니다. 주요 인자들을 제외한 공정 인자의 변동이 에너지 사용량의 영향을 미친다면 최적화를 통해 에너지 절감이 가능합니다.<br /><br />
+  에너지 사용량의 산포가 있음에도 공정 인자와 매치되지 않는 경우는 설비 이상을 의심해봐야 합니다. 하지만 이 부분은 데이터로 볼 수 있는 부분이 아니기에, 우리는 문제점만 전달하고 현업 담당자에게 뒷 일은 맡겨야 합니다.</p>
+
+<h3 id="42-최적-설비-운전-패턴-도출">4.2 최적 설비 운전 패턴 도출</h3>
+<p>  특정 공정 관리 인자의 온도를 맞추기 위해서 열매의 온도와 유량을 조정하면서 열교환을 합니다. 이때 다양한 운전 패턴이 있을 수 있습니다. 그렇다면 이 운전 패턴 간 에너지 사용량을 비교해보고 어떤 운전 패턴이 최적인지 탐색해볼 수 있습니다. 쉽게 예를 들면, 여름에 더울 때 에어컨 온도를 낮추고 바람 세기를 적게 하는 것이 더 효율적인지 혹은 온도를 조금 높이고 바람 세기를 세게 하는 것이 효율적인지를 비교해보는 것이라 생각하면 될 것 같습니다. <br /><br />
+  너무 쉽고 당연한 얘기죠? 하지만 의외로 이런 곳에서 절감포인트가 나옵니다. 데이터 인프라가 약한 조직이라면 과거 긴 시간의 데이터를 활용하지 못하기 때문에 분명히 놓치고 있는 것이 있을 수 있기 때문에 확인하면 좋은 포인트입니다.</p>
+
+<h3 id="43-공정-품질-수준이-관리선-대비-여유가-큰-경우">4.3 공정 품질 수준이 관리선 대비 여유가 큰 경우</h3>
+<p>  공정 관리 수준이 너무 타이트할 수 있습니다. 공정의 여유가 있다면 품질 수준을 조금 낮추고 에너지 사용량을 줄이는 방안도 고려해 볼 수 있습니다. 다만 이 부분도 분석가의 역할은 현황만 진단하고 나머지 판단은 현업에 맡겨야 합니다.</p>
+
+<h3 id="44-에너지-관리-지표의-변동이-있는-경우">4.4 에너지 관리 지표의 변동이 있는 경우</h3>
+<p>  예를 들어, 냉수 온도를 일정하게 유지해야 하는데 계절 별로 온도가 변동하는 경우가 있습니다. 이 경우, 데이터를 확인해 특별한 이유가 있는지 혹은 연관된 인자의 변동을 살펴보고 특별한 이유가 없다면 모종의 이유로 에너지가 낭비되고 있을 수 있습니다. 이 부분도 확인해보면 에너지 절감 포인트를 도출하는데 도움이 될 수 있습니다.</p>
+
+<h2 id="5-개선안-도출">5. 개선안 도출</h2>
+<p>  분석을 통해 도출한 에너지 절감 포인트를 활용하여 에너지 사용량 개선안을 내야 합니다. 사실 이 부분부터는 분석가의 역할이 아니라 현업 담당자의 역할입니다. 분석을 통해 발견한 인자를 최적화하거나 혹은 분석 결과를 기반으로 아이디어를 도출해 개선안을 수립하고 실제 공정에 Test해보고 결과를 비교해봅니다. <br /><br /> 
+  뻔한 얘기지만 좋은 개선안을 내기 위해서는 좋은 분석의 선행이 필수인 것 같습니다. 왜냐하면 현업 담당자들을 에너지 절감을 위해 이미 다양한 아이디어를 내고 개선 활동을 하고 있기에, 새로운 것을 제시하고 설득하기 위해서는 철저한 논리와 데이터 기반의 객관적인 근거가 필요하기 때문입니다.</p>
+
+<h2 id="6-모니터링-시스템-구축">6. 모니터링 시스템 구축</h2>
+<p>  분석하고 개선안 내서 적용하면 끝일까요? 아닙니다. 에너지 사용량이 잘 관리되고 있는지 모니터링 할 수 있는 시스템이 필요합니다. 이번 프로젝트에서는 BI Tool을 활용해 향후 일별로 에너지 사용량을 모니터링 할 수 있는 시각화 대시보드 App을 개발하여 활용할 수 있게 했습니다. 앞으로는 과거 데이터와 비교하여 현재 에너지 사용량이 적절한지 판단할 수 있는 시스템이 갖춰졌습니다. 조직원 모두가 에너지 사용량을 확인할 수 있고 분석할 수 있습니다. 어쩌면 데이터 기반 의사결정 문화에도 큰 도움이 되리라 생각합니다.</p>
+
+<h2 id="7-프로젝트를-마치며">7. 프로젝트를 마치며..</h2>
+<p>  에너지 절감 분석 프로젝트를 해보니 <strong>현업 담당자들이 놓치고 있던 부분을 데이터를 활용해 짚어내는 것</strong>이 주효했던 것 같습니다. 생각보다(?) 현업 담당자들은 다 잘하고 있고 문제없다 얘기하지만, 데이터를 까보면 아닌 경우가 허다했습니다. 그리고 분석의 난이도가 높아서 어렵다기보다는 공장의 모든 설비와 에너지를 살펴봐야 했기에 힘들었던 분석이었습니다. 그래도 에너지 별로 낭비요소를 찾아내고 개선이 이뤄지는 것을 보면서 역시 뿌듯하고 즐거웠던 프로젝트였습니다. 물론 아직 끝나지 않았습니다…</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  안녕하세요. 지난 회고록에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 분석 모델링도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Sorting and Grouping(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode6/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Sorting and Grouping(1/2)" /><published>2023-07-31T00:00:00+09:00</published><updated>2023-08-01T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode6</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode6/"><![CDATA[<p>  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다</p>
 
 <h1 id="4-sorting-and-grouping">4. Sorting and Grouping</h1>
 <h2 id="41-number-of-unique-subjects-taught-by-each-teacher">4.1 Number of Unique Subjects Taught by Each Teacher</h2>
@@ -2145,32 +2184,4 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
     <span class="k">length</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span>
 </code></pre></div></div>
 
-<p>문제에서 요구한 글자수가 15보다 많은 tweet_id를 추출하기 위해서 content 데이터의 글자수를 알아야한다. character형태의 데이터의 글자수를 알기 위해서는 <code class="language-plaintext highlighter-rouge">length()</code> 함수를 활용하면 된다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 데이터 분석가에게 SQL 활용 능력은 필수적이라 생각됩니다. 웬만한 데이터 분석가 JD 요구사항에 SQL 활용능력이 없는 경우는 없더군요. 저도 데이터 분석가 업무를 하면서 실무에서 유사(?) SQL을 활용해 데이터 마트를 만들지만 내가 SQL을 제대로 다루고 있는지 항상 의문이 따라왔습니다. 게다가 제 SQL 활용 능력이 어느정도인지 궁금하기도 했습니다. 따라서 실무 외에 SQL을 제대로 한 번 공부해보고 싶었고, 그 중 하나로 웹에 SQL 문제를 풀어보기로 했습니다. 구글링을 해보니 SQL 문제를 제공하는 여러 사이트가 나왔고, 그 중에서 LeetCode가 50문제 정도를 무료로 제공하길래 시작으로 괜찮다 싶어서 정했습니다! 리트코드 50문제를 풀어보고 문제별로 Solution을 이 블로그에 정리하고자 합니다.]]></summary></entry><entry><title type="html">[하루일기] 23년 6월 13일: 감정적인 대응</title><link href="http://localhost:4000/data/daily_memo/" rel="alternate" type="text/html" title="[하루일기] 23년 6월 13일: 감정적인 대응" /><published>2023-06-13T00:00:00+09:00</published><updated>2023-06-14T06:55:00+09:00</updated><id>http://localhost:4000/data/daily_memo</id><content type="html" xml:base="http://localhost:4000/data/daily_memo/"><![CDATA[<p>  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다. <br /><br /></p>
-
-<p>  상황은 이러했다. 팀장님은 답답한 마음에 타 사업부에 분석 사례를 클라이언트가 참고할 수 있도록 공유하라 지시했고, 짧은 메시지와 함꼐 자료를 첨부하여 메일을 보냈다. 문제는 클라이언트가 굉장히 불편하게 받아들이면서 발생했다. 클라이언트가 마치 자기보고 배우라는 듯이 자료를 보낸거냐부터 시작해서 엔지니어 입장에서 택도 없는 분석이라면서 말도 안되는 거라면서 따졌다. (물론, 숨은 의도는 그게 맞다. 게다가 자료는 공장 엔지니어가 직접 작성한 자료라 아예 틀린 말은 아닐 것이다.) 여기서 나의 올바른 대응은 나도 팀장님의 지시사항을 수행한 것이며, 도움이 될 수 있도록 자료를 공유하고자 한 것이라고 어필을 해야 했다. 하지만 그 동안 답답한 마음이 쌓였던 탓인지 자그마한 설전이 오고가게 됐다. 도메인 영역 지식으로 논리를 펼치니 난 더 할 말이 없었고, 알겠다고 수긍하며 일단락 지었다. <br /><br /></p>
-
-<p>  오늘 일련의 해프닝을 겪으며 스스로에게 아쉬었던 점은 다음과 같다</p>
-<blockquote>
-  <ol>
-    <li>감정적으로 대응한 점
-      <ul>
-        <li>내 뜻대로 안된다고 답답해하거나 조급해 하지 말기</li>
-        <li>감정적인 반응에 감정적으로 맞대응 하지 말기</li>
-      </ul>
-    </li>
-    <li>나의 역할은 중간 커뮤니케이선
-      <ul>
-        <li>클라이언트와 팀장 사이에 중간 커뮤니케이션 분배 잘하기</li>
-        <li>책임과 역할 소재 분명히 하기</li>
-      </ul>
-    </li>
-    <li>어설픈 논리와 근거로 커뮤니케이션 하지 않기
-      <ul>
-        <li>상대방은 한 분야의 전문가이므로 어설픈 얘기는 통하지 않음</li>
-        <li>적어도 최소한의 논리로 무장하기</li>
-      </ul>
-    </li>
-  </ol>
-</blockquote>
-
-<p>  일을 하다보면 클라이언트와 의견 충돌이 발생하고 언쟁이 발생할 수 있다고 생각하고 실제로 벌어졌습니다. 갈등 상황을 피하는 것이 능사는 아니라 생각합니다. 서로의 의견을 논리정연하게 피력하고 건설적으로 대화하는 것이 중요하겠죠. 다만, 감정적으로 대응하는 것은 프로답지 못한 행동이라 생각되고 반성하게 되네요. 앞으로는 오늘같은 일이 일어나더라도 차분하고 이성적으로 대응할 수 있는 사람이 되도록 노력하겠습니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  오늘 클라이언트와 아주 약간 언짢은 상황이 발생했다. 좀처럼 적극적으로 액션을 취하지 않는 클라이언트에게 나도 팀장님도 답답함이 계속 쌓여가는 상황이었는데, 클라이언트와 커뮤니케이션 과정에서 감정적인 대응이 나와버렸다. 화를 내거나 공격적인 언사를 한 것은 아니었지만, 스스로 조금 더 냉정하게 대응했으면 어떘을까 하는 아쉬움이 많이 남습니다.]]></summary></entry></feed>
+<p>문제에서 요구한 글자수가 15보다 많은 tweet_id를 추출하기 위해서 content 데이터의 글자수를 알아야한다. character형태의 데이터의 글자수를 알기 위해서는 <code class="language-plaintext highlighter-rouge">length()</code> 함수를 활용하면 된다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 데이터 분석가에게 SQL 활용 능력은 필수적이라 생각됩니다. 웬만한 데이터 분석가 JD 요구사항에 SQL 활용능력이 없는 경우는 없더군요. 저도 데이터 분석가 업무를 하면서 실무에서 유사(?) SQL을 활용해 데이터 마트를 만들지만 내가 SQL을 제대로 다루고 있는지 항상 의문이 따라왔습니다. 게다가 제 SQL 활용 능력이 어느정도인지 궁금하기도 했습니다. 따라서 실무 외에 SQL을 제대로 한 번 공부해보고 싶었고, 그 중 하나로 웹에 SQL 문제를 풀어보기로 했습니다. 구글링을 해보니 SQL 문제를 제공하는 여러 사이트가 나왔고, 그 중에서 LeetCode가 50문제 정도를 무료로 제공하길래 시작으로 괜찮다 싶어서 정했습니다! 리트코드 50문제를 풀어보고 문제별로 Solution을 이 블로그에 정리하고자 합니다.]]></summary></entry></feed>
