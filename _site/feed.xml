@@ -1,4 +1,98 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-04T23:31:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[회고록] 23년 9월 1주차: 에너지 절감(2/2)</title><link href="http://localhost:4000/data/weekly_memoir_9/" rel="alternate" type="text/html" title="[회고록] 23년 9월 1주차: 에너지 절감(2/2)" /><published>2023-09-04T00:00:00+09:00</published><updated>2023-09-05T07:24:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_9</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_9/"><![CDATA[<p>  안녕하세요. 지난 <a href="https://mato-park.github.io/data/weekly_memoir_5/">회고록</a>에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 <a href="https://mato-park.github.io/data/weekly_memoir_7/">분석 모델링</a>도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다. 
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-16T13:21:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode8/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)" /><published>2023-09-16T00:00:00+09:00</published><updated>2023-09-13T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode8</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode8/"><![CDATA[<p>  안녕하세요. 이번 Section은 Advanced Select and Joins입니다.</p>
+
+<h1 id="5-advanced-and-select-joins">5. Advanced and Select Joins</h1>
+<h2 id="51-1731-the-number-of-employees-which-report-to-each-employee">5.1 1731. The Number of Employees Which Report to Each Employee</h2>
+<p>  모든 manager에 이름과 다이렉트로 보고하는 employee에 수, 그리고 employee의 평균 나이를 구하는 문제입니다.
+단계를 나눠보면,</p>
+<blockquote>
+  <ol>
+    <li>manager 알아내기</li>
+    <li>manager에게 리포트하는 employee 수 집계하기</li>
+    <li>manager에게 리포트하는 employee의 평균 나이 집계하기</li>
+  </ol>
+</blockquote>
+
+<p>순으로 정리하면 될 것 같습니다.</p>
+
+<h3 id="511-solution">5.1.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">employee_id</span>             <span class="k">as</span> <span class="n">employee_id</span><span class="p">,</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">employee_id</span><span class="p">)</span>      <span class="k">as</span> <span class="n">reports_count</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="k">avg</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">age</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>      <span class="k">as</span> <span class="n">average_age</span>
+<span class="k">FROM</span>
+    <span class="n">Employees</span> <span class="n">a</span>
+<span class="k">INNER</span> <span class="k">Join</span> <span class="n">Employees</span> <span class="n">b</span>
+    <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">employee_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">reports_to</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">employee_id</span>
+<span class="k">ORDER</span> <span class="k">By</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">employee_id</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  manager를 찾아내기 위해 Self Table Join을 활용했습니다. Join Key를 a 테이블에서는 employee_i와 b 테이블에서 reports_to로 설정해 줍니다. 게다가 INNER Join을 했기 때문에 a.employee_id와 b.reports_to가 두 테이블에 모두 있는 케이스만 Join이 됩니다. 그려보면 a 테이블에는 매니저만 남고, b 테이블이 employee가 join되는 그림입니다. 따라서 최종 테이블에 manager만 남게 됩니다.<br />
+  그 다음부터는 집계함수를 이용하여 집계하면 문제는 풀립니다!</p>
+
+<h2 id="52-1789-primary-department-for-each-employee">5.2 1789. Primary Department for Each Employee</h2>
+<p>  Employee 별로 primary department를 구하는 문제입니다. 이 문제에서 고려해야 할 점은 employee가 속한 department가 꼭 1개가 아니라 1개 이상인 경우가 있다는 것입니다.</p>
+
+<h3 id="521-solution">5.2.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">employee_id</span><span class="p">,</span>
+    <span class="n">department_id</span>
+<span class="k">FROM</span> 
+    <span class="n">Employee</span>
+<span class="k">WHERE</span>
+    <span class="n">primary_flag</span> <span class="o">=</span> <span class="s1">'Y'</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span>
+    <span class="n">employee_id</span><span class="p">,</span>
+    <span class="n">department_id</span>
+<span class="k">FROM</span>
+    <span class="n">Employee</span>
+<span class="k">Where</span>
+    <span class="n">employee_id</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">employee_id</span> <span class="k">FROM</span> <span class="n">Employee</span> 
+                    <span class="k">Group</span> <span class="k">By</span> <span class="n">employee_id</span> <span class="k">Having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">;</span>
+
+</code></pre></div></div>
+<p>  Employee 별로 속한 department수가 상이하기 때문에 아예 나눠서 처리하는 게 적절해 보입니다. 1. department가 2개 이상인 경우, primary_flag = ‘Y’인 조건으로 primary department를 구하고 2. 1개일 경우는 그 department가 primary department이기에 department수가 1개인 경우만 조건으로 걸어서 primary department를 구해줍니다. 그 다음에는 Union을 활용해 두 결과를 하나의 테이블로 구해주면 됩니다!</p>
+
+<h3 id="522-good-to-know">5.2.2 Good to Know</h3>
+<p>  SQL에서는 UNION과 UNION ALL을 활용해 두 테이블을 하나의 테이블로 합칠 수 있습니다. 파이썬에서 pd.concat()과 유사한 것으로 생각하면 되겠네요. 사용법은 간단합니다.
+<code class="language-plaintext highlighter-rouge">(A 테이블) UNION (ALL) (B 테이블)</code> 입니다. 컬럼명을 기준으로 union되는 것 같으니 컬럼명에 주의하고 활용하면 됩니다. UNION의 경우에는 중복값을 제거하는 반면, UNION ALL은 중복값을 제거해주지 않으므로 상황에 맞게 사용하시면 됩니다!</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 이번 Section은 Advanced Select and Joins입니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Sorting and Grouping(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode7/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Sorting and Grouping(2/2)" /><published>2023-09-12T00:00:00+09:00</published><updated>2023-09-13T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode7</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode7/"><![CDATA[<p>  안녕하세요. 드디어 문제는 다 풀었습니다! 문제 풀었던 것들 정리하면서 부족한 부분은 채우고자 합니다. 문제를 어떻게 풀었는지와 공부한 것들만 적고 필요없는 부분은 굳이 안 적으려고 합니다.</p>
+
+<h1 id="4-sorting-and-grouping">4. Sorting and Grouping</h1>
+<h2 id="46-1729-find-followers-count">4.6 1729 Find Followers Count</h2>
+<p>  각 user 별로 follower가 몇 명인지를 구하는 문제입니다. 쉬운 문제네요.</p>
+
+<h3 id="461-solution">4.6.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">user_id</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="n">follower_id</span><span class="p">)</span>  <span class="k">as</span> <span class="n">followers_count</span>
+<span class="k">FROM</span>
+    <span class="n">Followers</span>
+<span class="k">Group</span> <span class="k">By</span>
+    <span class="n">user_id</span>
+<span class="k">Order</span> <span class="k">By</span>
+    <span class="n">user_id</span> <span class="k">asc</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  user 별로 follwer 수를 집계하면 됩니다!</p>
+
+<h2 id="47-619-biggest-single-number">4.7 619. Biggest Single Number</h2>
+<p>  MyNumbers Table에 num 중 오직 한 번만 나타난 것 중 가장 큰 값을 구하는 문제입니다. num 별로 수를 count로 집계하여 그 값이 1인 num만 가져오는 조건을 주면 될 것 같습니다.</p>
+<h3 id="471-solution">4.7.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="k">Max</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>    <span class="k">as</span> <span class="n">num</span>
+<span class="k">FROM</span>
+    <span class="n">MyNumbers</span>
+<span class="k">WHERE</span>
+    <span class="n">num</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">num</span> <span class="k">FROM</span> <span class="n">MyNumbers</span> <span class="k">Group</span> <span class="k">By</span> <span class="n">num</span> <span class="k">HAVING</span> <span class="k">count</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  문제를 보고 떠올렸던 것은 우선 NyNumbers에서 중복되지 않은 값만 추려서 가져오자였습니다. 그래서 HAVING을 사용해서 <code class="language-plaintext highlighter-rouge">count(num) = 1</code> 조건을 걸어서 중복된 값들은 제거했습니다.
+그 다음에 <code class="language-plaintext highlighter-rouge">in</code>을 사용해 해당 num만 가져온 후, <code class="language-plaintext highlighter-rouge">max</code>값을 구했습니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 드디어 문제는 다 풀었습니다! 문제 풀었던 것들 정리하면서 부족한 부분은 채우고자 합니다. 문제를 어떻게 풀었는지와 공부한 것들만 적고 필요없는 부분은 굳이 안 적으려고 합니다.]]></summary></entry><entry><title type="html">[회고록] 23년 9월 1주차: 에너지 절감(2/2)</title><link href="http://localhost:4000/data/weekly_memoir_9/" rel="alternate" type="text/html" title="[회고록] 23년 9월 1주차: 에너지 절감(2/2)" /><published>2023-09-04T00:00:00+09:00</published><updated>2023-09-05T07:24:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_9</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_9/"><![CDATA[<p>  안녕하세요. 지난 <a href="https://mato-park.github.io/data/weekly_memoir_5/">회고록</a>에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 <a href="https://mato-park.github.io/data/weekly_memoir_7/">분석 모델링</a>도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다. 
 <br /><br /></p>
 
 <h2 id="4-에너지-절감-포인트-도출">4. 에너지 절감 포인트 도출</h2>
@@ -1446,742 +1540,4 @@ Return the result table in any order.</p>
 </code></pre></div></div>
 <p>  confirmation rate을 구하기 위해서는 confirmed 수와 total 수를 구해야 한다. 그래서 case 절을 사용해서 confirmed 수를 구했고 count(*)를 활용해 total 수를 구했다. 근데 굳이 각각 수를 더해서 나눠줄 필요없이 avg 함수를 활용해서 confirmation rate을 구할 수 있다.<br /></p>
 
-<p><code class="language-plaintext highlighter-rouge">avg(case when c.action = 'confirmed' then 1 else 0 end)</code>, 이 방법도 깔끔하고 좋은 것 같다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Basic Joins</title><link href="http://localhost:4000/data/SQL_LeetCode2/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Basic Joins" /><published>2023-06-29T00:00:00+09:00</published><updated>2023-06-30T07:07:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode2</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode2/"><![CDATA[<p>  안녕하세요. LeetCode SQL50 두번째 파트인 Basic Joins입니다. Join은 2개 이상의 테이블을 Key를 활용해 하나로 합치는 기능입니다. Join의 방법은 left, inner, outer 등이 있으며 굉장히 많이 활용되는 기능입니다.</p>
-
-<h1 id="2-basic-joins">2. Basic Joins</h1>
-<h2 id="21-replace-employee-id-with-the-unique-identifier">2.1 Replace Employee ID With The Unique Identifier</h2>
-<h3 id="211-table-description--question">2.1.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Employees</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>id is the primary key for this table.<br />
-Each row of this table contains the id and the name of an employee in a company.<br /></p>
-</blockquote>
-
-<p>table: EmployeeUNI</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>unique_id</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(id, unique_id) is the primary key for this table.<br />
-Each row of this table contains the id and the corresponding unique id of an employee in the company.</p>
-</blockquote>
-
-<p><strong>Question</strong><br />
-Write an SQL query to show the unique ID of each user, If a user does not have a unique ID replace just show null.<br />
-Return the result table in any order.</p>
-<h3 id="212-solution">2.1.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">unique_id</span>     <span class="k">as</span> <span class="n">unique_id</span><span class="p">,</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">name</span>          <span class="k">as</span> <span class="n">name</span>
-<span class="k">FROM</span>
-    <span class="n">Employees</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">EmployeeUNI</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">id</span>
-</code></pre></div></div>
-
-<p>user_id를 key로 Empolyee테이블에 EmployeeUNI테이블의 unique_id를 붙이면 되는 아주 간단한 문제이다.</p>
-
-<h3 id="213-good-to-know">2.1.3 Good to Know</h3>
-<p>Left Join 할 때, 매칭되는 값이 없는 경우에는 null로 붙는다.</p>
-
-<h2 id="22-product-sales-analysis-i">2.2 Product Sales Analysis I</h2>
-<h3 id="221-table-description--question">2.2.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Sales</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>sale_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>product_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>year</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>quantity</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>price</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(sale_id, year) is the primary key of this table.<br />
-product_id is a foreign key to Product table.<br />
-Each row of this table shows a sale on the product product_id in a certain year.<br />
-Note that the price is per unit.</p>
-</blockquote>
-
-<p>table: Product</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>product_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>product_name</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>product_id is the primary key of this table.<br />
-Each row of this table indicates the product name of each product.</p>
-</blockquote>
-
-<p><strong>Question</strong><br />
-Write an SQL query that reports the product_name, year, and price for each sale_id in the Sales table.<br />
-Return the result table in any order.</p>
-
-<h3 id="222-solution">2.2.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="nb">year</span>              <span class="k">as</span> <span class="nb">year</span><span class="p">,</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">price</span>             <span class="k">as</span> <span class="n">price</span><span class="p">,</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">product_name</span>      <span class="k">as</span> <span class="n">product_name</span>
-<span class="k">FROM</span> 
-    <span class="n">Sales</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Product</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">product_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">product_id</span>
-</code></pre></div></div>
-<p>위 문제와 마찬가지로 간단한 Join이라 부가설명 없이 넘어가도록 한다.</p>
-
-<h2 id="23-customer-who-visited-but-did-not-make-any-transactions">2.3 Customer Who Visited but Did Not Make Any Transactions</h2>
-<h3 id="231-table-description--question">2.3.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Visits</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>visit_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>customer_id</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>This table contains information about the customers who visited the mall.</p>
-</blockquote>
-
-<p>table: Transactions</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>transaction_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>visit_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>amount</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>This table contains information about the transactions made during the visit_id.</p>
-</blockquote>
-
-<p><strong>Question</strong> <br />
-Write a SQL query to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.</p>
-
-<h3 id="232-solution">2.3.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">customer_id</span>            <span class="k">as</span> <span class="n">customer_id</span><span class="p">,</span>
-    <span class="k">Count</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">customer_id</span><span class="p">)</span>     <span class="k">as</span> <span class="n">count_no_trans</span>
-<span class="k">FROM</span> 
-    <span class="n">Visits</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Transactions</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">visit_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">visit_id</span>
-<span class="k">WHERE</span>
-    <span class="k">isnull</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">visit_id</span><span class="p">)</span>
-<span class="k">GROUP</span> <span class="k">By</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">customer_id</span>
-</code></pre></div></div>
-<p>Join 하는 경우에도 WHERE 절이나 Group By를 통한 집계도 가능하다!</p>
-
-<h2 id="24-rising-temperature">2.4 Rising Temperature</h2>
-<h3 id="241-table-descriptoin--question">2.4.1 Table descriptoin &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Weather</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>recordDate</td>
-      <td>date</td>
-    </tr>
-    <tr>
-      <td>temperature</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>This table contains information about the temperature on a certain day.</p>
-</blockquote>
-
-<p><strong>Question</strong> <br />
-Write an SQL query to find all dates’ Id with higher temperatures compared to its previous dates (yesterday).<br />
-Return the result table sorted by id in ascending order.</p>
-
-<h3 id="242-solution">2.4.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">id</span>
-<span class="k">FROM</span> 
-    <span class="n">Weather</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Weather</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">recordDate</span> <span class="o">=</span> <span class="n">DATE_ADD</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">recordDate</span><span class="p">,</span> <span class="n">Interval</span> <span class="mi">1</span> <span class="k">DAY</span><span class="p">)</span>
-<span class="k">Where</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">temperature</span> <span class="o">&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">temperature</span>
-</code></pre></div></div>
-<p>동일 테이블에 Join하는 self table join이며, 어제보다 오늘 기온이 높은 날을 찾아야 한다. 그러기 위해선 오늘 온도와 어제 온도를 비교할 수 있어야 한다. 기본 아이디어는 어제 날짜를 마치 오늘인 것처럼 변환해서 Join하는 것이다. 위 SQL 구문에서 Key 부분을 풀어서 설명하자면, b 테이블 날짜에서 하루를 더해준 날짜와 a 테이블 날짜를 Join 하게 되면 a 테이블 입장에서 전날 데이터가 Join 되게 된다. 예를 들어, ‘2023년 6월 28일’에서 하루 더해주면 ‘2023년 6월 29일’이 되고 이를 기존 테이블에 Join 했을 때, ‘2023년 6월 29일’에 28일 데이터가 붙게 된다. 처음 문제를 보고 막막했는데 아이디어만 잘 낸다면 어렵지 않게 풀 수 있다.</p>
-
-<h3 id="143-good-to-know">1.4.3 Good to Know</h3>
-<p><code class="language-plaintext highlighter-rouge">DATE_ADD</code> 함수는 기준 날짜에 지정한 값만큼 더해주는 시간 함수이다. 첫번째 인수로는 기준 시간을 입력하고, 두번째 인수로 원하는 단위를 입력하면 된다. ‘Interval 1 DAY’는 하루만큼 더하라는 의미이며, second, month, year 등 다양한 인수를 넣어줄 수 있다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode SQL50 두번째 파트인 Basic Joins입니다. Join은 2개 이상의 테이블을 Key를 활용해 하나로 합치는 기능입니다. Join의 방법은 left, inner, outer 등이 있으며 굉장히 많이 활용되는 기능입니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이</title><link href="http://localhost:4000/data/SQL_LeetCode1/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이" /><published>2023-06-18T00:00:00+09:00</published><updated>2023-06-19T02:56:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode1</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode1/"><![CDATA[<p>  안녕하세요. 데이터 분석가에게 SQL 활용 능력은 필수적이라 생각됩니다. 웬만한 데이터 분석가 JD 요구사항에 SQL 활용능력이 없는 경우는 없더군요. 저도 데이터 분석가 업무를 하면서 실무에서 유사(?) SQL을 활용해 데이터 마트를 만들지만 내가 SQL을 제대로 다루고 있는지 항상 의문이 따라왔습니다. 게다가 제 SQL 활용 능력이 어느정도인지 궁금하기도 했습니다. 따라서 실무 외에 SQL을 제대로 한 번 공부해보고 싶었고, 그 중 하나로 웹에 SQL 문제를 풀어보기로 했습니다. 구글링을 해보니 SQL 문제를 제공하는 여러 사이트가 나왔고, 그 중에서 LeetCode가 50문제 정도를 무료로 제공하길래 시작으로 괜찮다 싶어서 정했습니다! 리트코드 50문제를 풀어보고 문제별로 Solution을 이 블로그에 정리하고자 합니다.</p>
-
-<h1 id="1-select">1. Select</h1>
-<p>  첫 Section은 Select로 아주 기본적인 SQL 문을 활용해 풀 수 있는 문제들이었다.</p>
-<h2 id="11-recyclable-and-low-fat-products">1.1 Recyclable and Low Fat Products</h2>
-<h3 id="111-table-description--question">1.1.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Product_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>low fats</td>
-      <td>enum</td>
-    </tr>
-    <tr>
-      <td>recyclable</td>
-      <td>enum</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>table name is “PRODUCTS”<br />
-product_id is the primary key for this table. <br />
-low_fats is an ENUM of type (‘Y’, ‘N’) where ‘Y’ means this product is low fat and ‘N’ means it is not.<br />
-recyclable is an ENUM of types (‘Y’, ‘N’) where ‘Y’ means this product is recyclable and ‘N’ means it is not.</p>
-</blockquote>
-
-<p><strong>Question</strong><br />
-Write an SQL query to find the ids of products that are both low fat and recyclable.<br />
-Return the result table in any order.</p>
-<h3 id="112-solution">1.1.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
-    <span class="n">product_id</span>
-<span class="k">FROM</span> 
-    <span class="n">PRODUCTS</span>
-<span class="k">WHERE</span> 
-    <span class="n">low_fats</span> <span class="o">=</span> <span class="s1">'Y'</span> <span class="k">and</span> <span class="n">recyclable</span> <span class="o">=</span> <span class="s1">'Y'</span>
-</code></pre></div></div>
-
-<p>문제가 요구하는 것은 low fat이고 재활용 가능한 제품명을 추출해 보여달라는 것이다. low fat &amp; recyclable한 제품만을 추출하기 위해 조건절을 추가해주면 된다. WHERE 조건절도 각각 본인 스타일에 맞게 쓰면 된다. 하나의 정답만 있는 것은 아니다.</p>
-
-<h3 id="113-good-to-know">1.1.3 Good to Know</h3>
-<p>Enum 타입 데이터는 Character형 데이터 타입이며, 해당 Column에 할당할 수 있는 값들을 지정해 줄 수 있다. 해당 데이터 칼럼에 값들을 제약할 수 있는 기능을 재공해준다(데이터 정합성 확보에 유리함). Enum 타입 데이터 칼럼은 값과 index 모두 활용하여 값을 불러올 수 있다. <br />
-다만, Enum 타입에 새로운 데이터를 추가할 때 번거로움이 있으며 정렬이나 연산 시 불리하다는 의견도 있는 것 같다. 추가로 Enum 타입 데이터를 지원하지 않는 DBMS로의 이식이 어려울 수 있을 것 같다. 따라서 굳이 Enum 타입 데이터를 활용하기 보다는 참조 테이블을 활용하는 것이 좋을 수 있다.</p>
-
-<h2 id="12-find-customer-referee">1.2 Find Customer Referee</h2>
-<h3 id="121-table-description--question">1.2.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>refree_id</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Input:</strong><br />
-Customer table:<br /></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>referee_id</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Will</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Jane</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Alex</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>Bill</td>
-      <td>null</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Zack</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Mark</td>
-      <td>2</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>table name is “Customer”<br />
-Each row of this table indicates the id of a customer, their name, and the id of the customer who referred them.</p>
-</blockquote>
-
-<p><strong>Question</strong><br />
-Write an SQL query to report the names of the customer that are not referred by the customer with id = 2.
-Return the result table in any order.</p>
-
-<h3 id="122-solution">1.2.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-  <span class="n">name</span>
-<span class="k">FROM</span>
-  <span class="n">Customer</span>
-<span class="k">WHERE</span>
-  <span class="n">referee_id</span> <span class="o">!=</span> <span class="mi">2</span> <span class="k">or</span> <span class="k">isnull</span><span class="p">(</span><span class="n">referee_id</span><span class="p">)</span>
-</code></pre></div></div>
-
-<p>input Table을 보면 refree_id에 null값이 포함되어 있다. 만약 Where 조건절에 refree_id != 2 조건만 있으면 refree_id가 null인 값을 제외시켜 버리기 때문에, refree_id가 null인 record를 불러오기 위해 조건을 추가해야 한다. 따라서 refree_id != 2 or isnull(refree_id)로 조건절을 줘야 refree_id가 2인 record를 제외한 모든 record를 불러오게 된다.</p>
-
-<h3 id="133-good-to-know">1.3.3 Good to Know</h3>
-<p>다른 사람이 올린 Solution 중, null값을 처리하는 다양한 방법이 있길래 알아두면 좋을 것 같아 기록하고자 한다.</p>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">refree_id</span> <span class="k">IS</span> <span class="k">NULL</span>
-<span class="n">Coalesce</span><span class="p">(</span><span class="n">refree_id</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">(</span><span class="k">or</span> <span class="o">&lt;&gt;</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div></div>
-<p>isnull() 등 함수를 활용하여 null값을 처리하는게 익숙하다보니 함수로 처리했는데, 함수를 쓰지 않아도 “IS Null” 구문으로 처리가 가능하다. 직관적으로 이해하기 쉽다. <br />
-coalesce 함수는 보통 Null값이 있는 데이터 컬럼을 처리할 때 종종 사용하는 함수이다. 첫 번째 인수로 들어가 있는 컬럼의 값이 Null인 경우 두 번째 인수의 값을 할당하고 두 번째 인수의 값도 Null인 경우 그 다음 인수의 값을 할당해주는 식의 함수이다. 위의 코드를 해석하면 refree_id가 null인 경우에 0을 할당해주고 그 값이 2가 아닌 경우를 판별하는 조건문이다. If 문을 활용하는 것보다 훨씬 깔끔하다 ㅎㅎ</p>
-
-<h2 id="13-big-countries">1.3 Big Countries</h2>
-<h3 id="131-table-description--question">1.3.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>name</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>continent</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>area</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>population</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>gdp</td>
-      <td>bigint</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>name is the primary key column for this table.<br />
-Each row of this table gives information about the name of a country, the continent to which it belongs, its area, the population, and its GDP value.</p>
-</blockquote>
-
-<p><strong>Input:</strong><br />
-Customer table:<br /></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>name</th>
-      <th>continent</th>
-      <th>area</th>
-      <th>population</th>
-      <th>gdp</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>652230</td>
-      <td>25500100</td>
-      <td>20343000000</td>
-    </tr>
-    <tr>
-      <td>Albania</td>
-      <td>Europe</td>
-      <td>28748</td>
-      <td>2831741</td>
-      <td>12960000000</td>
-    </tr>
-    <tr>
-      <td>Algeria</td>
-      <td>Africa</td>
-      <td>2381741</td>
-      <td>37100000</td>
-      <td>188681000000</td>
-    </tr>
-    <tr>
-      <td>Andorra</td>
-      <td>Europe</td>
-      <td>468</td>
-      <td>78115</td>
-      <td>3712000000</td>
-    </tr>
-    <tr>
-      <td>Angola</td>
-      <td>Africa</td>
-      <td>1246700</td>
-      <td>20609294</td>
-      <td>100990000000</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Question</strong> <br />
-A country is big if:</p>
-
-<ul>
-  <li>it has an area of at least three million (i.e., 3000000 km2), or</li>
-  <li>it has a population of at least twenty-five million (i.e., 25000000).</li>
-</ul>
-
-<p>Write an SQL query to report the name, population, and area of the big countries.<br />
-big 조건에 부합하는 국가의 국가명, 인구, 면적을 report하면 된다.</p>
-
-<h3 id="132-solution">1.3.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-  <span class="n">name</span><span class="p">,</span>
-  <span class="n">population</span><span class="p">,</span>
-  <span class="n">area</span>
-<span class="k">FROM</span> 
-  <span class="n">World</span>
-<span class="k">WHERE</span>
-  <span class="n">area</span> <span class="o">&gt;=</span> <span class="mi">3000000</span> <span class="k">or</span> <span class="n">population</span> <span class="o">&gt;=</span> <span class="mi">25000000</span>
-</code></pre></div></div>
-<p>간단한 문제이므로 추가설명은 하지 않도록 하겠다.</p>
-
-<h2 id="14-article-views-i">1.4 Article Views I</h2>
-<h3 id="141-table-descriptoin--question">1.4.1 Table descriptoin &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>article_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>author_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>viewer_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>view_date</td>
-      <td>date</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>There is no primary key for this table, it may have <strong>duplicate rows.</strong> <br />
-Each row of this table indicates that some viewer viewed an article (written by some author) on some date. <br />
-Note that <strong>equal author_id and viewer_id indicate the same person.</strong></p>
-</blockquote>
-
-<p>주의해야 할 점은 데이터가 중복인 row가 있다는 것과 author_id와 viewer_id가 값이 같다면 동일인물이라는 것이다.</p>
-
-<p><strong>Input:</strong><br />
-Customer table:<br /></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>article_id</th>
-      <th>author_id</th>
-      <th>viewer_id</th>
-      <th>view_date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>3</td>
-      <td>5</td>
-      <td>2019-08-01</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>3</td>
-      <td>6</td>
-      <td>2019-08-02</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>7</td>
-      <td>7</td>
-      <td>2019-08-01</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>7</td>
-      <td>6</td>
-      <td>2019-08-02</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>7</td>
-      <td>1</td>
-      <td>2019-07-22</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2019-07-21</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>4</td>
-      <td>4</td>
-      <td>2019-07-21</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Question</strong> <br />
-Write an SQL query to find all the authors that viewed at least one of their own articles.<br />
-Return the result table sorted by id in ascending order.</p>
-
-<h3 id="142-solution">1.4.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">DISTINCT</span>
-    <span class="n">author_id</span> <span class="k">as</span> <span class="n">id</span>
-<span class="k">FROM</span>
-    <span class="n">Views</span>
-<span class="k">WHERE</span>
-    <span class="n">author_id</span> <span class="o">=</span> <span class="n">viewer_id</span>
-<span class="k">ORDER</span> <span class="k">BY</span>
-    <span class="n">id</span> <span class="k">asc</span>
-</code></pre></div></div>
-<p>중복값을 처리하기 위해 SELECT 문 뒤에 DISTINCT를 추가했다. 실무에서도 Table을 로드할 때, 습관적으로 Distinct를 붙여주곤 한다. 특히, 여러 테이블을 Join할 때, 중복값이 있는 경우 결과값이 뻥튀기 되어 컴퓨팅 리소스를 한계 이상으로 활용하여 다운될 수 있는 위험이 있기 때문이다. 물론 중복이 애초에 안생기게 하는 것이 최선이지만 혹시 모를 사고를 미연에 방지하기 위한 습관이다.</p>
-
-<h3 id="143-good-to-know">1.4.3 Good to Know</h3>
-<p>SQL린이 시절, 오름차순 내림차순이 항상 헷갈렸다. 이제는 헷갈릴 일이 없긴 하지만, 오름차순은 낮은 값부터 높은 값 순으로 정렬하는 거고 영어로 보통 <code class="language-plaintext highlighter-rouge">asc or ascending</code>로 표기한다. 내림차순은 반대이며 보통 <code class="language-plaintext highlighter-rouge">desc or descending</code>으로 표기한다.</p>
-
-<h2 id="15-invalid-tweets">1.5 Invalid Tweets</h2>
-<h3 id="151-table-description--question">1.5.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>tweet_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>content</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>tweet_id is the primary key for this table.<br />
-This table contains all the tweets in a social media app.</p>
-</blockquote>
-
-<p><strong>Input:</strong><br />
-Customer table:<br /></p>
-
-<table>
-  <thead>
-    <tr>
-      <th>tweet_id</th>
-      <th>content</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Vote for Biden</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Let us make America great again!</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Question</strong> <br />
-Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid if the number of characters used in the content of the tweet is <strong>strictly greater than 15.</strong></p>
-
-<h3 id="152-solution">1.5.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">tweet_id</span>
-<span class="k">FROM</span>
-    <span class="n">Tweets</span>
-<span class="k">WHERE</span>
-    <span class="k">length</span><span class="p">(</span><span class="n">content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">15</span>
-</code></pre></div></div>
-
-<p>문제에서 요구한 글자수가 15보다 많은 tweet_id를 추출하기 위해서 content 데이터의 글자수를 알아야한다. character형태의 데이터의 글자수를 알기 위해서는 <code class="language-plaintext highlighter-rouge">length()</code> 함수를 활용하면 된다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 데이터 분석가에게 SQL 활용 능력은 필수적이라 생각됩니다. 웬만한 데이터 분석가 JD 요구사항에 SQL 활용능력이 없는 경우는 없더군요. 저도 데이터 분석가 업무를 하면서 실무에서 유사(?) SQL을 활용해 데이터 마트를 만들지만 내가 SQL을 제대로 다루고 있는지 항상 의문이 따라왔습니다. 게다가 제 SQL 활용 능력이 어느정도인지 궁금하기도 했습니다. 따라서 실무 외에 SQL을 제대로 한 번 공부해보고 싶었고, 그 중 하나로 웹에 SQL 문제를 풀어보기로 했습니다. 구글링을 해보니 SQL 문제를 제공하는 여러 사이트가 나왔고, 그 중에서 LeetCode가 50문제 정도를 무료로 제공하길래 시작으로 괜찮다 싶어서 정했습니다! 리트코드 50문제를 풀어보고 문제별로 Solution을 이 블로그에 정리하고자 합니다.]]></summary></entry></feed>
+<p><code class="language-plaintext highlighter-rouge">avg(case when c.action = 'confirmed' then 1 else 0 end)</code>, 이 방법도 깔끔하고 좋은 것 같다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다.]]></summary></entry></feed>

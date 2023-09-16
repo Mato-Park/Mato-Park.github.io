@@ -142,4 +142,16 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/weekly_memoir_9/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Sorting and Grouping(2/2)",
+        "excerpt":"  안녕하세요. 드디어 문제는 다 풀었습니다! 문제 풀었던 것들 정리하면서 부족한 부분은 채우고자 합니다. 문제를 어떻게 풀었는지와 공부한 것들만 적고 필요없는 부분은 굳이 안 적으려고 합니다. 4. Sorting and Grouping 4.6 1729 Find Followers Count   각 user 별로 follower가 몇 명인지를 구하는 문제입니다. 쉬운 문제네요. 4.6.1 Solution SELECT user_id,...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode7/",
+        "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)",
+        "excerpt":"  안녕하세요. 이번 Section은 Advanced Select and Joins입니다. 5. Advanced and Select Joins 5.1 1731. The Number of Employees Which Report to Each Employee   모든 manager에 이름과 다이렉트로 보고하는 employee에 수, 그리고 employee의 평균 나이를 구하는 문제입니다. 단계를 나눠보면, manager 알아내기 manager에게 리포트하는 employee 수 집계하기 manager에게 리포트하는 employee의...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode8/",
+        "teaser": null
       }]
