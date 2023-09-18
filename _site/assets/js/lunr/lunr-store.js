@@ -154,4 +154,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode8/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)",
+        "excerpt":"  안녕하세요. 바로 이어가겠습니다! 5. Advanced and Select Joins 5.4 180. Consecutive Numbers   이 문제는 적어도 3번 이상 반복되는 숫자를 구하는 문제입니다. 다양한 방법이 있겠지만 저는 Window 함수를 사용해 풀었습니다. 5.4.1 Solution SELECT Distinct a.num as ConsecutiveNums FROM ( SELECT id, num, lag(num, 1) over() as num_1, lag(num, 2)...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode9/",
+        "teaser": null
       }]

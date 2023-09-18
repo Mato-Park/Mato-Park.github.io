@@ -1,4 +1,126 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-17T22:48:41+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode8/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)" /><published>2023-09-16T00:00:00+09:00</published><updated>2023-09-13T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode8</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode8/"><![CDATA[<p>  안녕하세요. 이번 Section은 Advanced Select and Joins입니다.</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-18T22:49:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode9/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-19T06:30:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode9</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode9/"><![CDATA[<p>  안녕하세요. 바로 이어가겠습니다!</p>
+
+<h1 id="5-advanced-and-select-joins">5. Advanced and Select Joins</h1>
+<h2 id="54-180-consecutive-numbers">5.4 180. Consecutive Numbers</h2>
+
+<p>  이 문제는 적어도 3번 이상 반복되는 숫자를 구하는 문제입니다. 다양한 방법이 있겠지만 저는 Window 함수를 사용해 풀었습니다.</p>
+
+<h3 id="541-solution">5.4.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="k">Distinct</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">num</span>  <span class="k">as</span> <span class="n">ConsecutiveNums</span>
+<span class="k">FROM</span>
+<span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="n">id</span><span class="p">,</span>
+        <span class="n">num</span><span class="p">,</span>
+        <span class="n">lag</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="n">over</span><span class="p">()</span>   <span class="k">as</span> <span class="n">num_1</span><span class="p">,</span>
+        <span class="n">lag</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="n">over</span><span class="p">()</span>   <span class="k">as</span> <span class="n">num_2</span>
+    <span class="k">FROM</span> <span class="n">Logs</span>
+<span class="p">)</span> <span class="n">a</span>
+<span class="k">Where</span> <span class="n">a</span><span class="p">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">num_1</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">num</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">num_2</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  Window 함수 중에서 lead와 lag 중 원하는 것을 활용하면 됩니다. lag 혹은 lead만 2번 써도 되고 두 함수 모두 사용해도 됩니다. <code class="language-plaintext highlighter-rouge">lag(num, 1) over()</code>은 num 컬럼에 바로 다음 순서의 데이터를 불러오고, <code class="language-plaintext highlighter-rouge">lag(num 2) over</code>은 그 다음 2번째 데이터를 불러옵니다. 그렇게 테이블을 만든 다음에 num, num_1과 num_2가 모두 데이터만 불러오면 3번 반복되는 숫자를 가져올 수 있습니다.</p>
+
+<h3 id="542-good-to-know---window-function">5.4.2 Good to Know - Window Function</h3>
+<p>  Window 함수는 group by 없이 집계함수를 쓰거나 순위, 행간의 데이터 전처리를 수행할 때 많이 사용됩니다. Window 함수에 대한 기본 양식은 다음과 같습니다.</p>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Funcion(Column) over (Partition By A Order By B)</code></p>
+</blockquote>
+
+<p>  window로 활용할 수 있는 함수는 기본적인 aggregate function(sum, avg, count 등)과 nonaggregate function(rank, lead, lag 등)이 있습니다. 그리고 over 안에 Partition By는 Group By와 유사합니다. 예를 들어, 그룹 별 집계할 때 쓰이기도 하고, 그룹 내 Ranking을 찾을 때에도 쓰입니다. Order By는 말 그대로 정렬하는 기능이며 Order By와 동일합니다. <br />
+  Window 함수는 내용이 많아 여기 다 적긴 어렵고 따로 자세하게 적을 예정입니다!</p>
+
+<h2 id="55-1164-product-price-at-a-given-date">5.5 1164. Product Price at a Given Date</h2>
+<p>  특정 시점(2019-08-16)에 모든 제품의 가격을 구하는 문제입니다. 하나 특이한 점은 Products 테이블에는 new_price 정보와 변경 날짜만 담겨있습니다. 변경 이전 금액은 모두 10으로 동일하다고 합니다. 따라서 케이스를 다음과 같이 2가지로 나눠야 합니다.</p>
+<blockquote>
+  <ol>
+    <li>2019-08-16 이전에 가격이 바뀐 경우</li>
+    <li>2019-08-16 이후에 가격이 바뀐 경우</li>
+  </ol>
+</blockquote>
+
+<h3 id="551-solution">5.5.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">product_id</span><span class="p">,</span>
+    <span class="n">new_price</span> <span class="k">as</span> <span class="n">price</span>
+<span class="k">FROM</span>
+    <span class="n">Products</span>
+<span class="k">Where</span> 
+    <span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="n">change_date</span><span class="p">)</span> <span class="k">in</span> <span class="p">(</span><span class="k">Select</span> <span class="n">product_id</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">change_date</span><span class="p">)</span> <span class="k">From</span> <span class="n">Products</span> <span class="k">Where</span> <span class="n">change_date</span> <span class="o">&lt;=</span> <span class="s1">'2019-08-16'</span> <span class="k">Group</span> <span class="k">By</span> <span class="n">product_id</span><span class="p">)</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span>
+    <span class="n">product_id</span><span class="p">,</span>
+    <span class="mi">10</span>  <span class="k">as</span> <span class="n">price</span>
+<span class="k">FROM</span>
+    <span class="n">Products</span>
+<span class="k">Group</span> <span class="k">By</span>
+    <span class="n">product_id</span>
+<span class="k">Having</span>
+    <span class="k">Min</span><span class="p">(</span><span class="n">change_date</span><span class="p">)</span> <span class="o">&gt;</span> <span class="s1">'2019-08-16'</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  전 위 두가지 케이스 각각 해당하는 query를 질의하여 테이블을 불러오고 UNION을 활용하는 것으로 문제를 해결했습니다. 한 번에 처리하는 방법이 떠오르지 않더라구요. <br />
+  첫 번째 케이스를 처리하기 위해서 변경 날짜가 2019-08-16 이전에 제품별로 가장 최근 가격 변경 날짜의 케이스만 불러왔습니다. 이 경우에는 2019-08-16 이전에 제품의 가격 변경이 있었고 new-price가 곧 price가 됩니다. <br />
+  두 번째 케이스를 처리하기 위해서는 제품별로 첫 가격 변경 날짜가 2019-08-16 이후인 케이스만 불러오면 됩니다. 첫 가격 변경 날짜가 2019-08-16 이후인 케이스는 2019-08-16에는 price가 10이기 때문에, price 값을 10으로 설정해주면 됩니다.</p>
+
+<h2 id="56-1204-last-person-to-fit-in-the-bus">5.6 1204. Last Person to Fit in the Bus</h2>
+<p>  버스 탑승객의 총 무게가 1000km에 제한이 있고, 대기자들 중 가장 마지막으로 탑승하는 사람을 찾으면 되는 문제입니다. 저는 탑승대기자들을 순서대로 정렬한 후, 몸무게를 누적합해서 1000kg limit에 걸리는 사람을 찾았습니다.</p>
+
+<h3 id="531-solution">5.3.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">person_name</span>
+<span class="k">FROM</span>
+<span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="n">turn</span><span class="p">,</span>
+        <span class="n">person_id</span><span class="p">,</span>
+        <span class="n">person_name</span><span class="p">,</span>
+        <span class="n">weight</span><span class="p">,</span>
+        <span class="k">SUM</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="n">over</span> <span class="p">(</span><span class="k">order</span> <span class="k">by</span> <span class="n">turn</span><span class="p">)</span>    <span class="k">as</span> <span class="n">total_weight</span>
+    <span class="k">FROM</span>
+        <span class="n">Queue</span>
+    <span class="k">ORDER</span> <span class="k">By</span> 
+        <span class="n">turn</span> <span class="k">asc</span>
+<span class="p">)</span> <span class="n">a</span>
+<span class="k">WHERE</span> 
+    <span class="n">total_weight</span> <span class="o">&lt;=</span> <span class="mi">1000</span>
+<span class="k">ORDER</span> <span class="k">By</span> 
+    <span class="n">total_weight</span> <span class="k">desc</span>
+<span class="k">LIMIT</span> <span class="mi">1</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  누적합을 구하기 위해서 위 5.4 케이스처럼 window 함수를 활용했습니다. Partition by 는 필요없으니 쓰지 않고 순서대로 정렬(order by turn)해준 다음 합계를 구하면 순서대로 누적합을 구할 수 있습니다. 누적합을 구했다면 이제 1000kg가 넘기 직전 마지막 사람을 구하면 됩니다. 저는 total_weight를 내림차순하여 가장 윗(limit 1)사람을 불러왔습니다.</p>
+
+<h2 id="56-1907-count-salary-categories">5.6 1907. Count Salary Categories</h2>
+<p>  income을 category화 하는 문제입니다.</p>
+
+<h3 id="531-solution-1">5.3.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span>
+<span class="k">SELECT</span>
+    <span class="s1">'Low Salary'</span>    <span class="k">as</span> <span class="n">category</span><span class="p">,</span>
+    <span class="k">Sum</span><span class="p">(</span><span class="n">income</span> <span class="o">&lt;</span> <span class="mi">20000</span><span class="p">)</span>    <span class="k">as</span>  <span class="n">accounts_count</span>
+<span class="k">FROM</span>
+    <span class="n">Accounts</span>
+<span class="p">)</span> <span class="k">UNION</span>
+<span class="p">(</span>
+<span class="k">SELECT</span>
+    <span class="s1">'Average Salary'</span>    <span class="k">as</span> <span class="n">category</span><span class="p">,</span>
+    <span class="k">Sum</span><span class="p">(</span><span class="n">income</span> <span class="k">Between</span> <span class="mi">20000</span> <span class="k">and</span> <span class="mi">50000</span><span class="p">)</span> <span class="k">as</span> <span class="n">accounts_count</span>
+<span class="k">FROM</span>
+    <span class="n">Accounts</span>
+<span class="p">)</span> <span class="k">UNION</span>
+<span class="p">(</span>
+<span class="k">SELECT</span>
+    <span class="s1">'High Salary'</span>   <span class="k">as</span> <span class="n">category</span><span class="p">,</span>
+    <span class="k">Sum</span><span class="p">(</span><span class="n">income</span> <span class="o">&gt;</span> <span class="mi">50000</span><span class="p">)</span>    <span class="k">as</span> <span class="n">accounts_count</span>
+<span class="k">FROM</span>
+    <span class="n">Accounts</span>
+<span class="p">)</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  union을 활용해 Low, Average, High Salary 별로 query를 질의한 다음 합쳤습니다. 보통 다수의 프로그래밍 언어에서 bool 형태의 데이터 타입은 int 타입과 매칭되는데 True -&gt; 1로, False -&gt; 0으로 치환됩니다. 따라서 Sum(조건 문)의 경우, 조건을 만족하는 수를 구하는 쿼리가 됩니다. <br />
+  처음에 Union을 쓰지 않고 CASE 구문을 활용해서 그룹 별로 category화 한 다음 Count하여 집계하려 했는데 문제가 풀리지 않았습니다. 왜냐하면 Average 그룹에 해당하는 데이터가 없었기에 Count로 집계한 경우 Null로 제외되기 때문입니다. 단순히 문제를 푸는 것을 떠나서 실상황에서 데이터를 추출할 때 0값인 경우도 필요한지 아닌지에 따라 적절한 Query를 사용해야 합니다. 딱 보면 한눈에 결과가 그려지는 실력이면 좋겠지만, 이렇게 해보면서 경험을 쌓아가고 공부하는 수밖에 없을 것 같네요. 하다보면 언젠가는 고수의 경지에 오를 수 있겠죠!ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. 바로 이어가겠습니다!]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode8/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(1/2)" /><published>2023-09-16T00:00:00+09:00</published><updated>2023-09-13T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode8</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode8/"><![CDATA[<p>  안녕하세요. 이번 Section은 Advanced Select and Joins입니다.</p>
 
 <h1 id="5-advanced-and-select-joins">5. Advanced and Select Joins</h1>
 <h2 id="51-1731-the-number-of-employees-which-report-to-each-employee">5.1 1731. The Number of Employees Which Report to Each Employee</h2>
@@ -83,7 +205,7 @@
 </code></pre></div></div>
 <p>  Case 구문을 활용해서 삼각형을 판별할 수 있는 조건을 줍니다. 다만, x, y와 z 중, 가장 큰 변의 길이가 무엇인지 모르기 때문에 x, y와 z 각각 판별해줘야 합니다. 만약, x, y와 z 중 하나라도 위 조건을 만족하지 못한다면 삼각형을 형성할 수 없습니다. 따라서 위 조건을 모두 만족하는 경우 ‘Yes’, 하나라도 만족하지 못하는 경우에는 ‘No’로 판별해주기 위에 각 조건들을 And로 연결했습니다!</p>
 
-<h3 id="522-good-to-know---case구문">5.2.2 Good to Know - CASE구문</h3>
+<h3 id="532-good-to-know---case구문">5.3.2 Good to Know - CASE구문</h3>
 <p>  CASE 구문은 주로 여러 조건에 따라 구분해야 할 때 사용합니다. 필요한 조건이 하나인 경우에는 If()를 사용할 수 있지만 여러개인 경우 CASE 구문을 사용하는게 적절합니다. 그리고 직관적으로 이해할 수 있고 사용법도 쉽습니다. 기본적인 사용법은 다음과 같습니다.</p>
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CASE</span>
     <span class="k">WHEN</span> <span class="n">A</span> <span class="k">THEN</span> <span class="n">AA</span>
@@ -1141,435 +1263,4 @@ ORDER BY  percentage Desc,  a.contest_id Asc
   </ul>
 </blockquote>
 
-<p>  또 하나 깨달은 것은 <strong>상황에 맞게 적합한 분석 방법을 적용해야 한다는 것</strong>이었다. 너무 당연한 얘기이려나? 그래도 단순히 알고 있는 것과 경험해보는 것은 다르기에 개인적으로도 아주 유익한 2주였다. 간만에 재밌었고 보람찬 분석이었다. 이런거 보면 모델링이 더 적성에 맞을지도..??ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  지난 2주는 에너지 사용량 증감 원인 분석하고 그 결과를 문서화 하느라 정신 없이 지나갔네요. 월간 보고회를 진행하기 위해 쳇바퀴 처럼 반복되는 매월이지만 최근 꽤나 재미있는 분석을 진행했습니다. 이번에는 분석 모델링을 통해서 Y인자의 변동을 설명하고자 하였고 흥미로운 결과가 나와서 기록하고자 합니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Basic Joins(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode3_Join2/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Basic Joins(2/2)" /><published>2023-07-01T00:00:00+09:00</published><updated>2023-06-30T07:07:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode3_Join2</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode3_Join2/"><![CDATA[<p>  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다.</p>
-
-<h1 id="2-basic-joins">2. Basic Joins</h1>
-<h2 id="25-average-time-of-process-per-machine">2.5 Average Time of Process per Machine</h2>
-<h3 id="251-table-description--question">2.5.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Activity</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>machine_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>process_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>activity_type(PK)</td>
-      <td>enum</td>
-    </tr>
-    <tr>
-      <td>timestamp</td>
-      <td>float</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>The table shows the user activities for a factory website.<br />
-machine_id is the ID of a machine.
-process_id is the ID of a process running on the machine with ID machine_id.
-activity_type is an ENUM of type (‘start’, ‘end’).
-timestamp is a float representing the current time in seconds.
-‘start’ means the machine starts the process at the given timestamp and ‘end’ means the machine ends the process at the given timestamp.
-The ‘start’ timestamp will always be before the ‘end’ timestamp for every (machine_id, process_id) pair.<br /></p>
-</blockquote>
-
-<p><strong>Question</strong><br /></p>
-<ul>
-  <li>There is a factory website that has several machines each running the same number of processes. Write an SQL query to find the average time each machine takes to complete a process.<br /></li>
-  <li>The time to complete a process is the ‘end’ timestamp minus the ‘start’ timestamp. The average time is calculated by the total time to complete every process on the machine divided by the number of processes that were run.<br /></li>
-  <li>The resulting table should have the machine_id along with the average time as processing_time, which should be rounded to 3 decimal places.</li>
-</ul>
-
-<p>Return the result table in any order.</p>
-
-<h3 id="252-solution">2.5.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">machine_id</span><span class="p">,</span>
-    <span class="n">Round</span><span class="p">(</span><span class="k">Avg</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="nb">timestamp</span> <span class="o">-</span> <span class="n">a</span><span class="p">.</span><span class="nb">timestamp</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>      <span class="k">As</span> <span class="n">processing_time</span>
-<span class="k">FROM</span> 
-    <span class="n">Activity</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Activity</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">machine_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">machine_id</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">process_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">process_id</span>
-<span class="k">Where</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">activity_type</span> <span class="o">=</span> <span class="s1">'start'</span> <span class="k">and</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">activity_type</span> <span class="o">=</span> <span class="s1">'end'</span> 
-    <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="nb">timestamp</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="nb">timestamp</span> <span class="c1">-- end timestamp가 start timestamp 보다 이후여야 한다는 제약이 필요함</span>
-<span class="k">Group</span> <span class="k">by</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">machine_id</span>
-</code></pre></div></div>
-<p>  Self Table Join이다. 문제에서 processing time = endtime - starttime으로 정의하고 있다. 따라서, machind_id 별로 endtime과 starttime 간 차이를 구할 수 있게 두 컬럼을 붙여주면 된다. JOIN을 수행할 a 테이블은 ‘start’인 timestamp만을 가져오고, b 테이블은 ‘end’인 timestamp만을 가져와서 join을 수행하여 processing time을 구하면 된다.<br />
-<br />
-  문제에 보면 machine_id, process_id 별 end timestamp가 start timestamp가 이후여야 한다. 문제 풀 때는 까먹어서 SQL 구문에 넣지 않았지만, 실무에서는 매우 중요하다. 실제로는 데이터의 무결성(Data Integrity)가 지켜지지 않는 경우가 많기 때문에, 정확한 데이터를 산출하기 위해서는 위와 같은 조건을 꼭 추가하여야 한다.</p>
-
-<h3 id="253-good-to-know">2.5.3 Good to Know</h3>
-<p>Round함수는 지정한 자릿수에 따라 반올림을 수행하는 함수이다. 만약 지정한 자릿수가 ‘3’이라면 소수점 넷째 자리에서 반올림하여 셋째자리까지 표시해준다.</p>
-
-<h2 id="26-employee-bonus">2.6 Employee Bonus</h2>
-<h3 id="261-table-description--question">2.6.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Employee</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>empId(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>supervisor</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>salary</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(sale_id, year) is the primary key of this table.<br />
-Each row of this table indicates the name and the ID of an employee in addition to their salary and the id of their manager.<br /></p>
-</blockquote>
-
-<p>table: Bonus</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>empId(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>bonus(FK)</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>empId is a foreign key to empId from the Employee table.<br />
-Each row of this table contains the id of an employee and their respective bonus.</p>
-</blockquote>
-
-<p><strong>Question</strong><br />
-Write an SQL query to report the name and bonus amount of each employee with a bonus less than 1000.<br />
-Return the result table in any order.</p>
-
-<h3 id="252-solution-1">2.5.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">bonus</span>
-<span class="k">FROM</span> 
-    <span class="n">Employee</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Bonus</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">empId</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">empId</span>
-<span class="k">Where</span> 
-    <span class="n">b</span><span class="p">.</span><span class="n">bonus</span> <span class="o">&lt;</span> <span class="mi">1000</span> <span class="k">or</span> <span class="k">isnull</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">bonus</span><span class="p">)</span>
-</code></pre></div></div>
-<p>위 문제와 마찬가지로 간단한 Join이라 부가설명 없이 넘어가도록 한다.</p>
-
-<h2 id="27-students-and-examinations">2.7 Students and Examinations</h2>
-<h3 id="271-table-description--question">2.7.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Students</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>student_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>student_name</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Each row of this table contains the ID and the name of one student in the school.</p>
-</blockquote>
-
-<p>table: Subjects</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>subject_name(PK)</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Each row of this table contains the name of one subject in the school.</p>
-</blockquote>
-
-<p>table: Examinations</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>student_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>subject_name</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>There is no primary key for this table. <u>It may contain duplicates.</u><br />
-Each student from the Students table takes every course from the Subjects table.
-Each row of this table indicates that a student with ID student_id attended the exam of subject_name.</p>
-</blockquote>
-
-<p><strong>Question</strong> <br />
-Write an SQL query to find the number of times each student attended each exam.<br />
-Return the result table ordered by student_id and subject_name.</p>
-
-<h3 id="272-solution">2.7.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">student_id</span><span class="p">,</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">student_name</span><span class="p">,</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">subject_name</span><span class="p">,</span>
-    <span class="k">Count</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">subject_name</span><span class="p">)</span>           <span class="k">As</span> <span class="n">attended_exams</span>
-<span class="k">From</span>
-    <span class="n">Students</span> <span class="n">a</span>
-<span class="k">Cross</span> <span class="k">Join</span> 
-    <span class="n">Subjects</span> <span class="n">b</span> 
-<span class="k">Left</span> <span class="k">Join</span> 
-    <span class="n">Examinations</span> <span class="k">c</span> <span class="k">on</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">student_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">student_id</span> <span class="k">and</span> <span class="n">b</span><span class="p">.</span><span class="n">subject_name</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">subject_name</span>
-<span class="k">Group</span> <span class="k">By</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">student_id</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">subject_name</span>
-<span class="k">Order</span> <span class="k">By</span>
-     <span class="n">a</span><span class="p">.</span><span class="n">student_id</span> <span class="k">asc</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">subject_name</span> <span class="k">asc</span>
-<span class="p">;</span>
-</code></pre></div></div>
-<p> 문제에서 요구하는 답을 얻기 위해서는 3개의 테이블을 Join해야 한다. 학생별로 수강한 과목명을 붙이고 그 과목에 시험 응시한 과목을 붙여야 한다. students 테이블의 모든 학생들은 subjects에 있는 모든 과목을 수강했다고 한다. 그렇다면 students테이블의 students_id 별로 과목명을 모두 붙여주면 된다. 이럴때 사용하는 JOIN은 <strong>OUTER JOIN</strong>이며, MySQL에선 ‘CROSS JOIN’으로 수행한다. CROSS JOIN은 각 테이블의 키별로 모든 값을 매칭하는 JOIN 방법이다. 수행 결과로 students_id 별로 모든 subjects name이 JOIN된다.<br />
-<br />
-  다음으로 students id 별로 시험 응시 내역을 붙여주면 된다. 기존 Cross Join을 수행한 테이블에 Examination을 Left Join 해주자. 그러면 시험을 응시했으면 값이 붙고 없으면 Null값이 붙는다. 따라서 c.subject name을 count해주면 시험 응시 횟수를 구할 수 있게 된다.(null값은 count하지 않는다.)</p>
-
-<h3 id="273-good-to-know">2.7.3 Good to Know</h3>
-<p>  실무에서 데이터 마트를 구성하다보면 대부분의 트러블은 대부분 테이블 간 JOIN에서 발생한다. 그 이유는 1) Key가 잘못(중복, 데이터 타입 상이 등)됐거나, 2) Join에 종류를 잘못설정 했거나, 3) 기타 모종의 이유… 등으로 발생한다. 특히, Key에 중복이 발생되거나, Outer Join을 잘못 수행할 경우 데이터가 뻥튀기 되면서 컴퓨팅 리소스 한계 이상으로 사용하게 되면서 서버가 맛탱이가는 일이 발생하고 서비스를 내리거나 엔진을 재시작하는 일이 발생한다. 따라서, Join은 항상 신중하게 해야 한다.</p>
-<blockquote>
-  <p>JOIN 수행 전 KEY가 적절한 지, 데이터 중복 여부 정도는 미리 체크하기!</p>
-</blockquote>
-
-<h2 id="28-managers-with-at-least-5-direct-reports">2.8 Managers with at Least 5 Direct Reports</h2>
-<h3 id="281-table-descriptoin--question">2.8.1 Table descriptoin &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Employee</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>name</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>department</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>managerId</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Each row of this table indicates the name of an employee, their department, and the id of their manager. If managerId is null, then the employee does not have a manager. No employee will be the manager of themself.</p>
-</blockquote>
-
-<p><strong>Question</strong> <br />
-Write an SQL query to report the managers with at least five direct reports.<br />
-Return the result table in any order.</p>
-
-<h3 id="282-solution">2.8.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">a</span><span class="p">.</span><span class="n">name</span>
-<span class="k">FROM</span> 
-    <span class="n">Employee</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span>
-    <span class="p">(</span><span class="k">SELECT</span>
-        <span class="n">managerId</span><span class="p">,</span>
-        <span class="k">count</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>   <span class="k">as</span> <span class="n">n</span>
-    <span class="k">FROM</span>
-        <span class="n">Employee</span>
-    <span class="k">Group</span> <span class="k">By</span> 
-        <span class="n">managerId</span><span class="p">)</span>
-    <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">managerId</span>
-<span class="k">WHERE</span>
-    <span class="n">b</span><span class="p">.</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="mi">5</span>
-<span class="p">;</span>
-</code></pre></div></div>
-<p>  maneger id 별로 id가 몇 명인지 구한다음 값이 5 이상인 manager id를 구하면 되는 문제이다. 처음에 문제를 보고 어떻게 풀어야 할지 감이 안와서 subquery를 활용했다. 개인적으로는 Simple하게 가장 좋다고 생각하기에 굳이 subquery를 써야하는 상황이 아니면 쓰고 싶지 않았다. (현 수준 문제에서 subquery를 요구하는 거 같진 않았다.) 하지만, 다른 아이디어가 없었기에 subquery로 manager id 별로 id 수를 구한 다음 left join하여 값이 5이상인 manager를 추출하였다.<br /><br /></p>
-
-<p><strong>Better Solution</strong><br /></p>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">name</span>
-<span class="k">FROM</span> 
-    <span class="n">Employee</span> <span class="n">a</span>
-<span class="k">INNER</span> <span class="k">JOIN</span> 
-    <span class="n">Employee</span> <span class="n">b</span>
-    <span class="k">ON</span> <span class="n">a</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">managerId</span>
-<span class="k">GROUP</span> <span class="k">BY</span> 
-    <span class="n">a</span><span class="p">.</span><span class="n">name</span>
-<span class="k">HAVING</span> 
-    <span class="k">COUNT</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="p">;</span>
-</code></pre></div></div>
-<p>  문제를 풀고 다른 사람의 solutions 중 개인적으로 가장 깔끔하다고 생각하여 가져왔다. 그리고 Having 절에 대해 처음 알게 됐다.(이전에는 몰랐다 ㅠㅠ)
-SQL 코드도 짧아졌고 기존 코드보다 직관적으로 이해도 쉽다.</p>
-
-<h3 id="283-good-to-know-where-vs-having">2.8.3 Good to Know: Where vs. Having</h3>
-<p>  Where 절과 Having 절은 둘 다 필터링할 때 사용할 수 있다는 공통적인 기능을 제공하지만 차이가 있다. Having 절은 그룹을 필터링하는 데 쓰이며, 집계 함수를 사용하여 필터링이 가능한 반면, Where 절은 개별 행에 대한 필터링이 가능하며 집계 함수를 활용한 필터링이 불가능하다. 즉, Having은 그룹화 혹은 집계 값에 대한 레코드를 필터링하는데 사용되며, Where 절은 개별값에 대한 레코드를 필터링하는데 사용된다.<br />
-<br />
-<a href="https://velog.io/@ljs7463/SQL-having-%EA%B3%BC-where-%EC%B0%A8%EC%9D%B4">참조사이트</a>: Having 절에 대한 내용은 해당 블로그에서 참조하였습니다.</p>
-
-<h2 id="29-confirmation-rate">2.9 Confirmation Rate</h2>
-<h3 id="291-table-descriptoin--question">2.9.1 Table descriptoin &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Signups</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>time_stamp</td>
-      <td>datetime</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>Each row contains information about the signup time for the user with ID user_id.</p>
-</blockquote>
-
-<p>table: Confirmations</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>time_stamp(PK)</td>
-      <td>datetime</td>
-    </tr>
-    <tr>
-      <td>action</td>
-      <td>ENUM</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>user_id is a foreign key with a reference to the Signups table.
-action is an ENUM of the type (‘confirmed’, ‘timeout’)
-Each row of this table indicates that the user with ID user_id requested a confirmation message at time_stamp and that confirmation message was either confirmed (‘confirmed’) or expired without confirming (‘timeout’).</p>
-</blockquote>
-
-<p><strong>Question</strong> <br />
-The confirmation rate of a user is the number of ‘confirmed’ messages divided by the total number of requested confirmation messages. The confirmation rate of a user that did not request any confirmation messages is 0. Round the confirmation rate to two decimal places.<br />
-Write an SQL query to find the confirmation rate of each user.<br />
-Return the result table in any order.</p>
-
-<h3 id="292-solution">2.9.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-   <span class="n">a</span><span class="p">.</span><span class="n">user_id</span><span class="p">,</span>
-   <span class="n">round</span><span class="p">(</span><span class="n">Coalesce</span><span class="p">(</span><span class="k">count</span><span class="p">(</span><span class="k">case</span> <span class="k">when</span> <span class="n">b</span><span class="p">.</span><span class="n">action</span><span class="o">=</span><span class="s1">'confirmed'</span> <span class="k">then</span> <span class="mi">1</span> <span class="k">end</span><span class="p">)</span> <span class="o">/</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
-       <span class="k">as</span> <span class="n">confirmation_rate</span>
-<span class="k">FROM</span>
-   <span class="n">Signups</span> <span class="n">a</span>
-<span class="k">Left</span> <span class="k">Join</span>
-   <span class="n">Confirmations</span> <span class="n">b</span> <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">user_id</span>
-<span class="k">Group</span> <span class="k">by</span>
-   <span class="n">a</span><span class="p">.</span><span class="n">user_id</span>
-<span class="p">;</span>
-</code></pre></div></div>
-<p>  confirmation rate을 구하기 위해서는 confirmed 수와 total 수를 구해야 한다. 그래서 case 절을 사용해서 confirmed 수를 구했고 count(*)를 활용해 total 수를 구했다. 근데 굳이 각각 수를 더해서 나눠줄 필요없이 avg 함수를 활용해서 confirmation rate을 구할 수 있다.<br /></p>
-
-<p><code class="language-plaintext highlighter-rouge">avg(case when c.action = 'confirmed' then 1 else 0 end)</code>, 이 방법도 깔끔하고 좋은 것 같다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode50 Basic Join 이어 가겠습니다.]]></summary></entry></feed>
+<p>  또 하나 깨달은 것은 <strong>상황에 맞게 적합한 분석 방법을 적용해야 한다는 것</strong>이었다. 너무 당연한 얘기이려나? 그래도 단순히 알고 있는 것과 경험해보는 것은 다르기에 개인적으로도 아주 유익한 2주였다. 간만에 재밌었고 보람찬 분석이었다. 이런거 보면 모델링이 더 적성에 맞을지도..??ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  지난 2주는 에너지 사용량 증감 원인 분석하고 그 결과를 문서화 하느라 정신 없이 지나갔네요. 월간 보고회를 진행하기 위해 쳇바퀴 처럼 반복되는 매월이지만 최근 꽤나 재미있는 분석을 진행했습니다. 이번에는 분석 모델링을 통해서 Y인자의 변동을 설명하고자 하였고 흥미로운 결과가 나와서 기록하고자 합니다.]]></summary></entry></feed>
