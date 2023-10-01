@@ -160,4 +160,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode9/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Subqueries",
+        "excerpt":"안녕하세요. 이번 문제부터는 Subquery 파트입니다.  원하는 데이터를 추출하기 위해서는 Subquery를 능숙하게 다룰 줄 알아야 합니다. Subquery는 말 그대로 Query속 query입니다. 좀 더 자세하게 얘기하면 SELECT 문 안에 또 다른 SELECT 문을 의미합니다. Main query 안에서 괄호로 둘러쌓인 SELECT문입니다. Subquery는 어떤 값을 반환하는 곳에도 쓰이고, 테이블로 사용되거나 조건은 불러오는데 사용되기도 합니다....","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode10/",
+        "teaser": null
       }]

@@ -1,4 +1,203 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-18T22:49:18+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode9/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-19T06:30:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode9</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode9/"><![CDATA[<p>  안녕하세요. 바로 이어가겠습니다!</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-01T19:02:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[SQL] LeetCode 풀이: Subqueries</title><link href="http://localhost:4000/data/SQL_LeetCode10/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Subqueries" /><published>2023-10-01T00:00:00+09:00</published><updated>2023-10-02T01:40:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode10</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode10/"><![CDATA[<p>안녕하세요. 이번 문제부터는 Subquery 파트입니다. <br />
+ 원하는 데이터를 추출하기 위해서는 Subquery를 능숙하게 다룰 줄 알아야 합니다. Subquery는 말 그대로 Query속 query입니다. 좀 더 자세하게 얘기하면 <strong><em>SELECT 문 안에 또 다른 SELECT 문</em></strong>을 의미합니다. Main query 안에서 괄호로 둘러쌓인 SELECT문입니다. Subquery는 어떤 값을 반환하는 곳에도 쓰이고, 테이블로 사용되거나 조건은 불러오는데 사용되기도 합니다.</p>
+
+<h1 id="6-subqueries">6. Subqueries</h1>
+<h2 id="61-1978-employees-whose-manager-left-the-company">6.1 1978. Employees Whose Manager Left the Company</h2>
+
+<p>  이 문제는 $30000 이하의 salary를 받고 manager가 직원 중 존재하지 않는(퇴사한) 직원을 구하는 문제입니다.</p>
+
+<h3 id="611-solution">6.1.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">employee_id</span>
+<span class="k">FROM</span>
+    <span class="n">Employees</span>
+<span class="k">Where</span>
+    <span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span>
+    <span class="k">and</span> <span class="n">manager_id</span> <span class="k">Not</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">employee_id</span> <span class="k">FROM</span> <span class="n">Employees</span><span class="p">)</span>
+<span class="k">Order</span> <span class="k">By</span>
+    <span class="n">employee_id</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  원하는 답을 구하기 위해서는 Where 절에 두 가지 조건이 필요합니다. 하나는 <strong>$30000 이하</strong>와 <strong>manager가 퇴사한</strong> 조건입니다. 2번째 조건을 만족시키기 위해서는 manager_id가 employer_id에 존재하는지 판변해야 합니다. Subquery를 사용해 Employee 테이블에서 employer_id를 가져온 다음, manager_id가 subquery를 통해 불러온 employer_id에 없는 지 <code class="language-plaintext highlighter-rouge">Not in ()</code> 구문을 활용해 필터링하면 manager가 퇴사한 employer를 필터링 할 수 있습니다.</p>
+
+<h2 id="62-626-exchange-seats">6.2 626. Exchange Seats</h2>
+<p>  학생들의 id가 연속하는 두명의 학생끼리 자리를 swap하는 문제이다. 마지막 id의 학생이 혼자일 경우 swap하지 않는다.</p>
+
+<h3 id="621-solution">6.2.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">rank</span><span class="p">()</span> <span class="n">over</span> <span class="p">(</span><span class="k">order</span> <span class="k">by</span> <span class="n">group_n</span> <span class="k">asc</span><span class="p">,</span> <span class="n">id</span> <span class="k">desc</span><span class="p">)</span> <span class="k">as</span> <span class="n">id</span><span class="p">,</span>
+    <span class="n">student</span>
+<span class="k">FROM</span>
+<span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="n">id</span><span class="p">,</span>
+        <span class="n">student</span><span class="p">,</span>
+        <span class="n">Round</span><span class="p">(</span><span class="n">id</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>   <span class="k">as</span> <span class="n">group_n</span>
+    <span class="k">FROM</span>
+    <span class="n">Seat</span>
+<span class="p">)</span> <span class="n">a</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  문제를 풀기 위해서 2가지 step으로 나눠서 문제를 풀었다. 첫 번째는 id가 연속하는 2명의 학생끼리 그룹을 만들어 준 다음, 두번째로 두명씩 짝지어진 그룹 내에서 학생끼리 Swap을 해줬다. 단계별로 설명해보면 다음과 같다. <br />
+  학생들을 두 명씩 그룹짓기 위해 학생들의 id를 2로 나눠준 다음 그 몫을 구했다. 예를 들면, 학생의 id가 1과 2인 학생들의 id를 2로 나눈 값을 반올림하면 1, 2와 3인 학생들의 id를 2로 나눈 값을 반올림하면 2이므로 2명씩 순차적으로 짝지어지게 된다. 이렇게 두 명씩 그룹화 할 수 있다. 이런 방식으로 그룹화를 하고 Subquery로 불러온다.<br />
+  다음으로는 그룹 내에 학생들의 id의 순서를 바꿔주면 됩니다. 순서를 바꿔주기 위해서 window function 중 하나인 rank 함수를 활용했습니다. Order by 기능을 이용해 group_n을 오름차순 순으로, 그 다음 기존 id를 내림차순 순으로 정렬해 rank를 부여하면 자연스럽게 순서가 바뀐 id를 갖게 됩니다.</p>
+
+<h2 id="63-1341-movie-rating">6.3 1341. Movie Rating</h2>
+<p>  두 가지 답을 찾아야 하는 문제입니다.</p>
+<blockquote>
+  <ol>
+    <li>가장 높은 평점을 부여한 사람</li>
+    <li>2020년 2월 가장 높은 평균 평점을 받은 영화</li>
+  </ol>
+</blockquote>
+
+<h3 id="631-solution">6.3.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="k">SELECT</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">name</span> <span class="k">As</span> <span class="n">results</span> 
+<span class="k">FROM</span>
+    <span class="n">MovieRating</span> <span class="k">As</span> <span class="n">m</span><span class="p">,</span> <span class="n">Users</span> <span class="k">as</span> <span class="n">u</span> 
+<span class="k">WHERE</span>
+    <span class="n">u</span><span class="p">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">user_id</span> 
+<span class="k">Group</span> <span class="k">By</span> 
+    <span class="n">m</span><span class="p">.</span><span class="n">user_id</span> 
+<span class="k">Order</span> <span class="k">by</span> 
+    <span class="k">count</span><span class="p">(</span><span class="n">m</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span> <span class="k">desc</span><span class="p">,</span> <span class="n">u</span><span class="p">.</span><span class="n">name</span> 
+<span class="k">LIMIT</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">UNION</span> <span class="k">ALL</span>
+<span class="p">(</span><span class="k">SELECT</span> 
+    <span class="n">m</span><span class="p">.</span><span class="n">title</span> <span class="k">As</span> <span class="n">results</span>
+<span class="k">FROM</span>
+    <span class="n">MovieRating</span> <span class="k">as</span> <span class="n">r</span><span class="p">,</span> <span class="n">Movies</span> <span class="k">as</span> <span class="n">m</span>
+<span class="k">WHERE</span>
+    <span class="n">m</span><span class="p">.</span><span class="n">movie_id</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">movie_id</span> <span class="k">and</span> <span class="n">r</span><span class="p">.</span><span class="n">created_at</span> <span class="k">like</span> <span class="nv">"2020-02-%"</span>
+<span class="k">Group</span> <span class="k">By</span> 
+    <span class="n">r</span><span class="p">.</span><span class="n">movie_id</span> 
+<span class="k">Order</span> <span class="k">by</span> 
+    <span class="k">avg</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">rating</span><span class="p">)</span> <span class="k">desc</span><span class="p">,</span> <span class="n">m</span><span class="p">.</span><span class="n">title</span> 
+<span class="k">LIMIT</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+<p>  Subquery를 사용하지 않고도 간단하게 풀리는 문제입니다. 각각 답을 구한 후, <code class="language-plaintext highlighter-rouge">UNION ALL</code>을 활용해 테이블을 합쳐줍니다.</p>
+
+<h2 id="64-1321-restaurant-growth">6.4 1321. Restaurant Growth</h2>
+<p>  레스토랑에서 매일 지난 7일동안 평균 매출액을 구하는 문제입니다. 일별로 지난 7일동안 평균 매출액을 구해야 하기 때문에 window function을 활용했습니다.</p>
+
+<h3 id="641-solution">6.4.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="k">c</span><span class="p">.</span><span class="n">visited_on</span><span class="p">,</span>
+    <span class="k">c</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span>
+    <span class="n">round</span><span class="p">(</span><span class="k">c</span><span class="p">.</span><span class="n">amount</span> <span class="o">/</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>  <span class="k">as</span> <span class="n">average_amount</span>
+<span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span> <span class="k">DISTINCT</span>
+        <span class="n">visited_on</span><span class="p">,</span>
+        <span class="k">SUM</span><span class="p">(</span><span class="n">amount</span><span class="p">)</span> <span class="n">Over</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">visited_on</span> <span class="k">RANGE</span> <span class="k">BETWEEN</span> <span class="n">INTERVAL</span> <span class="mi">6</span> <span class="k">DAY</span> <span class="k">PRECEDING</span> <span class="k">AND</span> <span class="k">CURRENT</span> <span class="k">ROW</span><span class="p">)</span> <span class="k">as</span> <span class="n">amount</span><span class="p">,</span>
+        <span class="k">MIN</span><span class="p">(</span><span class="n">visited_on</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">()</span> <span class="k">as</span> <span class="mi">1</span><span class="n">st_date</span>
+    <span class="k">FROM</span>
+        <span class="n">Customer</span><span class="p">)</span> <span class="k">c</span>
+<span class="k">WHERE</span>
+    <span class="k">c</span><span class="p">.</span><span class="n">visited_on</span> <span class="o">-</span> <span class="mi">6</span> <span class="o">&gt;=</span> <span class="k">c</span><span class="p">.</span><span class="mi">1</span><span class="n">st_date</span>
+<span class="p">;</span>
+
+</code></pre></div></div>
+<p>  지난 7일간 평균 매출액을 구하기 위해 우선 지난 7일간 매출액 합계를 구하기 위해 window function을 활용했습니다. 지난 7일간을 어떻게 구현하면 될까요? 다음과 같은 구문을 활용했습니다. <br /></p>
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">Sum(amount) Over (ORDER BY visited_on RANGE BETWEEN INTERVAL 6 DAY PRECEDING AND CURRENT ROW)</code></p>
+</blockquote>
+
+<p>  특정 구간을 구하기 위해서 보통 <code class="language-plaintext highlighter-rouge">BETWEEN A AND B</code>와 같이 BETWEEN 구문을 활용합니다. visited_on(방문일)을 기준으로 정렬하고, A에 <code class="language-plaintext highlighter-rouge">INTERVAL 6 DAY PRECEDING</code>는 현재로부터 6일전을 의미하고 B에 <code class="language-plaintext highlighter-rouge">CURRENT</code>는 현재를 의미합니다. 따라서 visited_on을 기준으로 6일 전 ~ 오늘까지를 의미하게 되며 그 기간동안의 합계를 구하는 구문이 됩니다. 복잡해 보일 수 있지만 하나하나 뜯어보면 어렵지 않게 이해할 수 있습니다.<br />
+  그 다음 ‘1st_date’를 구해줍니다. 이는 visited_on을 기준으로 과거 6일치의 데이터가 없는 케이스를 제거해주기 위함입니다. 최종 테이블을 구현하기 위한 테이블 구문을 subquery로 미리 테이블을 불러온 다음 마지막으로 평균 매출액을 구하면 쉽게 최종 테이블을 구할 수 있습니다.</p>
+
+<h2 id="65-602-friend-requests-ii-who-has-the-most-friends">6.5 602. Friend Requests II: Who Has the Most Friends</h2>
+<p>  가장 많은 친구를 가진 사람과 가장 많은 사람과 친구인 사람을 구하는 문제입니다.</p>
+
+<h3 id="651-solution">6.5.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+    <span class="k">Sum</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">num</span><span class="p">)</span>    <span class="k">as</span> <span class="n">num</span>
+<span class="k">FROM</span>
+<span class="p">((</span><span class="k">SELECT</span>
+    <span class="n">requester_id</span>    <span class="k">as</span> <span class="n">id</span><span class="p">,</span>
+    <span class="k">count</span><span class="p">(</span><span class="n">accepter_id</span><span class="p">)</span>  <span class="k">as</span> <span class="n">num</span>
+<span class="k">FROM</span>
+    <span class="n">RequestAccepted</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+    <span class="n">requester_id</span>
+<span class="p">)</span> <span class="k">UNION</span> <span class="k">ALL</span>
+<span class="p">(</span>
+    <span class="k">SELECT</span>
+        <span class="n">accepter_id</span> <span class="k">as</span> <span class="n">id</span><span class="p">,</span>
+        <span class="k">count</span><span class="p">(</span><span class="n">requester_id</span><span class="p">)</span> <span class="k">as</span> <span class="n">num</span>
+    <span class="k">FROM</span>
+        <span class="n">RequestAccepted</span>
+    <span class="k">GROUP</span> <span class="k">BY</span>
+        <span class="n">accepter_id</span>
+<span class="p">))</span> <span class="n">a</span>
+<span class="k">GROUP</span> <span class="k">BY</span> 
+    <span class="n">a</span><span class="p">.</span><span class="n">id</span>
+<span class="k">Order</span> <span class="k">By</span>
+    <span class="n">num</span> <span class="k">desc</span>
+<span class="k">LIMIT</span> <span class="mi">1</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  Subquery안에 UNION ALL 구문을 활용해 테이블을 불러왔습니다. 하나하나 뜯어보겠습니다.<br />
+  첫 번째 테이블을 보면, requerster_id별로 accepter_id 수를 집계했습니다. 두 번째 테이블은 반대로 accepter_id별로 requester_id 수를 집계했습니다. 각각 수를 집계한 이유는 요청자와 수락자 한 쌍이 모두 친구이기 때문입니다. 예를 들어, 1번이 2번에게 요청한 경우 1과 2는 친구이고, 3번이 1번에게 친구를 요청한 경우도 1과 3은 친구입니다. 따라서 1번에게는 2, 3의 친구 즉 2명의 친구가 있는 것입니다. 따라서 모든 id별로 각각 수를 집계한 것입니다.
+<br />
+  id별로 requseter_id, accepter_id를 모두 집계한 다음 id별로 합계를 구한다면 총 친구 수를 구할 수 있습니다. 여기서 친구 수를 내림차순으로 정렬한 다음 가장 최상단에 값만 불러오면 가장 많은 친구를 가진 id를 찾을 수 있습니다.</p>
+
+<h2 id="66-585-investments-in-2016">6.6 585. Investments in 2016</h2>
+<p>  다음 조건을 만족하는 2016년 총 투자액을 구하는 문제입니다. 조건은 다음과 같습니다.</p>
+<blockquote>
+  <ol>
+    <li>2개 이상의 정책의 tiv_2015가 동일해야함</li>
+    <li>다른 policyholder와 지역이 겹치지 않아야 함</li>
+  </ol>
+</blockquote>
+
+<h3 id="661-solution">6.6.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">Round</span><span class="p">(</span><span class="k">Sum</span><span class="p">(</span><span class="n">tiv_2016</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">as</span> <span class="n">tiv_2016</span>
+<span class="k">FROM</span>
+    <span class="n">Insurance</span> <span class="n">i</span>
+    <span class="k">INNER</span> <span class="k">JOIN</span> <span class="p">(</span>
+        <span class="k">SELECT</span>
+            <span class="n">concat</span><span class="p">(</span><span class="n">lat</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span> <span class="k">as</span> <span class="n">t</span>
+        <span class="k">FROM</span>
+            <span class="n">Insurance</span>
+        <span class="k">GROUP</span> <span class="k">BY</span>
+            <span class="n">t</span>
+        <span class="k">HAVING</span>
+            <span class="k">count</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="n">i2</span>
+    <span class="k">On</span> <span class="n">concat</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">lat</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="n">lon</span><span class="p">)</span> <span class="o">=</span> <span class="n">i2</span><span class="p">.</span><span class="n">t</span>
+<span class="k">WHERE</span>
+    <span class="n">tiv_2015</span> <span class="k">in</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">tiv_2015</span> <span class="k">FROM</span> <span class="n">Insurance</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">tiv_2015</span> <span class="k">Having</span> <span class="k">count</span><span class="p">(</span><span class="n">pid</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  이 문제를 풀기 위해 2개의 subquery를 활용했습니다. 우선 INNER JOIN 절에 있는 subquery부터 보겠습니다.<br />
+  pid별로 지역이 겹치지 않는 pid만 남기기 위해 INNER JOIN을 수행한 사례입니다. lat과 lon을 concat(string을 결합)하여 t라는 컬럼을 생성하고 HAVING절을 통해 t가 1개인 경우만 불러옵니다. 이 테이블을 Insurance 테이블과 <code class="language-plaintext highlighter-rouge">On concat(i.lat, i.lon) = i2.t</code> 키를 활용해 결합한다면 i2 테이블의 t의 수가 1인 케이스만 결합되기에 지역이 겹치는 pid는 모두 제외되게 됩니다.
+<br />
+  그 다음 tiv_2015가 두 개 이상 동일한 케이스를 불러오기 위해 WHERE 절에도 subquery를 활용해줍니다. subquery를 활용해 tiv_2015별로 pid 수를 집계한다음 그 수가 2개 이상인 경우만 불러온 후, <code class="language-plaintext highlighter-rouge">tiv_2015 in ()</code>을 활용해 조건을 주면 원하는 최종 테이블을 추출할 수 있습니다.</p>
+
+<h2 id="67-185-department-top-three-salaries">6.7 185. Department Top Three Salaries</h2>
+<p>  부서 별로 연봉이 가장 높은 3명의 사람을 구하는 문제입니다.</p>
+
+<h3 id="671-solution">6.7.1 Solution</h3>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">name</span> <span class="k">as</span> <span class="n">Department</span><span class="p">,</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">name</span> <span class="k">as</span> <span class="n">Employee</span><span class="p">,</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">salary</span> <span class="k">as</span> <span class="n">Salary</span>
+<span class="k">FROM</span> <span class="p">(</span>
+    <span class="k">SELECT</span> 
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">dense_rank</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">Partition</span> <span class="k">By</span> <span class="n">departmentId</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">salary</span> <span class="k">desc</span><span class="p">)</span> <span class="k">as</span> <span class="n">salary_rank</span>
+    <span class="k">FROM</span>
+        <span class="n">Employee</span>
+    <span class="p">)</span> <span class="n">a</span>
+    <span class="k">Left</span> <span class="k">Join</span> <span class="n">Department</span> <span class="n">b</span>
+    <span class="k">on</span> <span class="n">a</span><span class="p">.</span><span class="n">departmentId</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">id</span>
+<span class="k">Where</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">salary_rank</span> <span class="o">&lt;=</span> <span class="mi">3</span>
+<span class="p">;</span>
+</code></pre></div></div>
+<p>  어렵지 않게 푼 문제입니다. Window function 중 하나인 dense_rank() 함수를 활용해 부서별로 salary가 높은 순서를 구합니다. dense_rank는 중복된 것들은 하나로 처리하여 순서를 부여합니다.(2등이 2명일 경우 다음 등수를 4로 가지 않고 3으로 부여) 그 다음 Join 절을 이용해 부서명을 붙여주고 salary_rank가 3 이하인 경우를 구해주면 부서별로 salary가 높은 3명을 구할 수 있습니다!</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[안녕하세요. 이번 문제부터는 Subquery 파트입니다.  원하는 데이터를 추출하기 위해서는 Subquery를 능숙하게 다룰 줄 알아야 합니다. Subquery는 말 그대로 Query속 query입니다. 좀 더 자세하게 얘기하면 SELECT 문 안에 또 다른 SELECT 문을 의미합니다. Main query 안에서 괄호로 둘러쌓인 SELECT문입니다. Subquery는 어떤 값을 반환하는 곳에도 쓰이고, 테이블로 사용되거나 조건은 불러오는데 사용되기도 합니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)</title><link href="http://localhost:4000/data/SQL_LeetCode9/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Advanced Select and Joins(2/2)" /><published>2023-09-18T00:00:00+09:00</published><updated>2023-09-19T06:30:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode9</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode9/"><![CDATA[<p>  안녕하세요. 바로 이어가겠습니다!</p>
 
 <h1 id="5-advanced-and-select-joins">5. Advanced and Select Joins</h1>
 <h2 id="54-180-consecutive-numbers">5.4 180. Consecutive Numbers</h2>
@@ -1229,38 +1428,4 @@ ORDER BY  percentage Desc,  a.contest_id Asc
 <p>  분석 컨설팅을 하다보면 클라이언트를 설득하기 위해서 뚝심있게 밀고 나가야 할 때가 필요합니다. 클라이언트가 도메인 지식에 월등하기 때문에 보통은 클라이언트 의견에 좌지우지되기 쉽상이지만, 아니라고 생각할때는 강력하게 밀어붙여 설득이 필요합니다. 그러다 보면 부딪히는 경우도 생기지만, 논리적으로 탄탄하다면 결국엔 설득이 되는 것 같습니다(논리가 안 통하는 상대는 아직 만나본 적이 없기에 잘 모르겠습니다…). 클라이언트에게 너무 끌려다니기보단 확신을 갖고 밀어붙이는 태도도 필요하다는 것을 많이 배웠습니다.</p>
 
 <h2 id="마치며">마치며</h2>
-<p>  이번 주는 커뮤니케이션에 관한 다양한 이슈가 있었습니다. 커뮤니케이션은 분석 스킬, 실무 스킬과는 다른 의미로 매우 그리고 항상 어렵습니다. 낙담할 때도 있곤 하지만 더 나은 커뮤니케이션을 위하여 조금씩 개선시켜 나아가고자 합니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  이번주는 커뮤니케이션 관련하여 2가지 이슈가 있었습니다. 한 번은 팀 회의를 하면서 서로의 커뮤니케이션을 보면서 느꼈던 점과 다른 한 번은 클라이언트와 화상회의를 하면서 느꼈던 점들을 기록해보고자 합니다. 테마를 정해보자면 다음과 같이 정리할 수 있을 것 같습니다. 효율적인 커뮤니케이션 보수적인(&amp;방어적인) 클라이언트 설득하기]]></summary></entry><entry><title type="html">[회고록] 23년 7월 2주차: 분석 모델링 수행</title><link href="http://localhost:4000/data/weekly_memoir_7/" rel="alternate" type="text/html" title="[회고록] 23년 7월 2주차: 분석 모델링 수행" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-06T07:30:00+09:00</updated><id>http://localhost:4000/data/weekly_memoir_7</id><content type="html" xml:base="http://localhost:4000/data/weekly_memoir_7/"><![CDATA[<p>  지난 2주는 에너지 사용량 증감 원인 분석하고 그 결과를 문서화 하느라 정신 없이 지나갔네요. 월간 보고회를 진행하기 위해 쳇바퀴 처럼 반복되는 매월이지만 최근 꽤나 재미있는 분석을 진행했습니다. 이번에는 분석 모델링을 통해서 Y인자의 변동을 설명하고자 하였고 흥미로운 결과가 나와서 기록하고자 합니다.</p>
-
-<h2 id="1-배경이유">1. 배경/이유</h2>
-<p>  저는 현재 공장 에너지 절감 프로젝트를 수행하고 있고, 에너지 별 문제를 진단하고 분석을 통해 절감 요소를 도출하거나 에너지 사용량 증감을 설명하는 인자들을 도출하는 작업을 하고 있습니다. 이전까지는 에너지 별 공정 매커니즘에 기반하여 후보영향인자들을 선정한 다음 인자별로 단변량 분석을 통해 문제를 풀어나갔습니다(믿기 어렵겠지만 상당 부분 단변량 분석을 통해 문제가 해결이 됩니다). 하지만, 이번에 분석한 에너지 사용량은 단변량으로 분석하기에는 한계가 있었습니다. 다양한 변수가 복학접으로 영향을 미치다보니 단변량 분석을 통해서는 명확한 관계가 드러나지 않았기 때문이었습니다. 따라서, 우리는 분석 모델링을 통해 에너지 Y인자의 변동을 잘 설명할 수 있는 X인자의 조합을 찾고 그 효과를 추정하기 위해 분석 모델링을 수행하였습니다.</p>
-
-<h2 id="2-기준">2. 기준</h2>
-<p>  다양한 인자들의 조합 중 최적의 조합을 찾기 위해서는 기준이 필요하다. 우리는 주로 <span style="color:red"><strong>설명력(R^2)</strong></span>을 기준으로 판단을 한다(예측 모형이 아니다!). 왜냐하면 우리는 Y인자의 변동을 가장 잘 설명할 수 있는 모형을 찾고자 하기 때문이다. <br />
-  그 외에도 중요하게 따져봐야 할 것들이 있다. 선형 회귀식을 사용할 때에는 부호가 매커니즘과 일치하는지를 따져봐야 한다. 매커니즘과 맞지 않는 부호가 나올 경우, 클라이언트를 설득할 수 없다. 이 때에는 누락변수가 있는 것은 아닌지 이유를 살펴보고 보완을 해야 한다. <br />
-   또 중요한 점은 클라이언트가 납득할 수 있어야 한다. 흔히 도메인 지식이 약한 분석가 혹은 조직이 하는 실수가 수 많은 변수들을 떄려넣고 설명력 혹은 예측력이 가장 높은 모형을 클라이언트에게 제공하는 것인데, 이러한 결과를 제시할 경우 클라이언트에게 신뢰받기는 힘들 것이다. (이는 산업 분야마다 다르다. 하지만 분야를 막론하더라도 컨설팅을 수행하는 조직이라면 이 점을 반드시 유의해야 한다.)<br />
-  따라서 내 기준을 아래와 같이 정했다.</p>
-<blockquote>
-  <p><strong>최우선 기준은 설명력이다. 다만, 설명력을 조금 손해보더라도 해석이 우월한 조합이 있다면 그 조합을 선택하자</strong></p>
-</blockquote>
-
-<p>  어떻게 보면 주관적이고 분석가의 의도가 들어갈 수 밖에 없다. 그렇기에 항상 결과에 대해 의심하고 신중하게 선택하여야 한다. 이런 점에서 분석가 일을 하다보면 테크니컬한 문제들은 별게 아니란 생각이 든다. 항상 이렇게 분석하고 선택하는 과정이 훨씬 더 어렵다.</p>
-
-<h2 id="3-결과">3. 결과</h2>
-<p>  설명력과 매커니즘을 기반으로 선형회귀 모형을 활용해 다양한 인자들의 조합을 탐색하였고 3가지 인자의 조합을 최종 선택하였다. 3가지 인자로 선형 회귀 모형을 Fit 했을 때, Y인자 변동의 78%를 설명하는 결과를 얻을 수 있었다. 계수들의 부호도 모두 공정 매커니즘과 일치했고, 해석에도 만족스러웠다.</p>
-
-<h2 id="4-활용">4. 활용</h2>
-<p>  우리가 분석한 결과가 어떻게 활용될까? 우리는 분석 결과에 따르면 특정 X인자 (설비효율)가 개선될 경우, 금액적 효과가 대략 xx원이 될 것이라고 클라이언트에게 리포트 했다(물론 정말 그런지는 클라이언트가 정밀하게 따져보고 검증해야 하는 과정이 필요하다). 그 수치는 클라이언트가 예상했던 금액 효과 보다 컸다. 알고보니 클라이언트 사에서는 에너지 사용 절감을 위해 설비 교체 투자 건을 진행하고자 했지만, 투자 대비 절감 효과가 낮을 것으로 예상돼 보류 중인 상황이었다. (현재 경기가 안 좋다보니 투자에 매우 민감한 상황이다.) 하지만, 분석 결과에 따르면 설비 교체로 인한 절감 효과가 매우 클 것으로 예상되기에 클라이언트사에 의사결정 사항에 영향을 줄 수 있게 됐고, 변화가 생길 수도 있을 것이다.<br />
-  결국 어떤 조직이 데이터를 기반으로 의사결정 한다는 의미는 데이터 분석을 통해 객관적인 증거를 활용한다는 것이라 생각한다. 거기서 나의 역할은 더 신뢰할 수 있는 근거를 만들기 위해 엄밀한 분석을 수행하는 것이라 생각한다.</p>
-
-<h2 id="5-흥미로운-점">5. 흥미로운 점</h2>
-<p>  경제학 석사를 전공하면서 무수히 많은 회귀식을 생성했고 해석했다. 다만, 실무를 하면서 잠깐 멀어졌기에 감각(?)이 떨어졌다고 해야하나 여튼 그런 상황이었다. 단변량 분석에서 Y인자와 X인자 간의 관계가 명확하게 도출되지 않았지만, 다변량 분석 모델링을 통해 명쾌하게 해석되는 결과를 보면서 참 많은 생각이 들었다. 왜 단변량 분석에서는 잘 안보이고 다변량 분석에서는 잘 보였을까? 생각해봤을 때, 여러 인자가 복합적으로 영향을 미치기 때문이라 생각한다. 단변량 분석과 다변량 분석을 비교해보면 다음과 같을 것이다.</p>
-<blockquote>
-  <ul>
-    <li>단변량 분석: 여러 인자들이 중요한 순서(상관성이 높은 순 혹은 매커니즘 기반 순서)대로 Y인자 변동에 영향을 끼치는 경우, 단변량 분석이 용이함<br />
-  주로 상관성이 높은 X1인자를 고정한 후, Y인자의 산포를 설명하는 X2인자를 탐색하는 방법으로 분석을 수행함</li>
-    <li>다변량 분석: 다양한 인자들이 Y인자에 영향을 끼치는 경우, 다변량 분석이 용이함<br />
-  적합한 모델을 선정하고 모델링을 통해 분석을 수행함</li>
-  </ul>
-</blockquote>
-
-<p>  또 하나 깨달은 것은 <strong>상황에 맞게 적합한 분석 방법을 적용해야 한다는 것</strong>이었다. 너무 당연한 얘기이려나? 그래도 단순히 알고 있는 것과 경험해보는 것은 다르기에 개인적으로도 아주 유익한 2주였다. 간만에 재밌었고 보람찬 분석이었다. 이런거 보면 모델링이 더 적성에 맞을지도..??ㅎㅎ</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  지난 2주는 에너지 사용량 증감 원인 분석하고 그 결과를 문서화 하느라 정신 없이 지나갔네요. 월간 보고회를 진행하기 위해 쳇바퀴 처럼 반복되는 매월이지만 최근 꽤나 재미있는 분석을 진행했습니다. 이번에는 분석 모델링을 통해서 Y인자의 변동을 설명하고자 하였고 흥미로운 결과가 나와서 기록하고자 합니다.]]></summary></entry></feed>
+<p>  이번 주는 커뮤니케이션에 관한 다양한 이슈가 있었습니다. 커뮤니케이션은 분석 스킬, 실무 스킬과는 다른 의미로 매우 그리고 항상 어렵습니다. 낙담할 때도 있곤 하지만 더 나은 커뮤니케이션을 위하여 조금씩 개선시켜 나아가고자 합니다.</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  이번주는 커뮤니케이션 관련하여 2가지 이슈가 있었습니다. 한 번은 팀 회의를 하면서 서로의 커뮤니케이션을 보면서 느꼈던 점과 다른 한 번은 클라이언트와 화상회의를 하면서 느꼈던 점들을 기록해보고자 합니다. 테마를 정해보자면 다음과 같이 정리할 수 있을 것 같습니다. 효율적인 커뮤니케이션 보수적인(&amp;방어적인) 클라이언트 설득하기]]></summary></entry></feed>
