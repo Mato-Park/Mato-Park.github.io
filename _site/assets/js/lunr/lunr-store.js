@@ -166,4 +166,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode10/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이: Advanced String Functions / RegEx / Clause",
+        "excerpt":"안녕하세요. Leetcode SQL50 마지막 파트인 Advanced String Functions/RegEx/Clause 파트입니다. 7. Advanced String Functions / RegEx / Clause 7.1 1667. Fix Names in a Table   Text 데이터의 첫 번째 글자는 대문자로 하고 그 다음 문자부터 소문자로 고치는 문제입니다. 7.1.1 Solution SELECT user_id, Concat(Upper(Left(name,1)), Lower(Substr(name, 2))) as name From Users ORDER...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode11/",
+        "teaser": null
       }]
