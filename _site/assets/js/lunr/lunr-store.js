@@ -172,4 +172,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode11/",
         "teaser": null
+      },{
+        "title": "[SQL] LeetCode 풀이 후기",
+        "excerpt":"안녕하세요. Leetcode SQL50 모든 문제를 풀어보고 정리까지 마쳤습니다.   실무에서 Qlik Sense로 데이터 모델을 개발할 때 유사 SQL을 사용하지만 보통에 SQL과는 차이가 있었고, 그 외에는 SQL을 다룰 일이 없었습니다. 따라서, 한 번쯤은 SQL을 다시 한 번 공부해야 겠다고 생각하고 있었고 LeetCode를 선택해 풀어봤습니다. LeetCode를 선택한 이유는 일단 문제 수가 50문제로...","categories": ["Data"],
+        "tags": ["Data","SQL","LeetCode"],
+        "url": "/data/SQL_LeetCode_Final/",
+        "teaser": null
       }]
