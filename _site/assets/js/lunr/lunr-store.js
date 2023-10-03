@@ -178,4 +178,10 @@ var store = [{
         "tags": ["Data","SQL","LeetCode"],
         "url": "/data/SQL_LeetCode_Final/",
         "teaser": null
+      },{
+        "title": "[파이썬] CleanCode",
+        "excerpt":"안녕하세요. 실무를 하다보면 종종 파이썬이나 R을 활용해 업무를 해야할 때가 있습니다. 특별한 체계없이 프로그램이 돌아갈 수 있을 정도로만 코드를 작성하고 개발해 왔습니다. 하지만 이러한 주먹구구식 방식으로는 한계가 분명했습니다. 프로그램을 작성한 본인도 읽기 힘든 코드, 성능을 고려하지 않은 코드, 주석과 설명이 부족한 코드, 그 외에 좋지 못한 프로그램 개발 습관까지… 더...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code1/",
+        "teaser": null
       }]
