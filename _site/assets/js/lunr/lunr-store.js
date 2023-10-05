@@ -179,9 +179,15 @@ var store = [{
         "url": "/data/SQL_LeetCode_Final/",
         "teaser": null
       },{
-        "title": "[파이썬] CleanCode",
+        "title": "[파이썬] 클린 코드, 깨끗한 코드 작성하기!",
         "excerpt":"안녕하세요. 실무를 하다보면 종종 파이썬이나 R을 활용해 업무를 해야할 때가 있습니다. 특별한 체계없이 프로그램이 돌아갈 수 있을 정도로만 코드를 작성하고 개발해 왔습니다. 하지만 이러한 주먹구구식 방식으로는 한계가 분명했습니다. 프로그램을 작성한 본인도 읽기 힘든 코드, 성능을 고려하지 않은 코드, 주석과 설명이 부족한 코드, 그 외에 좋지 못한 프로그램 개발 습관까지… 더...","categories": ["Python"],
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code1/",
+        "teaser": null
+      },{
+        "title": "[파이썬] 파이썬 준비하기: 기본 개념 알아보기",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 1부 내용임을 사전에 미리 밝힙니다! 안녕하세요. 우선 알아두면 좋을만한 기본 개념부터 짚어보고자 합니다. 기본 개념 파일   파일은 데이터의 모임으로 보조기억장치에 저장된 것을 말한다(Naver 지식백과). 파일에는 2가지 중요한 속성이 있는데 바로 파일명(filename)과 경로(path)입니다. 파일명은 말그대로 파일의 이름과 확장자를 통해 파일의...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code2/",
         "teaser": null
       }]
