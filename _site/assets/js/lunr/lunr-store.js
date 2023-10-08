@@ -190,4 +190,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code2/",
         "teaser": null
+      },{
+        "title": "[파이썬] 코드 포매팅: 코딩 스타일 정립하기",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 2부 내용임을 사전에 미리 밝힙니다!   처음 R과 Python을 배울 때에는 코딩 스타일에 대해 신경쓰지 않았습니다. 어짜피 혼자 보는 코드고 누구에게 공유하거나 협업 하리라고는 생각하지 못했었기 때문입니다. 그러다보니, 일관적인 코딩 스타일이 정립되지 않은채로 나쁜 습관인 것들도 굳어진 채로 실무에서 까지...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code3/",
+        "teaser": null
       }]

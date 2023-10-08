@@ -1,4 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-05T22:48:15+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[파이썬] 파이썬 준비하기: 기본 개념 알아보기</title><link href="http://localhost:4000/python/clean_code2/" rel="alternate" type="text/html" title="[파이썬] 파이썬 준비하기: 기본 개념 알아보기" /><published>2023-10-05T00:00:00+09:00</published><updated>2023-10-06T06:17:00+09:00</updated><id>http://localhost:4000/python/clean_code2</id><content type="html" xml:base="http://localhost:4000/python/clean_code2/"><![CDATA[<blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.1">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-08T17:14:02+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">끊임없이 성장하는 데이터 분석가</title><subtitle>조금씩 쌓아가다 보면 큰 산이 되겠지</subtitle><author><name>박마토</name></author><entry><title type="html">[파이썬] 코드 포매팅: 코딩 스타일 정립하기</title><link href="http://localhost:4000/python/clean_code3/" rel="alternate" type="text/html" title="[파이썬] 코드 포매팅: 코딩 스타일 정립하기" /><published>2023-10-08T00:00:00+09:00</published><updated>2023-10-06T06:17:00+09:00</updated><id>http://localhost:4000/python/clean_code3</id><content type="html" xml:base="http://localhost:4000/python/clean_code3/"><![CDATA[<blockquote>
+  <p>이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 2부 내용임을 사전에 미리 밝힙니다!</p>
+</blockquote>
+
+<p>  처음 R과 Python을 배울 때에는 코딩 스타일에 대해 신경쓰지 않았습니다. 어짜피 혼자 보는 코드고 누구에게 공유하거나 협업 하리라고는 생각하지 못했었기 때문입니다. 그러다보니, 일관적인 코딩 스타일이 정립되지 않은채로 나쁜 습관인 것들도 굳어진 채로 실무에서 까지 활용하고 있었습니다. 이번 포스팅에서는 일반적으로 제안되는 코딩 스타일에 대해서 알아보겠습니다.<br /></p>
+
+<p>  왜 코딩 스타일을 정립해야 할까요? 실무를 하다보면 혼자 하기보다는 대부분 협업해서 할일이 많습니다. 파이썬, SQL, BI Tool 등 프로그래밍 언어와는 무관하게 협업을 하면서 코드 포매팅이 중구난방이면 서로 공유하기 힘들어지고 효율성이 떨어지게 될 것입니다. 게다가 코드 유지보수를 위한 가독성에도 꼭 필요한 요소입니다. 물론, 사람마다 각각의 코딩 스타일이 있으므로 완벽하게 코딩 스타일을 똑같이 정립하여 적용할 순 없겠지만, 최소한 가독성이 좋도록 일관적인 코딩 스타일을 정립하는 중요하다고 생각합니다.</p>
+
+<h1 id="0-스타일-가이드와-pep8">0. 스타일 가이드와 PEP8</h1>
+<p>  본격적으로 들어가기 전에 PEP8(Python Enhancement Proposal 8)에 대해 소개하겠습니다. <a href="https://peps.python.org/pep-0008/">PEP8</a>은 파이썬 코어 개발팀이 작성한 스타일 가이드 중 하나입니다. 비록 파이썬 코어 개발팀이 제안한 방식이지만 무조건적으로 받아들여야할 필요는 없습니다. 읽어보고 일반적인 코딩 스타일은 어떤지 파악해보시고 본인만의 코딩 스타일을 정립하는 데에 활용하시기 바랍니다.</p>
+
+<h1 id="1-가로-간격">1. 가로 간격</h1>
+<p>  가로 간격, 즉, 코드 한 줄 내의 빈 공간 배치에 대한 내용입니다. 들여쓰기와 띄어쓰기와 같은 공백을 적절하게 배치해야 가독성이 높은 코드를 작성할 수 있습니다.</p>
+
+<h2 id="11-들여쓰기">1.1 들여쓰기</h2>
+<p>  들여쓰기(indentation)란 코드 행의 시작부에 있는 공백을 의미합니다. 보통, ‘Tab’키 혹은 ‘Space’키를 사용하여 들여쓰기를 하는데 이 책에서는 ‘Space’(공백)를 활용하는 것을 권고합니다. 이유는 탭은 \t로 \가 포함된 문자열로 랜더링되는 반면, 공백은 ‘ ‘으로 랜더링 되므로 서로 다르게 인식되기 때문입니다. 따라서 탭은 공백 수가 가변적입니다. 예를 들어 다음을 보면 이해가 쉽습니다.</p>
+
+<p><img src="/assets/image/cleancode_tabspace.png" alt="image" /></p>
+
+<p>  첫 번째 셀은 공백으로 구분하고 두 번째 셀은 탭으로 구분한 것입니다. 탭을 사용하게 되면 보이는 것과 같이 다음 탭스톱(tab stop)에서 텍스트가 이어지게 되므로 공백이 가변적이게 됩니다. 따라서, 탭이 나타내는 공백 폭이 가변적이기 때문에 <strong>탭은 소스코드에서 사용해서는 안됩니다</strong>.<br /></p>
+
+<p>  파이썬의 경우, 보편적인 들여쓰기 관례는 공백 4칸입니다. (대부분의 코드 에디터와 IDE에서 탭 키를 누르면 4개 혹은 8개의 공백 문자를 자동으로 삽입합니다.)
+예를 들어, 다음 예제에서 마침표를 사용해 공백 문자를 표시했습니다.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getCatAmount</span><span class="p">():</span>
+<span class="p">....</span><span class="n">numCats</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">'How many cats do you have?'</span><span class="p">)</span>
+<span class="p">....</span><span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">numCats</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+<span class="p">........</span><span class="k">print</span><span class="p">(</span><span class="s">'You should get more cats'</span><span class="p">)</span>
+</code></pre></div></div>
+<blockquote>
+  <p>사실 저도 VCS를 활용해 코드 스크립트를 작성할 때, 무의식적으로 탭키를 사용하곤 했었습니다. 물론, VCS가 자동으로 탭키를 공백 4개로 삽입해주긴 합니다. 편의성이 있어서 탭키를 활용하지만 이 부분에 인지했으니 유의하여 사용할 수 있도록 하겠습니다.</p>
+</blockquote>]]></content><author><name>박마토</name></author><category term="Python" /><category term="Python" /><category term="Coding" /><category term="Review" /><summary type="html"><![CDATA[이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 2부 내용임을 사전에 미리 밝힙니다!]]></summary></entry><entry><title type="html">[파이썬] 파이썬 준비하기: 기본 개념 알아보기</title><link href="http://localhost:4000/python/clean_code2/" rel="alternate" type="text/html" title="[파이썬] 파이썬 준비하기: 기본 개념 알아보기" /><published>2023-10-05T00:00:00+09:00</published><updated>2023-10-06T06:17:00+09:00</updated><id>http://localhost:4000/python/clean_code2</id><content type="html" xml:base="http://localhost:4000/python/clean_code2/"><![CDATA[<blockquote>
   <p>이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 1부 내용임을 사전에 미리 밝힙니다!</p>
 </blockquote>
 
@@ -705,260 +735,4 @@ ls 명령어의 옵션 중 -l과 -a는 유용한 옵션입니다. -l은 파일 �
 <p>  분석하고 개선안 내서 적용하면 끝일까요? 아닙니다. 에너지 사용량이 잘 관리되고 있는지 모니터링 할 수 있는 시스템이 필요합니다. 이번 프로젝트에서는 BI Tool을 활용해 향후 일별로 에너지 사용량을 모니터링 할 수 있는 시각화 대시보드 App을 개발하여 활용할 수 있게 했습니다. 앞으로는 과거 데이터와 비교하여 현재 에너지 사용량이 적절한지 판단할 수 있는 시스템이 갖춰졌습니다. 조직원 모두가 에너지 사용량을 확인할 수 있고 분석할 수 있습니다. 어쩌면 데이터 기반 의사결정 문화에도 큰 도움이 되리라 생각합니다.</p>
 
 <h2 id="7-프로젝트를-마치며">7. 프로젝트를 마치며..</h2>
-<p>  에너지 절감 분석 프로젝트를 해보니 <strong>현업 담당자들이 놓치고 있던 부분을 데이터를 활용해 짚어내는 것</strong>이 주효했던 것 같습니다. 생각보다(?) 현업 담당자들은 다 잘하고 있고 문제없다 얘기하지만, 데이터를 까보면 아닌 경우가 허다했습니다. 그리고 분석의 난이도가 높아서 어렵다기보다는 공장의 모든 설비와 에너지를 살펴봐야 했기에 힘들었던 분석이었습니다. 그래도 에너지 별로 낭비요소를 찾아내고 개선이 이뤄지는 것을 보면서 역시 뿌듯하고 즐거웠던 프로젝트였습니다. 물론 아직 끝나지 않았습니다…</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  안녕하세요. 지난 회고록에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 분석 모델링도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다.]]></summary></entry><entry><title type="html">[SQL] LeetCode 풀이: Sorting and Grouping(1/2)</title><link href="http://localhost:4000/data/SQL_LeetCode6/" rel="alternate" type="text/html" title="[SQL] LeetCode 풀이: Sorting and Grouping(1/2)" /><published>2023-07-31T00:00:00+09:00</published><updated>2023-08-01T06:00:00+09:00</updated><id>http://localhost:4000/data/SQL_LeetCode6</id><content type="html" xml:base="http://localhost:4000/data/SQL_LeetCode6/"><![CDATA[<p>  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다</p>
-
-<h1 id="4-sorting-and-grouping">4. Sorting and Grouping</h1>
-<h2 id="41-number-of-unique-subjects-taught-by-each-teacher">4.1 Number of Unique Subjects Taught by Each Teacher</h2>
-<h3 id="411-table-description--question">4.1.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Teacher</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>teacher_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>subject_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>dept_id(PK)</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(subject_id, dept_id) is the primary key for this table.<br />
-Each row in this table indicates that the teacher with teacher_id teaches the subject subject_id in the department dept_id.</p>
-</blockquote>
-
-<p><strong>Question</strong><br /></p>
-<ul>
-  <li>Calculate the number of unique subjects each teacher teaches in the university.</li>
-  <li>Return the result table in any order.</li>
-</ul>
-
-<h3 id="412-solution">4.1.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">teacher_id</span><span class="p">,</span>
-    <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">subject_id</span><span class="p">)</span>  <span class="k">as</span> <span class="n">cnt</span>
-<span class="k">FROM</span>
-    <span class="n">Teacher</span>
-<span class="k">GROUP</span> <span class="k">BY</span>
-    <span class="n">teacher_id</span>
-</code></pre></div></div>
-<p>  선생님 별로 가르치는 과목 수를 구하면 된다. 중복을 제거하기 위하여 count 함수 안에 ‘distinct’를 적어주자 끝!</p>
-
-<h2 id="42-user-activity-for-the-past-30-days-1">4.2 User Activity for the Past 30 Days 1</h2>
-<h3 id="421-table-description--question">4.2.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Activity</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Colum Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>user_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>session_id</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>activity_date</td>
-      <td>date</td>
-    </tr>
-    <tr>
-      <td>activity_type</td>
-      <td>enum</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>There is no primary key for this table, it may have duplicate rows.<br />
-The activity_type column is an ENUM of type (‘open_session’, ‘end_session’, ‘scroll_down’, ‘send_message’).<br />
-The table shows the user activities for a social media website. <br />
-Note that each session belongs to exactly one user.</p>
-</blockquote>
-
-<p><strong>Question</strong><br /></p>
-<ul>
-  <li>Write an SQL query to find the daily active user count for a period of 30 days ending 2019-07-27 inclusively. A user was active on someday if they made at least one activity on that day.</li>
-  <li>Return the result table in any order.</li>
-</ul>
-
-<h3 id="422-solution">4.2.2 Solution</h3>
-
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">Select</span>
-    <span class="n">activity_date</span>   <span class="k">As</span> <span class="k">day</span><span class="p">,</span>
-    <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">user_id</span><span class="p">)</span> <span class="k">As</span> <span class="n">active_users</span>
-<span class="k">FROM</span>
-    <span class="n">Activity</span>
-<span class="k">WHERE</span>
-    <span class="n">activity_date</span> <span class="k">BETWEEN</span> <span class="n">Date_Sub</span><span class="p">(</span><span class="s1">'2019-07-27'</span><span class="p">,</span> <span class="n">INTERVAL</span> <span class="mi">29</span> <span class="k">DAY</span><span class="p">)</span>
-    <span class="k">AND</span> <span class="s1">'2019-07-27'</span>
-<span class="k">GROUP</span> <span class="k">BY</span>
-    <span class="n">activity_date</span>
-<span class="p">;</span>
-</code></pre></div></div>
-<p>  2019년 7월 27일을 기준으로 30일 전부터 기준일까지 일자별로 활성화 유저 수를 계산하면 된다. count를 사용하여 수를 집계하고 기간은 Where 절에 Between과 date_sub를 활용하여 기간 조건을 설정했다.</p>
-
-<h2 id="43-product-sales-analysis-3">4.3 Product Sales Analysis 3</h2>
-<h3 id="431-table-description--question">4.3.1 Table Description &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Sales</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>sale_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>product_id(FK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>year(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>quantity</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>price</td>
-      <td>int</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(sale_id, year) is the primary key of this table.<br />
-product_id is a foreign key to Product table.<br />
-Each row of this table shows a sale on the product product_id in a certain year.<br />
-Note that the price is per unit.</p>
-</blockquote>
-
-<p>table: Product</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>product_id(PK)</td>
-      <td>int</td>
-    </tr>
-    <tr>
-      <td>product_name</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>product_id is the primary key of this table.<br />
-Each row of this table indicates the product name of each product.<br /></p>
-</blockquote>
-
-<p><strong>Question</strong> <br /></p>
-<ul>
-  <li>Write an SQL query that selects the product id, year, quantity, and price for the first year of every product sold.</li>
-  <li>Return the resulting table in any order.</li>
-</ul>
-
-<p>  product별로 첫 해에 판매한 수량과 판매가격을 구하는 문제이다.</p>
-
-<h3 id="432-solution">4.3.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="n">product_id</span><span class="p">,</span>
-    <span class="nb">year</span>        <span class="k">As</span> <span class="n">first_year</span><span class="p">,</span>
-    <span class="n">quantity</span><span class="p">,</span>
-    <span class="n">price</span>
-<span class="k">FROM</span>
-    <span class="n">Sales</span>
-<span class="k">Where</span>
-    <span class="p">(</span><span class="n">product_id</span><span class="p">,</span> <span class="nb">year</span><span class="p">)</span> <span class="k">in</span> <span class="p">(</span><span class="k">Select</span> <span class="n">product_id</span><span class="p">,</span> <span class="k">Min</span><span class="p">(</span><span class="nb">year</span><span class="p">)</span> <span class="k">as</span> <span class="nb">year</span>
-     <span class="k">From</span> <span class="n">Sales</span> <span class="k">Group</span> <span class="k">By</span> <span class="n">product_id</span><span class="p">)</span>
-<span class="p">;</span>
-</code></pre></div></div>
-<p>  각 Product 별로 첫 해에 해당하는 Record를 어떻게 가져올까 고민을 많이 했었다. 처음에 떠올린 아이디어는 프로덕트 별로 연도를 오름차순으로 정렬한 다음 가장 위에 있는 Record를 가져오는 것이었다. 구글링도 해봤지만 내가 생각했던 솔루션은 찾기 어려웠다. 따라서 다른 방법을 고민하다가 찾은 것이 위 쿼리문이다.<br />
-  아이디어는 간단하다. 프로덕트 별로 첫 해는 year 값이 가장 <strong>낮은</strong> 값일 것이다. 왜냐하면 날짜는 일정한 방향으로 흐르기 때문이다. 따라서 WHERE 절에 subquery를 활용하여 프로덕트 별로 year가 가장 낮은 Record를 가져올 수 있는 조건 절을 추가했다.</p>
-
-<h2 id="44-class-more-than-5-students">4.4 Class More Than 5 Students</h2>
-<h3 id="441-table-descriptoin--question">4.4.1 Table descriptoin &amp; Question</h3>
-<p><strong>Table</strong> description</p>
-
-<p>table: Courses</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Column Name</th>
-      <th>Type</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>student(PK)</td>
-      <td>varchar</td>
-    </tr>
-    <tr>
-      <td>class(PK)</td>
-      <td>varchar</td>
-    </tr>
-  </tbody>
-</table>
-
-<blockquote>
-  <p>(student, class) is the primary key column for this table.<br />
-Each row of this table indicates the name of a student and the class in which they are enrolled.</p>
-</blockquote>
-
-<p><strong>Question</strong> <br /></p>
-<ul>
-  <li>Find all the classes that have at least five students.<br /></li>
-  <li>Return the result table in any order.</li>
-</ul>
-
-<h3 id="382-solution">3.8.2 Solution</h3>
-<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
-    <span class="k">class</span>
-<span class="k">FROM</span>
-    <span class="n">Courses</span>
-<span class="k">Group</span> <span class="k">By</span>
-    <span class="k">class</span>
-<span class="k">Having</span>
-    <span class="k">Count</span><span class="p">(</span><span class="n">student</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">5</span>
-<span class="p">;</span>
-</code></pre></div></div>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="SQL" /><category term="LeetCode" /><summary type="html"><![CDATA[  안녕하세요. LeetCode50 50문제 별로 없네 생각하면서 시작했는데 고민해보고 정리하면서 하다보니 예상보다는 길어지네요. 부지런히 공부해서 8월달 내에는 끝내야겠습니다]]></summary></entry></feed>
+<p>  에너지 절감 분석 프로젝트를 해보니 <strong>현업 담당자들이 놓치고 있던 부분을 데이터를 활용해 짚어내는 것</strong>이 주효했던 것 같습니다. 생각보다(?) 현업 담당자들은 다 잘하고 있고 문제없다 얘기하지만, 데이터를 까보면 아닌 경우가 허다했습니다. 그리고 분석의 난이도가 높아서 어렵다기보다는 공장의 모든 설비와 에너지를 살펴봐야 했기에 힘들었던 분석이었습니다. 그래도 에너지 별로 낭비요소를 찾아내고 개선이 이뤄지는 것을 보면서 역시 뿌듯하고 즐거웠던 프로젝트였습니다. 물론 아직 끝나지 않았습니다…</p>]]></content><author><name>박마토</name></author><category term="Data" /><category term="Data" /><category term="Memoir" /><summary type="html"><![CDATA[  안녕하세요. 지난 회고록에서 적었던 에너지 절감 프로젝트가 마무리되어 가고 있습니다. 프로젝트를 진행하면서 분석 모델링도 수행하기도 했고 이 얘기에 이어서 마무리 짓지 못했던 회고록을 이어서 작성해보겠습니다.]]></summary></entry></feed>
