@@ -196,4 +196,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code3/",
         "teaser": null
+      },{
+        "title": "[파이썬] 좋은 이름 정하기",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 4장 내용임을 사전에 미리 밝힙니다!   코드 스크립트를 작성하다보면 의외로 어려운 것이 이름 짓기 입니다. 클래스, 매소드, 변수의 의미를 잘 담아내면서 중복을 피하고 깔끔한 이름을 붙이는 것이 생각보다 쉽지 않습니다. 특히, 변수에 변수명을 별 생각없이 붙이다보면, 무의미하고 지저분한 이름들 투성이더군요....","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code4/",
+        "teaser": null
       }]
