@@ -202,4 +202,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code4/",
         "teaser": null
+      },{
+        "title": "[파이썬] 코드 악취 감지하기",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 5장 내용임을 사전에 미리 밝힙니다!   이 책을 읽고나서 코드 악취라는 개념에 대해서 처음 알게 됐습니다. 코드 악취(code smell)란 충돌(crash)을 발생시키는 코드는 아니지만, 잠재적인 버그를 암시하는 소스 코드 패턴을 의미합니다. 코드 악취가 반드시 문제를 야기시키는 것은 아닙니다만, 언제 터질지 모르는...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code5/",
+        "teaser": null
       }]
