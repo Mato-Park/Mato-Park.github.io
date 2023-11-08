@@ -208,4 +208,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code5/",
         "teaser": null
+      },{
+        "title": "[파이썬] 파이썬다운 코드란?",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 6장 내용임을 사전에 미리 밝힙니다!   저는 데이터 분석을 하기 위한 프로그래밍 용어를 대부분 독학으로 익혔습니다. 그러다보니 제 코딩스타일은 독학하기 위해 선택했던 학습서, 구글링 해서 따온 코드들의 짜집기가 됐습니다. 그렇기에 파이썬 특성에 맞는 코드를 쓰기보단 그냥 아는대로 막 썼습니다. 코드를...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code6/",
+        "teaser": null
       }]
