@@ -4,6 +4,22 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://localhost:4000/data/Monthly_memoir/</loc>
+        
+        <lastmod>2023-12-29T00:00:00+09:00</lastmod>
+        
+
+        
+        <changefreq>weekly</changefreq>
+        
+
+        
+        <priority>0.5</priority>
+        
+
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/python/clean_code6/</loc>
         
         <lastmod>2023-11-08T00:00:00+09:00</lastmod>

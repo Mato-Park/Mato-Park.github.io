@@ -5,9 +5,65 @@
     <description>조금씩 쌓아가다 보면 큰 산이 되겠지</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 08 Nov 2023 20:41:30 +0900</pubDate>
-    <lastBuildDate>Wed, 08 Nov 2023 20:41:30 +0900</lastBuildDate>
+    <pubDate>Fri, 29 Dec 2023 16:51:02 +0900</pubDate>
+    <lastBuildDate>Fri, 29 Dec 2023 16:51:02 +0900</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
+    
+      <item>
+        <title>[회고록] 23년 4분기 회고</title>
+        <description>&lt;p&gt;  안녕하세요. 정말 오랜만에 회고록을 작성합니다. 마지막으로 회고를 작성했던 9월 이후로 많은 일들이 있었지만, 그 중 2가지에 대하여 기록하고자 합니다. 첫 번 째는 데이터 분석 프로젝트에 관한 내용이고 두 번째는 신규 입사자 교육입니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-제조-현장에서-데이터-분석가의-역할과-한계&quot;&gt;1. 제조 현장에서 데이터 분석가의 역할과 한계&lt;/h2&gt;
+&lt;p&gt;  올해 2 ~ 9월 까지 국내 공장에 대하여 에너지 절감 프로젝트를 진행했고, 결과가 좋아 해외 공장으로 확산하기로 했습니다. 그 첫 번째로 1개 공장을 선정하여 진행하여 에너지 사용 현황을 진단하고 에너지 절감 포인트를 도출하는 프로젝트를 진행했습니다. 국내 공장을 대상으로 에너지 절감 프로젝트를 진행한 경험이 직전에 있었기에 이번 해외 공장 대상으로는 상대적으로 빠르게 진행할 수 있었습니다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  우리 팀은 공장에 최근 3년동안 에너지 별, 에너지 사용처 별 에너지 사용 현황 분석을 통해 문제점을 진단하고 그 중 4가지 분석 포인트를 선정했습니다. 그 중 2개 포인트에 대해선 에너지 사용 증가에 대한 원인을 밝혀냈고, 1개 포인트는 데이터 계측 오류(센서 고장), 1개 포인트는 분석 미진행으로 결론 지을 수 있었습니다. 특히, 원인을 밝혀낸 2개 포인트 중 1개 포인트는 현장 엔지니어도 놓치고 있었던 부분을 순전히 데이터로 밝혀낸 것으로 개인적으로도 매우 뿌듯했습니다.😊
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  다만, 프로젝트를 하면서 다시 한 번 느낀 것 중에 하나는 클라이언트와 데이터 분석가 간 데이터를 보는 간극이 꽤 크다는 것입니다. 저는 데이터 전문가로서 현재 우리에게 주어진 데이터의 한계를 분명하게 인지하고 어떻게든 그 안에서 최대한 많은 인사이트를 도출하고자 노력합니다. 클라이언트의 요구사항에 따라 데이터의 한계를 넘어서서 새로운 포인트를 도출하고 싶지만, 잘 되지 않고 좌절할 때가 많습니다. 따라서 어떻게 하면 고객이 원하는 방향으로 분석을 진행할 수 있을까에 대한 고민이 점점 많아지게 됩니다.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  이런 고민은 제조현장에서 데이터 분석가의 역할과 한계에 대한 고민으로 이어지게 됩니다. 우리 팀은 데이터 분석가가 도메인 지식이 약하다는 약점을 보완하기 위해 엔지니어와 한 팀으로 분석 프로젝트를 수행하게 하는 모델을 도입했고 성과를 보고 있는게 사실입니다. 따라서 엔지니어가 분석에 대한 적극적인 관심과 개입이 필요하지만 본업에 바쁘고 데이터 분석에 대한 이해도가 낮은 경우에는 소극적으로 임하는 경우가 있습니다. 이럴 경우에 힘 빠질때가 많습니다. 분석가로 분석을 열심히 해도 분석가는 제조 현장에서 의사결정권자가 아니기에 실제 액션으로 이어지기가 어렵기 때문입니다. 심하면 분석 결과에 대해 무시받을 수도 있습니다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  그렇다고 데이터 분석가가 도메인 전문가가 되야 할까요? 물론 도메인 전문가가 되면 가장 좋습니다. 하지만 현실적으로 데이터 분석가가 도메인 전문가가 되기에는 어려운 부분이 있습니다. 한 사이트만 전담하는 분석가라면 가능할 수 있다고 생각하지만, 대부분의 분석가는 여러 사이트에서 다양한 주제로 분석을 진행해야 하기에 모든 영역에서 전문가가 된다는 것은 어렵습니다. 개인적인 생각으론 데이터 분석 스페셜리스트에 더하여 도메인 영역에 대한 제너럴리스트가 되는 것이 베스트라고 생각합니다. 사실 이것만 해내도 굉장한 것이겠죠.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  분석에 대해 소극적이고 회의적인 클라이언트를 어떻게 하면 설득하고 이끌어 갈 수 있을까란 부분에 대해서도 항상 고민하게 됩니다. 사실 이 부분은 개인적인 역량에 기대기 보다는 조직 문화가 선행되어야 하는 부분이라고 생각을 합니다. 데이터 활용을 장려하고, 교육하고, 업무 분장을 조절하고, 성과에 대한 보상을 제공하는 등 분석을 하게끔 만드는 동기와 유인이 있어야 가능하다고 생각합니다. 일을 하면 할수록 고민만 많아지네요 정말.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;2-신규-입사자-교육----코드-리뷰-공유의-힘&quot;&gt;2. 신규 입사자 교육 -  코드 리뷰, 공유의 힘&lt;/h2&gt;
+&lt;p&gt;  최근 우리 팀에 3분에 신규 입사자 분이 입사하여 교육을 진행했습니다. 제가 맡은 파트는 우리 팀에서 사용하는 BI Tool을 잘 다룰 수 있도록 교육하는 것이었습니다. 따라서 저는 신규 입사자 분이 잘 적응할 수 있게 나름 머리를 써서 교육을 진행했고, 생각보다 제 스스로 배운 것도 많았습니다. 커리큘럼은 다음과 같이 짰습니다.&lt;br /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;기존에 개발된 App 그대로 따라 개발하기 - Reference 제공&lt;/li&gt;
+    &lt;li&gt;1차 과제 제공 - Reference 미제공&lt;/li&gt;
+    &lt;li&gt;2차 심화 과제 제공 - Reference 미제공&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;  1번의 경우, 우리 팀에서 가장 기본적으로 활용하는 분석 화면 App을 스스로 개발할 수 있도록 기존 개발된 App을 그대로 따라 작성하면서 개발해보도록 했습니다. 마치 프로그래밍 언어를 처음 배울 때, 기존 소스를 따라 작성해가며 공부하는 방식을 차용한 것입니다. 데이터 마트와 차트를 만들어 보면서 어떤 함수와 기능들이 있는지 익히도록 하는게 주 목적이었습니다. 여기까지는 과제 수행을 위한 준비 과정의 개념으로 진행했습니다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  1번을 수행하고 난 후에 1차 과제를 제공했습니다. 기존에 개발한 App에 추가 기능을 구현하도록 과제를 내줬고, Reference는 제공하지 않았고 스스로 고민해보고 토론해가며 개발해보도록 했습니다. 2차 과제도 동일한 방식으로 진행했구요. 그러고 매일 진행상황을 같이 체크하고 코드를 공유하며 리뷰하는 시간을 가졌습니다. 리뷰를 진행하면서 잘못된 것 혹은 비효율적인 부분은 집어가며 가이드를 제공했고, 개인적으로 경험했던 꿀팁들을 아낌없이 방출했습니다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  이런 방식은 처음 적용해 본 것인데, 생각보다 엄청난 효과가 있었습니다. 저도 많이 배운 것 또한 사실이구요. 동일한 Output이지만 정말 소스 코드는 개인에 따라 다양했습니다. 그 중에서는 제가 해보지 않았던 방법들을 신규 입사자 분들께서 굉장히 창의적인 생각으로 만들어 본 것도 있었습니다. 저는 3년 이상 일을 하면서 어느정도 개발 스타일이 굳어졌는데, 신규 입사자 분들은 그런 것이 없다보니 더 창의적으로 생각할 수 있었던 것 같습니다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  또 다양한 코드를 서로 공유하다보니, 서로 비교해보고 스스로 개선할 수 있는 기회가 마련됐습니다. 저는 이번 신규 입사자 교육을 진행하면서 코드 리뷰의 힘을 제대로 알 수 있었습니다. 사실, BI Tool 개발은 어느정도 익숙하고 알만한 것은 안다고 생각했는데 전혀 아니었습니다. 제가 생각하지 못한 새로운 방식도 많았고, 잘못 활용하고 있던 것도 있었습니다. 코드를 리뷰하면 이런 부분을 놓치지 않고 공유할 수 있다는 것이 굉장히 큰 메리트로 다가왔습니다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  사실 우리팀은 코드 리뷰가 따로 없습니다. 협업 체계가 없고 각자 알아서 개발하다보니 개발 역량이 개인적인 역량에 크게 의존하게 되는 것 같습니다. 코드 리뷰라는 것은 개인적인 역량에 의존하기 보다는 한 팀이 다 같이 나아갈 수 있도록 할 수 있는 강력한 도구라 생각합니다. 따라서 만약 미래에 내 팀을 빌딩하게 될 때가 온다면 팀 내에서 반드시 코드 리뷰를 하도록 하고자 합니다. 자꾸 오픈하고 까발려야 문제점을 발견하고 수정하고 발전할 수 있겠죠. 문제점이 없다면 좋은 사례로 팀 내 공유된다면 그 또한 더 좋을 일이구요. 이렇게 해야 더 좋은 방향으로 발전해 나갈 수 있다고 생각합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-마치며&quot;&gt;3. 마치며…&lt;/h2&gt;
+&lt;p&gt;  오랜만에 회고록을 작성하다보니 까먹은 부분이 많네요ㅠ. 이건 회고록에 적어야지 하고 생각했던 것들이 많은데… 앞으로는 귀찮고 바쁘더라도 회고록은 웬만하면 빼놓지 않고 작성할 수 있도록 하겠습니다! 그럼 이만!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 29 Dec 2023 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/data/Monthly_memoir/</link>
+        <guid isPermaLink="true">http://localhost:4000/data/Monthly_memoir/</guid>
+        
+        <category>Data</category>
+        
+        <category>Memoir</category>
+        
+        
+        <category>Data</category>
+        
+      </item>
     
       <item>
         <title>[파이썬] 파이썬다운 코드란?</title>
@@ -4211,137 +4267,6 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
         <guid isPermaLink="true">http://localhost:4000/data/weekly_memoir/</guid>
         
         <category>Data</category>
-        
-        <category>Memoir</category>
-        
-        
-        <category>Data</category>
-        
-      </item>
-    
-      <item>
-        <title>[프로젝트회고록] 02. 두번째 회고록: 유의차 분석</title>
-        <description>&lt;p&gt;  안녕하세요. 이번에는 Y인자가 &lt;strong&gt;이항 변수(Binary Variable)&lt;/strong&gt;일 때, 어떻게 문제에 접근했고 풀었는지 초점을 맞춰서 프로젝트를 회고해보고자 합니다. 주 포인트는 아래와 같습니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;유의차 분석&lt;/li&gt;
-    &lt;li&gt;데이터 셋이 불균형일 때 해결방법&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;1-프로젝트-개요&quot;&gt;1. 프로젝트 개요&lt;/h2&gt;
-&lt;p&gt;  이번 프로젝트에서 클라이언트의 요청사항은 2가지 였다. 첫 번째는 특정 공정에서 발생하는 품질 이상 발생 방지를 위하여 핵심인자를 규명하는 것이었고, 두 번쨰로는 향후 
-생산속도 증속 대비 최적 공정조건을 설정하기 위한 시뮬레이션을 위한 품질 이상 발생 확률을 예측하는 예측모형 개발이었다.&lt;/p&gt;
-
-&lt;h3 id=&quot;11-문제-정의&quot;&gt;1.1 문제 정의&lt;/h3&gt;
-&lt;p&gt;  우리는 문제를 풀기 위해 Y인자를 품질 이상 발생/미발생 제품을 나타내는 이항 변수(Binary Variable)로 정의했다. 당시 클라이언트는 제품별로 품질 이상 발생 이력을 데이터화하여 관리하고 있었기에
-해당 데이터를 Y인자로 활용했고, 관련된 모든 데이터를 모아 분석을 위한 데이터 마트를 구성했다.&lt;/p&gt;
-
-&lt;h3 id=&quot;12-가설-설정--분석-전략-수립&quot;&gt;1.2 가설 설정 &amp;amp; 분석 전략 수립&lt;/h3&gt;
-&lt;p&gt;  품질 이상 발생 여부를 기준으로 우리는 제품을 두 그룹으로 나눴고, 유의차 분석 방법을 적용해 핵심인자를 규명하기로 했다. 우리의 가설은 품질에 영향을 미치는 핵심인자라면,
- 양 그룹 간 평균 혹은 분포 등 차이가 있을 것이라는 점이었다. 우리는 탐색적 자료 분석의 단계를 아래와 같이 두 단계로 놔눴고, 하나하나 잠재 인자들을 탐색하기로 했다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;t-test 검정을 통해 양 그룹 간 평균의 차이가 있는 인자들을 탐색한 후,&lt;/li&gt;
-    &lt;li&gt;라인차트, 산점도, 박스플롯 등을 활용하여 후보인자의 그룹 간 차이에 대해서 엄밀하게 검증함&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;통계 검정은 만능이 아니기에 통계 검정만으로 결론을 내기에는 부족하고 2번의 과정 역시 매우 중요하다. 실제로 분석하다보면, 통계적 검정이 통계적으로 유의미한 결과를 보이는 경우에도 데이터를 시각적으로 확인해보면 
-아닌 경우가 매우 많다.&lt;/p&gt;
-
-&lt;h3 id=&quot;13-예측-모델링&quot;&gt;1.3 예측 모델링&lt;/h3&gt;
-&lt;p&gt;  설명 가능한 예측모형을 고려하여 우리는 로짓회귀 모형을 선택해 예측 모형을 개발하기로 했다. 유의차 분석 결과를 통해 도출한 핵심인자와 기본 생산 조건을 나타내는 변수들을 조합하여 회귀식을 세웠다. 보통 Y인자가 이항 변수일 때, 예측 모형 평가지표는 정확도, AUC 등을 활용한다. 하지만 우리의 목표는 불량 제품을 제대로 예측하는 것이었기에 불량 정확도 역시 중요 평가지표로 활용해 예측 모형의 예측력을 평가했다.&lt;/p&gt;
-
-&lt;p&gt;예측 모형을 개발하기 위해 풀어야 했던 문제 중 하나는 데이터 셋의 불균형이었다. 당시 데이터 셋에서 불량 제품의 비중이 5%도 안될 정도로 불균형이 심각했다.
-원자료셋을 그대로 사용했을 경우 예측 모형의 예측력이 좋지 않았기에 예측력을 향상시키기 위해서 고민했고, 샘플링 기법을 활용해 예측력을 보완하고자 했다.&lt;/p&gt;
-
-&lt;h3 id=&quot;14-결과&quot;&gt;1.4 결과&lt;/h3&gt;
-&lt;p&gt;  샘플링 기법을 활용해 다양한 데이터 셋을 만들어서 학습하여 예측력을 비교해 최종 모형을 선택했고, 주요 인자의 값에 따라 불량 제품 확률을 시뮬레이션하여
-클라이언트에게 공유했다. 솔직하게 말하자면 ML모형의 예측력은 아주 떨어지는 것은 아니었으나 예측 결과에 대한 클라이언트의 결론은 실제 현장에 적용하기 어렵다는 것이었다. 이유는 예측 모형의 포함된 한 변수에 대해서 계수의 부호가 반대로 나왔기 때문이다. 참고용으로만 활용됐고 ML모형을 보완하거나 후속 작업이 이뤄지진 않았다.
-어떠한 조건에서 불량 제품이 발생할 확률이 높아지는지 확인할 수 있어서 소기의 성과를 올렸기에 해당 프로젝트는 종료하고 다음 프로젝트로 넘어갔다.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-새로-배운-것&quot;&gt;2. 새로 배운 것&lt;/h2&gt;
-
-&lt;p&gt;  이번 프로젝트는 주니어 데이터 분석가로서 많은 것을 배울 수 있던 프로젝트였다. 특히, 불균형 데이터 셋 하에서 유의차 분석과 예측 모형 개발에 대해서
-심도있게 고민해볼 수 있는 좋은 기회였다.&lt;/p&gt;
-
-&lt;h3 id=&quot;21-불균형-데이터-셋&quot;&gt;2.1 불균형 데이터 셋&lt;/h3&gt;
-&lt;p&gt;  학교에서 공부할 때에는 불균형이 심한 데이터 셋을 다뤘던 경험이 없었기에 이번 프로젝트가 처음으로 불균형햔 데이터 셋을 다룬 첫 번째 프로젝트였다.
-당시 데이터 셋에서 정상/불량 제품이 대략 900/15 정도 였던 걸로 기억한다(정확하지 않다). 분석을 진행해보니 데이터 셋의 불균형이 심할 경우, 2가지 관점에서
-문제가 발생했다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;t-test 검정 결과의 신뢰도 하락&lt;/li&gt;
-    &lt;li&gt;ML모형의 예측력 하락&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;211-t-test-검정&quot;&gt;2.1.1 t-test 검정&lt;/h4&gt;
-&lt;p&gt;  불균형이 심할 때, 인자의 양 그룹 별 평균 차이를 검정하면 어떻게 될까!? 대부분의 인자의 t-test 검정에서 5% 유의수준에서 귀무가설을 기각하는 결과가 나왔다. 즉, 웬만하면 통계적으로 양 그룹 간 평균의 차이가 있다는 것이다. 따라서 t-test 검정을 통한 유의차 분석 만으로는 유의미한 결론을 도출하기 어려웠다. &lt;br /&gt;&lt;br /&gt;
-왜 그럴까? 다음과 같은 간단한 실험을 해보자.
-&lt;br /&gt;&lt;br /&gt;
-  우선 실험을 위해 임의의 100개의 X인자 데이터를 만들었다. 0 ~ 1 범위 내에서 10개의 임의의 난수를 생성해 불량 그룹 데이터를 만들고, 마찬가지로 0 ~ 1 범위 내에서 35개와 1 ~ 2 범위 내에서 45개 총 90개의 임의의 난수를 생성해 정상 그룹 데이터를 생성했다. 그룹 별 데이터의 평균값은 다음과 같다.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;그룹&lt;/th&gt;
-      &lt;th&gt;평균&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;불량&lt;/td&gt;
-      &lt;td&gt;0.33&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;정상&lt;/td&gt;
-      &lt;td&gt;1.05&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;  그룹 간 X인자의 평균 차이는 대략 0.7이며, 평균 차이에 대한 t-test 검정 결과 p-value = 0.0002로 통계적으로 매우 유의미한 평균 차이가 존재한다는 결과가 나왔다. t-test 검정 결과만 보면, 이 X인자의 값이 낮을 때, 불량 제품 유발 확률이 높다고 보여진다. 하지만 정말 이 수치만을 신뢰하여 이런 결론을 도출해도 될까? 이 데이터를 시각적으로 간단하게 표현해봤다.&lt;/p&gt;
-&lt;div&gt;
-&lt;div&gt;                        &lt;script type=&quot;text/javascript&quot;&gt;window.PlotlyConfig = {MathJaxConfig: &apos;local&apos;};&lt;/script&gt;
-        &lt;script src=&quot;https://cdn.plot.ly/plotly-2.18.2.min.js&quot;&gt;&lt;/script&gt;                &lt;div id=&quot;8a5d5aeb-666d-43c6-bddb-cfecc9b7a61b&quot; class=&quot;plotly-graph-div&quot; style=&quot;height:100%; width:100%;&quot;&gt;&lt;/div&gt;            &lt;script type=&quot;text/javascript&quot;&gt;                                    window.PLOTLYENV=window.PLOTLYENV || {};                                    if (document.getElementById(&quot;8a5d5aeb-666d-43c6-bddb-cfecc9b7a61b&quot;)) {                    Plotly.newPlot(                        &quot;8a5d5aeb-666d-43c6-bddb-cfecc9b7a61b&quot;,                        [{&quot;line&quot;:{&quot;color&quot;:&quot;Black&quot;},&quot;marker&quot;:{&quot;color&quot;:[&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Red&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;,&quot;Black&quot;],&quot;size&quot;:7},&quot;mode&quot;:&quot;markers+lines&quot;,&quot;y&quot;:[0.7769972087333984,0.03889458647881372,0.3004485525296108,0.16699236232276138,0.05203445491861958,0.21649268718373893,0.43530264017478626,0.34467776112017257,0.9529859443621004,0.023662017175597905,0.02352598802920358,0.49711877206667,0.9495350328222201,0.71466426046685,0.4138630030531898,0.9408966488165194,0.43670069651096777,0.8245807411458221,0.021426893598750163,0.332720369444257,0.8879789022248927,0.45978201700441024,0.9768309041541778,0.2448783532988419,0.9485246953142914,0.01894543462659881,0.9047230442115333,0.14999139242994297,0.3499903322849244,0.9300748108354427,0.38498672318353566,0.6650391671013915,0.546041680952944,0.01716128760878788,0.5741588485610468,0.38503171774243816,0.10795776321811135,0.8494159561746308,0.8308301116208272,0.1652411342691531,0.8989583646025601,0.31194638083688375,0.27156866813311864,0.2689178781893652,0.2193423379067042,1.1784748763817126,1.7658031939332388,1.3481453406165258,1.304484945037001,1.793576940737211,1.689500912271365,1.2845845143502719,1.6264501217613794,1.3321124334668832,1.729561270316494,1.9421555944722193,1.9103507092406877,1.0369298023145088,1.2125590215503559,1.6089974358346342,1.6572880526174565,1.1902944917472444,1.3406997429013634,1.6344212759665466,1.1582354892980717,1.6016150119625077,1.9614311110523093,1.0689093437947874,1.1481630902033042,1.0562050675392238,1.72134853536979,1.0325313269100111,1.5621629032170308,1.267631348920546,1.8415591700054201,1.9532417415025956,1.7370590079480488,1.3010980404234886,1.4491012361321691,1.7309471463506303,1.8068695738317069,1.341858144151714,1.6811880891237838,1.5456789690516115,1.2092383294302593,1.7743080585402435,1.4053434066087196,1.6676957599726534,1.03508996436525,1.5399983789541616],&quot;type&quot;:&quot;scatter&quot;}],                        {&quot;template&quot;:{&quot;data&quot;:{&quot;histogram2dcontour&quot;:[{&quot;type&quot;:&quot;histogram2dcontour&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;choropleth&quot;:[{&quot;type&quot;:&quot;choropleth&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}],&quot;histogram2d&quot;:[{&quot;type&quot;:&quot;histogram2d&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;heatmap&quot;:[{&quot;type&quot;:&quot;heatmap&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;heatmapgl&quot;:[{&quot;type&quot;:&quot;heatmapgl&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;contourcarpet&quot;:[{&quot;type&quot;:&quot;contourcarpet&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}],&quot;contour&quot;:[{&quot;type&quot;:&quot;contour&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;surface&quot;:[{&quot;type&quot;:&quot;surface&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;},&quot;colorscale&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]]}],&quot;mesh3d&quot;:[{&quot;type&quot;:&quot;mesh3d&quot;,&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}],&quot;scatter&quot;:[{&quot;fillpattern&quot;:{&quot;fillmode&quot;:&quot;overlay&quot;,&quot;size&quot;:10,&quot;solidity&quot;:0.2},&quot;type&quot;:&quot;scatter&quot;}],&quot;parcoords&quot;:[{&quot;type&quot;:&quot;parcoords&quot;,&quot;line&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scatterpolargl&quot;:[{&quot;type&quot;:&quot;scatterpolargl&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;bar&quot;:[{&quot;error_x&quot;:{&quot;color&quot;:&quot;#2a3f5f&quot;},&quot;error_y&quot;:{&quot;color&quot;:&quot;#2a3f5f&quot;},&quot;marker&quot;:{&quot;line&quot;:{&quot;color&quot;:&quot;#E5ECF6&quot;,&quot;width&quot;:0.5},&quot;pattern&quot;:{&quot;fillmode&quot;:&quot;overlay&quot;,&quot;size&quot;:10,&quot;solidity&quot;:0.2}},&quot;type&quot;:&quot;bar&quot;}],&quot;scattergeo&quot;:[{&quot;type&quot;:&quot;scattergeo&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scatterpolar&quot;:[{&quot;type&quot;:&quot;scatterpolar&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;histogram&quot;:[{&quot;marker&quot;:{&quot;pattern&quot;:{&quot;fillmode&quot;:&quot;overlay&quot;,&quot;size&quot;:10,&quot;solidity&quot;:0.2}},&quot;type&quot;:&quot;histogram&quot;}],&quot;scattergl&quot;:[{&quot;type&quot;:&quot;scattergl&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scatter3d&quot;:[{&quot;type&quot;:&quot;scatter3d&quot;,&quot;line&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}},&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scattermapbox&quot;:[{&quot;type&quot;:&quot;scattermapbox&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scatterternary&quot;:[{&quot;type&quot;:&quot;scatterternary&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;scattercarpet&quot;:[{&quot;type&quot;:&quot;scattercarpet&quot;,&quot;marker&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}}}],&quot;carpet&quot;:[{&quot;aaxis&quot;:{&quot;endlinecolor&quot;:&quot;#2a3f5f&quot;,&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;minorgridcolor&quot;:&quot;white&quot;,&quot;startlinecolor&quot;:&quot;#2a3f5f&quot;},&quot;baxis&quot;:{&quot;endlinecolor&quot;:&quot;#2a3f5f&quot;,&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;minorgridcolor&quot;:&quot;white&quot;,&quot;startlinecolor&quot;:&quot;#2a3f5f&quot;},&quot;type&quot;:&quot;carpet&quot;}],&quot;table&quot;:[{&quot;cells&quot;:{&quot;fill&quot;:{&quot;color&quot;:&quot;#EBF0F8&quot;},&quot;line&quot;:{&quot;color&quot;:&quot;white&quot;}},&quot;header&quot;:{&quot;fill&quot;:{&quot;color&quot;:&quot;#C8D4E3&quot;},&quot;line&quot;:{&quot;color&quot;:&quot;white&quot;}},&quot;type&quot;:&quot;table&quot;}],&quot;barpolar&quot;:[{&quot;marker&quot;:{&quot;line&quot;:{&quot;color&quot;:&quot;#E5ECF6&quot;,&quot;width&quot;:0.5},&quot;pattern&quot;:{&quot;fillmode&quot;:&quot;overlay&quot;,&quot;size&quot;:10,&quot;solidity&quot;:0.2}},&quot;type&quot;:&quot;barpolar&quot;}],&quot;pie&quot;:[{&quot;automargin&quot;:true,&quot;type&quot;:&quot;pie&quot;}]},&quot;layout&quot;:{&quot;autotypenumbers&quot;:&quot;strict&quot;,&quot;colorway&quot;:[&quot;#636efa&quot;,&quot;#EF553B&quot;,&quot;#00cc96&quot;,&quot;#ab63fa&quot;,&quot;#FFA15A&quot;,&quot;#19d3f3&quot;,&quot;#FF6692&quot;,&quot;#B6E880&quot;,&quot;#FF97FF&quot;,&quot;#FECB52&quot;],&quot;font&quot;:{&quot;color&quot;:&quot;#2a3f5f&quot;},&quot;hovermode&quot;:&quot;closest&quot;,&quot;hoverlabel&quot;:{&quot;align&quot;:&quot;left&quot;},&quot;paper_bgcolor&quot;:&quot;white&quot;,&quot;plot_bgcolor&quot;:&quot;#E5ECF6&quot;,&quot;polar&quot;:{&quot;bgcolor&quot;:&quot;#E5ECF6&quot;,&quot;angularaxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;},&quot;radialaxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;}},&quot;ternary&quot;:{&quot;bgcolor&quot;:&quot;#E5ECF6&quot;,&quot;aaxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;},&quot;baxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;},&quot;caxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;}},&quot;coloraxis&quot;:{&quot;colorbar&quot;:{&quot;outlinewidth&quot;:0,&quot;ticks&quot;:&quot;&quot;}},&quot;colorscale&quot;:{&quot;sequential&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]],&quot;sequentialminus&quot;:[[0.0,&quot;#0d0887&quot;],[0.1111111111111111,&quot;#46039f&quot;],[0.2222222222222222,&quot;#7201a8&quot;],[0.3333333333333333,&quot;#9c179e&quot;],[0.4444444444444444,&quot;#bd3786&quot;],[0.5555555555555556,&quot;#d8576b&quot;],[0.6666666666666666,&quot;#ed7953&quot;],[0.7777777777777778,&quot;#fb9f3a&quot;],[0.8888888888888888,&quot;#fdca26&quot;],[1.0,&quot;#f0f921&quot;]],&quot;diverging&quot;:[[0,&quot;#8e0152&quot;],[0.1,&quot;#c51b7d&quot;],[0.2,&quot;#de77ae&quot;],[0.3,&quot;#f1b6da&quot;],[0.4,&quot;#fde0ef&quot;],[0.5,&quot;#f7f7f7&quot;],[0.6,&quot;#e6f5d0&quot;],[0.7,&quot;#b8e186&quot;],[0.8,&quot;#7fbc41&quot;],[0.9,&quot;#4d9221&quot;],[1,&quot;#276419&quot;]]},&quot;xaxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;,&quot;title&quot;:{&quot;standoff&quot;:15},&quot;zerolinecolor&quot;:&quot;white&quot;,&quot;automargin&quot;:true,&quot;zerolinewidth&quot;:2},&quot;yaxis&quot;:{&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;ticks&quot;:&quot;&quot;,&quot;title&quot;:{&quot;standoff&quot;:15},&quot;zerolinecolor&quot;:&quot;white&quot;,&quot;automargin&quot;:true,&quot;zerolinewidth&quot;:2},&quot;scene&quot;:{&quot;xaxis&quot;:{&quot;backgroundcolor&quot;:&quot;#E5ECF6&quot;,&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;showbackground&quot;:true,&quot;ticks&quot;:&quot;&quot;,&quot;zerolinecolor&quot;:&quot;white&quot;,&quot;gridwidth&quot;:2},&quot;yaxis&quot;:{&quot;backgroundcolor&quot;:&quot;#E5ECF6&quot;,&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;showbackground&quot;:true,&quot;ticks&quot;:&quot;&quot;,&quot;zerolinecolor&quot;:&quot;white&quot;,&quot;gridwidth&quot;:2},&quot;zaxis&quot;:{&quot;backgroundcolor&quot;:&quot;#E5ECF6&quot;,&quot;gridcolor&quot;:&quot;white&quot;,&quot;linecolor&quot;:&quot;white&quot;,&quot;showbackground&quot;:true,&quot;ticks&quot;:&quot;&quot;,&quot;zerolinecolor&quot;:&quot;white&quot;,&quot;gridwidth&quot;:2}},&quot;shapedefaults&quot;:{&quot;line&quot;:{&quot;color&quot;:&quot;#2a3f5f&quot;}},&quot;annotationdefaults&quot;:{&quot;arrowcolor&quot;:&quot;#2a3f5f&quot;,&quot;arrowhead&quot;:0,&quot;arrowwidth&quot;:1},&quot;geo&quot;:{&quot;bgcolor&quot;:&quot;white&quot;,&quot;landcolor&quot;:&quot;#E5ECF6&quot;,&quot;subunitcolor&quot;:&quot;white&quot;,&quot;showland&quot;:true,&quot;showlakes&quot;:true,&quot;lakecolor&quot;:&quot;white&quot;},&quot;title&quot;:{&quot;x&quot;:0.05},&quot;mapbox&quot;:{&quot;style&quot;:&quot;light&quot;}}},&quot;title&quot;:{&quot;font&quot;:{&quot;color&quot;:&quot;black&quot;,&quot;size&quot;:20},&quot;text&quot;:&quot;\ubd88\ub7c9 = Red/\uc815\uc0c1 = Black&quot;},&quot;plot_bgcolor&quot;:&quot;white&quot;,&quot;xaxis&quot;:{&quot;showgrid&quot;:true,&quot;gridwidth&quot;:0.1,&quot;gridcolor&quot;:&quot;#eee&quot;},&quot;yaxis&quot;:{&quot;showgrid&quot;:true,&quot;gridwidth&quot;:0.1,&quot;gridcolor&quot;:&quot;#eee&quot;}},                        {&quot;responsive&quot;: true}                    )                };                            &lt;/script&gt;        &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;
-  그래프를 확인해보면 전혀 그렇지 않다는 것을 알 수 있다. 이 X인자의 변동만으로는 불량 제품 발생에 대해서 전혀 설명하지 못하고 있다. 물론 실험을 위해 임의로 만든 데이터 셋이긴 하지만 프로젝트를 진행하면서 실제로 자주 마주쳤던 패턴이다. 제대로 교육받고 훈련된 데이터 분석가라면 t-test 검정 결과가 만능이 아니라는 것은 누구나 다 알 것이다. 하지만 수백 ~ 수천개의 인자들을 하나하나 시각적으로 탐색하기에는 프로젝트 수행기간이 항상 넉넉하지 않기에 이런 통계 검정, 통계 수치에 의존하여 인자들을 필터링하며 데이터 분석을 진행하게 된다. 중요한 점은 통계 검정 수치만 전적으로 신뢰하는 것이 아니라 다양한 방면으로 분석하고 검증해야 한다는 것이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;212-샘플링&quot;&gt;2.1.2 샘플링&lt;/h4&gt;
-&lt;p&gt;  불균형 데이터 셋을 학습했을 때 ML모형의 예측력이 좋지 않다는 것은 이미 널리 알려진 사실이지만 실제로 문제를 인식하고 배울 수 있던 것은 이번 프로젝트에서였다. 불균형 문제를 해결하기 위해서 팀장님은 랜덤 샘플링을 통한 해결 방법을 제시했고 이에 더하여 또 좋은 것들이 있는지 탐색했고 다음 방법을 통해 불균형을 해결하고자 했다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;Random Sampling[Over, Under, Hybrid(Over + Under)]&lt;/li&gt;
-    &lt;li&gt;SMOTE Algorithm&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;  첫 번째 방법은 랜덤 샘플링이다. 랜덤 복원추출을 통해 크기가 큰 데이터 그룹의 수는 줄이고, 적은 그룹의 수는 늘려 불균형을 보정하는 방식이다. 장점은 적용하기 쉽지만, 단점은 크기가 작은 데이터 그룹의 데이터가 단순 복제된다는 점이다. SMOTE 알고리즘은 그룹 내에 데이터 간의 선형 결합을 통해 임의의 데이터를 생성하는 방식이다. 단순 복제하는 랜던 샘플링 방식에 비해 새로운 데이터가 생성된다는 점과 이해하기 쉽다는 장점이 있지만, 반대로 가상의 데이터를 임의로 생성한다는 단점이 있다. 하지만, 데이터를 생성하는 방식이 받아들일만 하다고 생각했고 적용하여 예측력을 검토해보고자 했다. &lt;br /&gt;
-  실제로 각 방법을 적용하여 불균형을 보정하고 ML모형의 예측력을 비교했을때, Random Sampling(Hybrid)와 SMOTE 알고리즘을 적용한 데이터 셋의 예측력이 향상된 것을 확인할 수 있었다. 단순한 방법으로도 ML모형의 예측력이 증가할 수 있다는 점이 흥미로웠다. ML모형이 데이터를 학습하는 것을 생각해보면 충분히 납득할만하다고 생각한다. 데이터 셋의 불균형이 심하다면 ML모형이 데이터의 수가 많은 그룹을 위주로 학습하기 때문이다. (이 말이 이론적으로 엄밀히 맞는 말인지는 모르겠다.) 프로젝트 중에는 시도해보지는 못했지만 회고록을 쓰고 있는 지금 시점에서 생각해보니 더 디테일하게 샘플링 방법을 설정하여 적용해보고 결과를 비교하는 것도 재밌는 작업이 될 것 같다. &lt;br /&gt;
-  한가지 조심해야 할 점은 과도한 보정이 들어갈 경우, 이 작업이 데이터 조작이 될 수도 있다는 점이다. 랜덤 샘플링의 경우 문제가 덜 하겠지만, 가상의 데이터를 생성하는 알고리즘(예: SMOTE)을 적용할 때는 항상 조작이 되지 않도록 유의하여 적용해야 할 것이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-아쉬운-점&quot;&gt;3. 아쉬운 점&lt;/h2&gt;
-&lt;p&gt;  개인적으로 아쉬웠던 점은 고생해서 개발한 ML예측 모형이 클라이언트에게 큰 도움이 되지 않았다는 점이다. 당시, 클라이언트가 준 피드백 중 하나는 &lt;strong&gt;“특정 인자의 부호가 이론적으로 맞지 않는다”&lt;/strong&gt; 였다. 하지만 그 인자는 중요한 외생 조건 변수라 회귀식에서 제거할 수 없었다. 그리고, 부호가 반대로 나온 이유도 사실 명확했다. (문제가 된 변수를 A변수라 해보자)&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;A인자는 시간이 지남에 따라 계속 &lt;strong&gt;증가&lt;/strong&gt;해왔고, 불량률은 시간이 지남에 따라 지속적으로 &lt;strong&gt;감소&lt;/strong&gt;해왔다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;  시간이 지남에 따라 위 두 변수가 맞물려 마치 A인자가 증가하면 불량률이 감소할 것이라는 결과가 도출된 것이다. 데이터의 수가 충분했다면 A인자의 값에 따라 데이터 셋을 나누면(층별화) 될 것이다. 하지만 그 당시, 데이터가 충분하지 않았기에 데이터 셋을 더 작게 나눌 수 없는 한계점이 존재했다. 클라이언트는 핵심인자과 그 매커니즘을 규정한 것으로도 만족했고, 이 결과를 활용해 충분히 의사결정이 가능하다고 하여 추가 보완을 진행하지 않았다. 필요하다면 추후 데이터의 수가 충분해졌을 때, 다시 시도해보고자 하고 이번 프로젝트는 종료됐다.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-마무리하며&quot;&gt;4. 마무리하며&lt;/h2&gt;
-&lt;p&gt;  이번 프로젝트는 실무에서 처음으로 유의차 분석과 예측 모형을 개발하여 적용한 프로젝트였기에 배운게 많은 프로젝트로 기억에 남는다. 개인적으로는 로짓 모형 말고 다른 분류 모형을 학습했을 때와 데이터의 수가 훨씬 많았다면 결과가 어떻게 달라졌을까 하는 궁금증도 많이 남는 프로젝트였다.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 06 Mar 2023 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/data/projects_memoir2/</link>
-        <guid isPermaLink="true">http://localhost:4000/data/projects_memoir2/</guid>
-        
-        <category>Data</category>
-        
-        <category>Projects</category>
         
         <category>Memoir</category>
         

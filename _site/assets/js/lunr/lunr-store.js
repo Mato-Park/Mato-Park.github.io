@@ -214,4 +214,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code6/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 4분기 회고",
+        "excerpt":"  안녕하세요. 정말 오랜만에 회고록을 작성합니다. 마지막으로 회고를 작성했던 9월 이후로 많은 일들이 있었지만, 그 중 2가지에 대하여 기록하고자 합니다. 첫 번 째는 데이터 분석 프로젝트에 관한 내용이고 두 번째는 신규 입사자 교육입니다. 1. 제조 현장에서 데이터 분석가의 역할과 한계   올해 2 ~ 9월 까지 국내 공장에 대하여 에너지...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/Monthly_memoir/",
+        "teaser": null
       }]
