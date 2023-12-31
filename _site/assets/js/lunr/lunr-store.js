@@ -220,4 +220,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/Monthly_memoir/",
         "teaser": null
+      },{
+        "title": "[회고록] 23년 회고",
+        "excerpt":"  안녕하세요. 올해 연말에는 눈이 참 많이 왔네요. 아직까진 함박눈이 펑펑 쏟아지는 것을 보면 참 기분이 좋습니다. 뭔가 죽어있던 동심이 깨어나는 느낌이랄까요? 잡설은 이만하고 2023년 마지막 날 올해를 돌아보고 24년을 맞이하는 회고록을 작성하고자 합니다. 고민하던 것들을 키워드 중심으로 정리하고 내년에 해보고 싶은 것들을 적어보겠습니다. 1. 회고록 작성   일하다보니 뭔가...","categories": ["Data"],
+        "tags": ["Data","Memoir"],
+        "url": "/data/yearly_memior/",
+        "teaser": null
       }]
