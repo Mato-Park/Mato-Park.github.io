@@ -5,9 +5,274 @@
     <description>조금씩 쌓아가다 보면 큰 산이 되겠지</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 31 Dec 2023 18:23:50 +0900</pubDate>
-    <lastBuildDate>Sun, 31 Dec 2023 18:23:50 +0900</lastBuildDate>
+    <pubDate>Wed, 31 Jan 2024 21:45:06 +0900</pubDate>
+    <lastBuildDate>Wed, 31 Jan 2024 21:45:06 +0900</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
+    
+      <item>
+        <title>[파이썬] 파이썬 프로그래밍 용어</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 7장 내용임을 사전에 미리 밝힙니다!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;  일하다 보면 용어를 정확하게 모르지만 대충 눈치껏 소통하는 경우가 꽤 많습니다. 알아들은 척 하고 나중에 몰래 찾아보기도 많이 했습니다. 사람, 조직마다 사용하는 용어가 조금씩 차이가 있겠지만 책을 읽으면서 중요하다 생각되는 용어들을
+정리하고자 합니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;1-각종-용어-정의&quot;&gt;1. 각종 용어 정의&lt;/h1&gt;
+&lt;p&gt;  이 장은 각 용어들의 정의와 용어 간의 차이점을 살펴보는 장입니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;파이썬 - 프로그래밍 언어 vs 인터프리터?&lt;/strong&gt;&lt;br /&gt;
+  저는 보통 파이썬을 지칭할 떄, 프로그래밍 언어로서 파이썬을 의미합니다. 예를 들면, “나 요즘 파이썬 배우고 있어” 혹은 “파이썬으로 데이터 전처리 하고 모델링을 해”와 같이 말할 때 프로그래밍 언어로서 파이썬을 나타냅니다. 그렇다면 
+인터프리터로써 파이썬은 무슨 의미일까요? 인터프리터로서 파이썬은 .py 파일의 스크립트 코드를 읽고 수행하는 실제 파이썬 소프트웨어를 가리킵니다. 이렇게 하면 구분이 더 명확합니다. 컴퓨터 공학 베이스가 깊은 분석가가 아닌 이상에야
+이렇게까지 구분하여 사용하는 분들은 많이 없을거라 생각합니다. 다만, 알아두면 다른 눈치껏 알맞은 의미로 소통할 수 있지 않을까요?&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;리터럴(literal)&lt;/strong&gt;&lt;br /&gt;
+  리터럴은 사람이 직접 작성한 소스 코드 상에서 고정된 값을 나타내는 텍스트를 의미합니다. 예를 보면 이해가 더 쉽습니다.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;age&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;42&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Zophie&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;  여기서 42라는 숫자와 ‘Zophie’라는 문자가 각각 정수와 문자열 리터럴입니다. age 변수는 리터럴이 아닌데 파이썬 소스 코드에 내장 데이터 형식이 아니기 때문입니다.&lt;br /&gt;&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;리터럴 예시&lt;/th&gt;
+          &lt;th&gt;데이터 타입&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;42&lt;/td&gt;
+          &lt;td&gt;정수(integer)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;3.14&lt;/td&gt;
+          &lt;td&gt;부동소수(Float)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;“Hello”&lt;/td&gt;
+          &lt;td&gt;문자열(String)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;[]&lt;/td&gt;
+          &lt;td&gt;리스트(List)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;{‘name’: ‘Mato’}&lt;/td&gt;
+          &lt;td&gt;딕셔너리(Dictionary)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;b’\x41’&lt;/td&gt;
+          &lt;td&gt;바이트(Byte)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;True&lt;/td&gt;
+          &lt;td&gt;부울(Boolean)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;넌타입(NoneType)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;키워드&lt;/strong&gt;&lt;br /&gt;
+  모든 프로그래밍 언어는 고유의 키워드가 있으며, 미리 특정된 목적으로 사양하기로 약속된 이름의 집합을 나타냅니다. 키워드는 항상 영문으로 표기하며 다른 언어로는 쓰이지 않습니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;and&lt;/td&gt;
+          &lt;td&gt;continue&lt;/td&gt;
+          &lt;td&gt;finally&lt;/td&gt;
+          &lt;td&gt;is&lt;/td&gt;
+          &lt;td&gt;raise&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;as&lt;/td&gt;
+          &lt;td&gt;def&lt;/td&gt;
+          &lt;td&gt;for&lt;/td&gt;
+          &lt;td&gt;lambda&lt;/td&gt;
+          &lt;td&gt;return&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;assert&lt;/td&gt;
+          &lt;td&gt;del&lt;/td&gt;
+          &lt;td&gt;from&lt;/td&gt;
+          &lt;td&gt;None&lt;/td&gt;
+          &lt;td&gt;True&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;async&lt;/td&gt;
+          &lt;td&gt;elif&lt;/td&gt;
+          &lt;td&gt;global&lt;/td&gt;
+          &lt;td&gt;nonlocal&lt;/td&gt;
+          &lt;td&gt;try&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;await&lt;/td&gt;
+          &lt;td&gt;else&lt;/td&gt;
+          &lt;td&gt;if&lt;/td&gt;
+          &lt;td&gt;not&lt;/td&gt;
+          &lt;td&gt;while&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;break&lt;/td&gt;
+          &lt;td&gt;except&lt;/td&gt;
+          &lt;td&gt;import&lt;/td&gt;
+          &lt;td&gt;or&lt;/td&gt;
+          &lt;td&gt;with&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;class&lt;/td&gt;
+          &lt;td&gt;False&lt;/td&gt;
+          &lt;td&gt;In&lt;/td&gt;
+          &lt;td&gt;pass&lt;/td&gt;
+          &lt;td&gt;yield&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;p&gt;  이렇게 쓰고보니 익숙한 키워드가 많지만 아직 한 번도 사용하지 않은 키워도드 있네요. 뭐 쓰다보면 언젠가는 다 쓰겠죠 ㅎㅎ&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;객채, 값, 인스턴스, 아이디&lt;/strong&gt;&lt;br /&gt;
+  파이썬 프로그래밍에서 객체(object)의 개념은 상당히 중요하고 반드시 이해해야 합니다. 파이썬에서 &lt;strong&gt;객체는 데이터를 표현하는 것이라고 보면 됩니다.&lt;/strong&gt; 조금 더 자세하게 객체에 대해서 살펴봅시다.&lt;br /&gt;&lt;br /&gt;
+  모든 객체는 값(value), 아이디(identity), 데이터 타입(data type)이 있습니다. 예를 들어, 값이 42인 정수 객체가 있다고 생각해봅시다. 이 정수 객체의 값은 42로 객체가 나타내는 데이터가 됩니다. 중요한 것은 객체와 값은 동의어가 아닙니다. 다른 예를 들어보겠습니다.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cat&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;dog&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;moose&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;  여기서 변수 spam에는 리스크 데이터 타입의 객체가 저장된 것입니다. 그렇다면 이 변수의 값은 무엇일까요? 바로 [‘cat’, ‘dog’, ‘moose’] 리스트입니다. 그렇다면 여기서 이 리스트 데이터 타입의 객체가 저장된 spam에 아이디는 무엇일까요?
+아이디는 유일한 정수로 아이디가 생성되면 id() 함수를 호출해서 변수의 아이디를 확인할 수 있습니다.&lt;/p&gt;
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# 33805656 과 같이 정수로 된 아이디가 반환됩니다.
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;이제 객체가 무엇이고 객체의 값, 아이디와 데이터 타입이 어떤지 구분이 가시나요?ㅎㅎ&lt;br /&gt;
+  그리고 파이썬의 객체에는 &lt;strong&gt;중요한 특징&lt;/strong&gt;이 몇 가지 있습니다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;객체의 아이디가 만들어지면 프로그램이 실행되는 동안 변하지 않음&lt;/strong&gt;&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;여러 식별자가 동일한 객체를 참조할 수 있음&lt;/strong&gt;&lt;br /&gt;
+  동일한 객체를 참조하는 경우, 한 변수의 값을 수정하게되면 동일한 객체를 참조하는 변수의 값에도 영향이 미칩니다!&lt;br /&gt;
+예를 보면서 더 구체적으로 살펴보겠습니다.
+        &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;name&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;Mato&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;eggs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;name&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;Park&apos;&lt;/span&gt;
+ &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;
+ spam 딕셔너리에 name 키에 해당하는 데이터를 수정했습니다.
+ 이때 eggs를 확인해보면 어떻게 될까요? eggs도 &apos;Park&apos;로 변하게 됩니다. 왜 이렇게 되는 걸까요??
+ 이유는 두 변수 다 동일한 객체를 참조하기 때문입니다.
+ &quot;&quot;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;        &lt;/div&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;여기서 중요한 사실을 하나 알 수 있습니다. 바로 파이썬의 =(할당 연산자: assignment operator)는 항상 객체가 아닌 참조를 복사한다는 사실입니다. 이를 무시한다면 버그나 에러가 발생할 수 있으니 꼭 알아두시길 바랍니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;아이템&lt;/strong&gt;&lt;br /&gt;
+  리스트나 딕셔너리처럼 컨테이너 객체 안에 있는 객체를 아이템(item) 또는 원소(element)라고 부릅니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;가변/불변 데이터 타입&lt;/strong&gt;&lt;br /&gt;
+  파이썬 프로그래밍을 하다보면 mutable/immutable 이란 표현을 종종 마주하게 됩니다. 파이썬의 모든 객체는 값을 갖는데, 값의 변경 여부에 따라 가변 타입인지 불변 타입인지로 구분합니다. 아래 표는 몇 가지 객체를 가변/불변 데이터 타입으로 나눈 표입니다.&lt;/p&gt;
+
+    &lt;table&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;
+          &lt;th&gt;가변 데이터 타입&lt;/th&gt;
+          &lt;th&gt;불변 데이터 타입&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;리스트(List)&lt;/td&gt;
+          &lt;td&gt;정수(integer)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;딕셔너리(Dictionary)&lt;/td&gt;
+          &lt;td&gt;부동소수(Float)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;집합(Set)&lt;/td&gt;
+          &lt;td&gt;문자열(String)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;바이트배열(ByteArray)&lt;/td&gt;
+          &lt;td&gt;부울(Boolean)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt;배열(Array)&lt;/td&gt;
+          &lt;td&gt;튜플(Tuple)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;td&gt; &lt;/td&gt;
+          &lt;td&gt;바이트(Byte)&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+
+    &lt;p&gt;  우선 불변 데이터 타입부터 살펴보겠습니다.&lt;/p&gt;
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;hello&apos;&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;goodbye&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;  위에 예시를 보면 마치 문자열 객체의 값을 바꾼것 처럼 보입니다. 정말 그럴까요? id()함수를 호출해서 각각 id를 확인해보면 id가 다른 것을 확인할 수 있습니다. 앞서 할당 연산자 ‘=’는 단지 객체를 참조한다고 했습니다. 즉, spam이라는 변수가 ‘hello’라는 문자열 객체와 ‘goodbye’라는 문자열 객체를 참조할 뿐입니다. 즉, 문자열 객체의 값이 변한게 아니라 새로운 아이디를 가진 새로운 문자열 객체로 덮어쓴 것입니다. 다른 데이터 타입도 마찬가집니다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;  이번에는 가변 데이터 타입을 살펴보겠습니다.&lt;/p&gt;
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;     &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cat&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;dog&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;moose&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+     &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;snake&apos;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;  spam 변수의 리스트 객체를 만들어 할당하고, append() 메소드와 인덱싱에 의한 아이템 할당을 통해 리스트 값을 수정해줍니다. 과연 spam 변수의 id는 어떻게 됐을까요? 직접 해보면 알겠지만, 객체의 아이디는 동일합니다. 이와 같이 가변 객체는 변수 안의 값은 &lt;strong&gt;제저라에서 바꿔치기 방식&lt;/strong&gt;으로 수정이 가능합니다. 반면, ‘+’ 연산자를 활용해 리스트를 연결하게 되면 새로운 객체를 생선하게 됩니다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;  반면, 불변 데이터 타입 객체 중 하나인 튜플은 조금 특이한 케이스 입니다. &lt;strong&gt;튜플&lt;/strong&gt;은 값들을 괄호로 묶는 연속된 불변 객체이며, 튜플의 아이템의 값은 수정이 불가능합니다. 하지만 특이한 점은 튜플 내부의 가변 객체는 수정이 가능합니다!&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;인덱스, 키, 해시&lt;/strong&gt;&lt;br /&gt;
+  리스트, 딕셔너리와 데이터프레임 같은 객체에 특정 값의 접근하도록 지정하는 정수값을 인덱스라 합니다. 파이썬에서 인덱스 연산자(index operator)는 대괄호 한 쌍 ‘[]’으로 구성되어 있고, 0 기반 인덱스를 사용하고 있습니다. 인덱스는 리스트와 같은 컨테이너 외에도 문자열 객체에서도 사용이 가능합니다.
+    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cat&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;dog&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;moose&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+ &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# cat
+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;spam&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# dog
+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;Hello, World!&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# H
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;  해시(Hash)는 값에 대해 일종의 지문 역할을 하는 정수입니다. 딕셔너리는 인덱스 연산자가 키이므로 해시 가능한 객체가 될 수 있습니다. 해시는 객체가 생성되고 난 후 절대 변하지 않으며, 객체의 값이 같다면 해시도 반드시 같습니다. 이 말인즉슨, 불변 데이터 타입 객체는 해시가능하지만, 리스트와 같은 가변 데이터 타입은 해시가 불가능합니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;컨테이너, 시퀀스, 매칭, 집합 타입&lt;/strong&gt;&lt;br /&gt;
+  &lt;strong&gt;컨테이너&lt;/strong&gt;란 여러 종류의 객체를 포함할수 있는 객체를 뜻한다. 예를 들면, 리스트와 딕셔너리와 같은 객체가 해당됩니다.&lt;br /&gt;
+  &lt;strong&gt;시퀀스&lt;/strong&gt;는 정수 인덱스를 통해 접근 가능하며, 순서가 있는 값을 가진 컨테이너 타입의 객체를 뜻합니다. 문자열, 리스트, 튜플 등의 객체가 해당됩니다. 순서가 있어야지 정수 인덱스로 접근이 가능하겠죠?&lt;br /&gt;
+  &lt;strong&gt;매핑&lt;/strong&gt;은 정수 인덱스 대신 키를 사용하는 컨테이너 타입의 객체입니다. 딕셔너리와 같은 객체가 해당됩니다. 키가 있기 때문에 순서가 지정되지 않습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;이중 밑줄 메소드, 매직 메소드&lt;/strong&gt;&lt;br /&gt;
+  개인적으로 파이썬 프로그래밍 중 가장 어려운 부분 중에 하나가 이중 밑줄 메소드 입니다. 오픈소스로 작성된 코드를 보거나 구글링 해서 본 코드에 이름 앞뒤에 2개의 밑줄이 붙는 특수한 메소드입니다. 주로 연산자 오버로드에 사용되며, 줄여서 던더(dunder - double underscore)라고 부릅니다. 가장 흔히 사용되는 이중 밑줄 메소드는 ‘&lt;strong&gt;__init()&lt;/strong&gt;__’ 메소드이며, 객체를 초기화하는 데 사용됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;모듈, 패키지&lt;/strong&gt;&lt;br /&gt;
+  &lt;strong&gt;모듈(module)&lt;/strong&gt;은 특정 함수들을 모아놓은 라이브러리라고 보면 됩니다. 보통 처음 설치되는 표준 라이브러리가 있지만 각자 본인이 원하는 모듈을 개발해 사용할 수 있습니다.
+  &lt;strong&gt;패키지(package)&lt;/strong&gt;는 ‘&lt;strong&gt;init&lt;/strong&gt;.py’라는 이름의 파일을 폴더 안에 넣어서 생성하는 모듈들의 집합입니다. 패키지에는 여러 개의 모듈이나 패키지가 포함될 수 있습니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;호출 가능 객체, 일급 객체&lt;/strong&gt;&lt;br /&gt;
+  호출 가능 연산자(2개의 괄호())를 구현하는 모든 객체는 호출 가능 객체입니다. &lt;br /&gt;
+  클래스(class)는 일종의 호출 가능 객체입니다. 예를 들어, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datetime.date(2020, 1, 1)&lt;/code&gt;는 datetime 모듈에 속한 date 클래스는 호출 가능 연산자를 사용해 호출할 수 있습니다. 클래스 객체를 호출하면 클래스의 __init()__메소느 내부의 코드를 실행합니다.
+  일급 객체(first-class object)는 변수에 저장되고, 함수 호출에서 인수로 전달되고 결과로 반환되는 등, 객체로 할 수 있는 모든 기능을 할 수 있습니다. 
+  별칭(alias)는 기존 함수 객체를 다른 변수에 할당했을 때, 기존 함수에 대한 다른 이름을 뜻합니다.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Wed, 24 Jan 2024 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/python/clean_code7/</link>
+        <guid isPermaLink="true">http://localhost:4000/python/clean_code7/</guid>
+        
+        <category>Python</category>
+        
+        <category>Coding</category>
+        
+        <category>Review</category>
+        
+        
+        <category>Python</category>
+        
+      </item>
     
       <item>
         <title>[회고록] 23년 회고</title>
@@ -4224,57 +4489,6 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
         <pubDate>Sun, 23 Apr 2023 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/data/weekly_memoir_3/</link>
         <guid isPermaLink="true">http://localhost:4000/data/weekly_memoir_3/</guid>
-        
-        <category>Data</category>
-        
-        <category>Memoir</category>
-        
-        
-        <category>Data</category>
-        
-      </item>
-    
-      <item>
-        <title>[회고록] 23년 3월 3주차 회고록</title>
-        <description>&lt;p&gt;  출장 업무를 마치고 KTX를 타고 서울로 올라가며 한 주를 마무리하고 있습니다. 출장길은 언제나 고되지만, 좋은 결과를 얻어갈 수 있다면 나름 다닐만?하다고 생각됩니다. 이번 회고록에서는 다음 2가지 얘기를 해보고자 합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;커뮤니케이션: 데이터 분석가와 클라이언트 간 회의에 대하여&lt;/li&gt;
-    &lt;li&gt;데이터 리터러시&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;회고록이다 보니 위 2가지 에 대해 개념을 적는 글이 아니고 업무를 하면서 느낀 점에 대해서 짧게 회고하겠습니다!&lt;/p&gt;
-
-&lt;h2 id=&quot;1-커뮤니케이션&quot;&gt;1. 커뮤니케이션&lt;/h2&gt;
-&lt;p&gt;  분석 컨설팅 업무의 특성상 분석 결과 공유를 위해 고객과의 정기적인 미팅이 이루어집니다. 사담이지만, 오늘 출장길도 고객과의 미팅을 위해서 다녀오는 길이네요. 오늘 오전 1건, 오후 1건 총 2건의 회의를 진행했는데 각각 양상이 사뭇 달랐습니다. 각 회의에서 개인적으로 재밌게 느꼈던 점들을 짚어보겠습니다.&lt;/p&gt;
-&lt;h3 id=&quot;11-자료시각적-표현의-중요성&quot;&gt;1.1 자료(시각적 표현)의 중요성&lt;/h3&gt;
-&lt;p&gt;  오전 회의에서는 분석 결과를 토대로 분석가와 클라이언트 간의 진지한 토론과 논의가 오갔습니다. 여기서 관건은 우리가 분석한 결과를 고객이 제대로 이해할 수 있게 얼마나 명료하게 잘 전달하는 가 였습니다. 현재 클라이언트 데이터 분석 프로젝트는 처음이기에 아직 분석 이해도가 상대적으로 낮기에, 원활한 미팅을 위해서는 오해없이 우리의 분석 내용을 이해할 수 있도록 잘 전달해야했습니다. 말을 잘하면 클라이언트가 잘 받아들일까요? 아닙니다. 여기서 중요한 것은 데이터 분석에 대한 이해가 없는 클라이언트도 쉽게 이해할 수 있도록 분석 내용을 논리적으로 정리하고 &lt;strong&gt;시각적으로 표현&lt;/strong&gt;하는 것입니다. 말로 30분 얘기하는 것보다 중요한 포인트를 제대로 짚어낸 차트 하나가 더 이해하기 쉽습니다. &lt;br /&gt;&lt;br /&gt;
-  그렇다면 좋은 자료는 어떤 자료일까요? 저도 아직 잘 모릅니다. 다만, 제 상사와 선배님들, 주변 동료에게 배운 것들은&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ol&gt;
-    &lt;li&gt;누가 봐도 이해하기 쉬워야 한다.&lt;/li&gt;
-    &lt;li&gt;논리적으로 치밀해야 한다.&lt;/li&gt;
-    &lt;li&gt;꼼꼼해야 한다.&lt;/li&gt;
-    &lt;li&gt;애매하거나 쓸데없는 내용은 과감히 지워야 한다.&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;정도가 기본인 것 같습니다. 제 팀장님은 1번을 특히 강조합니다. 제가 분석한 내용을 자료로 작성하여 검토를 요청드리면 내용이 어려우니 조금 더 쉽게 풀어쓰라는 피드백을 종종 받습니다. 사실 초반에는 속으로는 “아무리 그래도 이 정도 내용도 이해 못할까?”란 생각을 했는데, 정말 오만한 생각이었다는 것을 깨달았고 많이 반성하고 있습니다. 클라이언트는 데이터 분석에 대한 이해도가 높지 않습니다. 분석가가 도메인 지식이 얕은 것처럼 당연한 것입니다. 그렇기에 쉽게 써야 합니다. 그리고 자료가 어렵다는 말은 돌려 말하면 이 자료를 봤을 때, &lt;strong&gt;무엇을 말하려고 하는 지 모르겠다&lt;/strong&gt;일 것 같습니다. 또 해보면 어려운 내용을 쉽게 풀어 쓴다는 게 보통 쉬운 일이 아닙니다. 그렇기에 자료를 잘 작성하는 분들을 보면 정말 대단하다 생각하며, 글쓴이 본인도 잘 하고자 열심히 고민하고 개선하려 하고 있습니다.&lt;/p&gt;
-&lt;h3 id=&quot;12-컨센서스-합의&quot;&gt;1.2 컨센서스 합의&lt;/h3&gt;
-&lt;p&gt;  오후 회의는 분석 내용보다는 프로젝트 방향성에 대한 컨센서스 합의에 대한 논의가 대부분이었습니다. 프로젝트를 하다보면 당연하게도 데이터 분석이 잘 안 풀릴 때가 있습니다. 그럴때면 클라이언트는 방어적으로 나오게 되며, 출구전략을 모색하고 앞으로 어떻게 이 프로젝트를 풀어갈지 궁금해합니다. 왜냐하면 클라이언트도 비용을 투자했기에 의미있는 성과를 만들어내야 하기 때문입니다. 이러한 상황에서 답을 못 찾았다하고 끝낼 순 없습니다. 이럴때 분석가의 역할은 다른 길을 제시하여 프로젝트가 나아갈 수 있도록 제시할 수 있어야 합니다. 이 과정에서 클라이언트와 컨센서스 합의가 필요합니다. 만약, 커다란 주제가 A라면, 그 아래 A-a, A-b, A-c라는 소주제가 있을 것입니다. 현재 A-a라는 과제가 지지부진하고 풀지 못했으니, A-b와 A-c로 접근해보자라고 제시할 수 있어야 합니다.&lt;br /&gt;&lt;br /&gt;
-  중요한 것은 A-b, A-c에 대해서 서로 이해하는 바가 명확해야 합니다. 오늘도 그 부분에 대해서 양측이 합의하기 까지 많은 오해와 설전이 오갔습니다. 하지만 이런 과정이 없다면 프로젝트가 산으로 빠지고 분석가와 클라이언트 간 불신의 골이 깊어질 확률이 매우매우 높습니다. 아직 주니어인 저는 회의 시에 분석 결과에 대해서만 포커스를 맞춰 내용을 제대로 전달하고 검토하는 것에만 급급한 경향이 있습니다. 다만, 시니어 분들은 여기서 그치지 않고 이 프로젝트를 어떻게 풀어갈까 다음을 고민하더군요. 확실히 이러한 부분에서 시니어와 주니어의 경험과 역량의 차이가 느껴집니다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;2-데이터-리터러시&quot;&gt;2. 데이터 리터러시&lt;/h2&gt;
-&lt;p&gt;  가트너 리포트에서도 언급되었던 데이터 리터러시는 쉽게 얘기하면 &lt;strong&gt;데이터를 읽고 해석하고 이해하는 능력&lt;/strong&gt;이라고 볼 수 있습니다. 저는 주로 팀장님과 같이  데이터 분석을 진행하는데 팀장님께선 제가 생각하지 못한 것들을 짚어주는 경우가 있습니다. 그렇게 다른 관점으로 보면, 새로운 아이디어가 나오고 새로운 분석 스토리가 생깁니다. 이렇듯이 같은 데이터를 봐도 다양한 방면으로 접근이 가능하며 인사이트를 뽑아내는 능력은 천차만별이며, 이 역량은 단순히 데이터 분석가에게 필요한 기술적인 역량과는 다르다 생각합니다. 코딩을 잘하고 모델링을 잘 한다고 데이터 리터러시 역량이 좋다고 볼 수 있을까요? 전 아니라고 봅니다. 이 부분에서 데이터 분석가와 ML모델 엔지니어와는 명확한 차이가 있다고 생각합니다. 데이터 분석가에게는 수 많은 데이터 속에서 필요한 데이터만 뽑아내어 조합할 수 있는 역량이 필요하며, 제대로 해석할 줄 알아야 합니다. 흔히 하는 실수로 데이터로 확인되는 것 이상으로 해석을 시도하는 경우가 있습니다. 데이터 분석가는 명확하게 데이터 기반으로 논리를 펼쳐야 하고, 그 이상을 시도했다가는 대부분 소설이 되는 경우가 많습니다.&lt;br /&gt;&lt;br /&gt;
-  도메인 지식에 대한 이해가 깊다면 데이터로부터 의미있는 인사이트를 도출할 확률이 높습니다. 따라서 도메인 지식에 대한 공부가 필수적입니다. 대부분의 데이터는 도메인 영역에 메커니즘을 통해 해석되기 때문입니다. 하지만 제가 생각하는 궁극적인 데이터 분석가의 모습은 도메인 전문가가 닿지 못한 것을 풀 수 있는 것입니다. 우리의 역할은 클라이언트가 여태 풀지 못했던 문제를 데이터를 통해 풀어내는 것이기에 그 이상의 것을 제시할 줄 알아야 한다고 개인적으로는 생각합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-맺음말&quot;&gt;3. 맺음말&lt;/h2&gt;
-&lt;p&gt;이번 한 주는 정말 몰입해서 일했고 미팅도 긍정적으로 진행됐기에 개인적으로 참 뿌듯했던 한 주입니다. 회고록을 적고나니 참 데이터 분석가에게 필요한 것들이 많다 생각됩니다. 갓 입사했을 때에는 제게 요구하는 것이 많다는 생각도 했습니다. 데이터 핸들링, BI 개발, 운영, 데이터 분석, 자료 작성과 리포트, 컨설팅까지… 지금은 어느정도 적응이 됐지만 쉽지 않은 것은 사실입니다. 그래도 긍정적인 결과가 나와 클라이언트가 만족했을 때 저 개인적으로도 큰 보람을 느낍니다. 데이터 분석가 참 매력적인 직업이라 생각하며 이번 회고록도 마치도록 하겠습니다. 긴 글 읽어주셔서 감사합니다.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 17 Mar 2023 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/data/weekly_memoir_2/</link>
-        <guid isPermaLink="true">http://localhost:4000/data/weekly_memoir_2/</guid>
         
         <category>Data</category>
         

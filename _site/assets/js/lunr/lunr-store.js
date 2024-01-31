@@ -226,4 +226,10 @@ var store = [{
         "tags": ["Data","Memoir"],
         "url": "/data/yearly_memior/",
         "teaser": null
+      },{
+        "title": "[파이썬] 파이썬 프로그래밍 용어",
+        "excerpt":"이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 7장 내용임을 사전에 미리 밝힙니다!   일하다 보면 용어를 정확하게 모르지만 대충 눈치껏 소통하는 경우가 꽤 많습니다. 알아들은 척 하고 나중에 몰래 찾아보기도 많이 했습니다. 사람, 조직마다 사용하는 용어가 조금씩 차이가 있겠지만 책을 읽으면서 중요하다 생각되는 용어들을 정리하고자 합니다. 1....","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code7/",
+        "teaser": null
       }]
