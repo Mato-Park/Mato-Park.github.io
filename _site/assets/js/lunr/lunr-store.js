@@ -232,4 +232,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code7/",
         "teaser": null
+      },{
+        "title": "[파이썬] 빠지기 쉬운 함정들. 이것만은 피하자!",
+        "excerpt":"이번 포스트는 파이썬을 사용하면서 빠지기 쉬운 함정들을 알아보고 어떻게 하면 이 함정들을 피할 수 있는지 정리해봤습니다. 이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 8장 내용임을 사전에 미리 밝힙니다!   파이썬은 제가 가장 많이 사용하는 데이터 분석 도구 중 하나입니다. 사용하다 보면 종종 알 수 없는 warnings가 발생하곤...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code8/",
+        "teaser": null
       }]
