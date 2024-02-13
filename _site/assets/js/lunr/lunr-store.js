@@ -238,4 +238,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code8/",
         "teaser": null
+      },{
+        "title": "[파이썬] 파이썬의 이상한 점!?",
+        "excerpt":"파이썬은 가장 인기가 많은 프로그래밍 언어이지만 그렇다고 완벽한 것은 아닙니다. 이번 장에서는 파이썬이 갖고 있는 기이한 특징들에 대해서 알아보고자 합니다. 이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 9장 내용임을 사전에 미리 밝힙니다! 1. 257 is 257은 참일까?   우선 is 연산자는 두 객체가 같은 값을 비교하는 것이...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code9/",
+        "teaser": null
       }]
