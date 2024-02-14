@@ -244,4 +244,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code9/",
         "teaser": null
+      },{
+        "title": "[파이썬] 파이썬다운 함수를 만들어보자!",
+        "excerpt":"함수(function)는 파이썬 프로그래밍에 있어서 필수적인 기능입니다. 그렇다면 대충 정의한 함수 말고 파이썬다운 함수는 무엇일까요? 이번 장에서는 파이썬다운 함수에 대해서 정리하고자 합니다. 이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 10장 내용임을 사전에 미리 밝힙니다!   함수(function)는 주로 반복 작성되는 코드 중복을 해소하기 위해 많이 쓰이는 방법입니다. 코드 중복으로...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code10/",
+        "teaser": null
       }]

@@ -5,9 +5,172 @@
     <description>조금씩 쌓아가다 보면 큰 산이 되겠지</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 13 Feb 2024 22:04:15 +0900</pubDate>
-    <lastBuildDate>Tue, 13 Feb 2024 22:04:15 +0900</lastBuildDate>
+    <pubDate>Wed, 14 Feb 2024 21:56:21 +0900</pubDate>
+    <lastBuildDate>Wed, 14 Feb 2024 21:56:21 +0900</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
+    
+      <item>
+        <title>[파이썬] 파이썬다운 함수를 만들어보자!</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;함수(function)는 파이썬 프로그래밍에 있어서 필수적인 기능입니다. 그렇다면 대충 정의한 함수 말고 파이썬다운 함수는 무엇일까요? 이번 장에서는 파이썬다운 함수에 대해서 정리하고자 합니다.&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 10장 내용임을 사전에 미리 밝힙니다!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;  함수(function)는 주로 반복 작성되는 코드 중복을 해소하기 위해 많이 쓰이는 방법입니다. 코드 중복으로 인한 버그를 방지하고 코드 유지보수에 편의성을 증대시키기 위함입니다. 하지만 함수를 작성하기 위해서는 많은 요소를 고려하여 결정이 필요합니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;1-함수명&quot;&gt;1. 함수명&lt;/h1&gt;
+&lt;p&gt;  일반적으로 함수는 특정 동작을 수행하도록 정의되기 때문에 함수 이름에 동사가 많이 들어가는 편입니다. 저도 동사를 활용하여 함수명을 짓곤 합니다. 그리고 초보자 분들이 많이 하는 실수가 바로 함수명을 약어나 너무 짧은 언어로 축약시키는 것입니다. 매번 긴 함수명을 타이핑 하는 것이 귀찮아서거나 약어를 많이 사용해 축약하는 것이 더 멋있다고 생각해서일 수 있습니다. 하지만 함수명을 지나치게 축약하는 것은 좋은 방법이 아닙니다. &lt;strong&gt;길고 설명적인 이름&lt;/strong&gt;을 사용하는 것이 좋습니다. 추가로 파이썬의 내장 함수 또는 모듈 이름은 절대 사용하면 안됩니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;2-함수-크기의-트레이드오프&quot;&gt;2. 함수 크기의 트레이드오프!?&lt;/h1&gt;
+&lt;p&gt;  함수는 짧은게 좋을까요 긴게 좋을까요? 저는 그냥 필요한 만큼 작성해서 사용합니다만, 꽤 논쟁(?)적인 주제라고 합니다. 두 방식 모두 장, 단점이 있다고 합니다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;짧은 코드 장점&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;함수 코드를 이해하기 쉽다.&lt;/li&gt;
+    &lt;li&gt;필요한 파라미터가 적다.&lt;/li&gt;
+    &lt;li&gt;부수 효과를 일으킬 가능성이 적다.&lt;/li&gt;
+    &lt;li&gt;테스트와 디버그가 쉽다.&lt;/li&gt;
+    &lt;li&gt;예외가 더 적게 발생한다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;짧은 코드 단점&lt;/strong&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;필요한 함수 개수가 증가한다.&lt;/li&gt;
+    &lt;li&gt;함수가 많아지므로 프로그래밍이 더 복잡해진다.&lt;/li&gt;
+    &lt;li&gt;함수가 많아지므로 모든 함수에 대해 정확한 네이밍이 어렵다.&lt;/li&gt;
+    &lt;li&gt;작성할 문서가 많아진다.&lt;/li&gt;
+    &lt;li&gt;함수 간의 관계가 복잡해진다.&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;  위와 같이 함수 크기에는 트레이드오프가 존재합니다. 책에서는 다음 예제를 보이며 설명합니다.&lt;/p&gt;
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# long version
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;플레이어에게 이동 명령을 요청한다. (fromTower, toTower)를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어가 유효한 이동 명령을 입력할 때까지 계속 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;탑의 &quot;시작&quot;과 &quot;끝&quot;의 글자 또는 QUIT를 입력하십시오.&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(예: 탑 A에서 탑 B로 원판을 이동하려면 AB를 입력합니다.)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;QUIT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;즐겁게 퍼즐을 풀어주셔서 감사합니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        
+        &lt;span class=&quot;c1&quot;&gt;# 사용자가 유효한 탑 문자를 입력했는지 확인한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;AC&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;BA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;BC&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AB, AC, BA, BC, CA, CB 중 하나를 입력하십시오.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        
+        &lt;span class=&quot;c1&quot;&gt;# 더 설명적인 변수 이름을 사용한다.
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# from 탑은 비어 있을 수 없다.
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;원판이 없는 탑을 선택했습니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# 어떤 원판이라도 빈 to 탑으로 이동이 가능하다.
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;더 작은 원판에 더 큰 원판을 올릴 수 없습니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 유효한 움직임이므로 선택된 탑을 반환한다.
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# ===================================================================
+# short &amp;amp; many version
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;플레이어에게 이동 명령을 요청한다. (fromTower, toTower)를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어가 유효한 이동 명령을 입력할 때까지 계속 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;reponse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;askForPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;terminateIfResponseIsQuit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isValidtowerLetters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        
+        &lt;span class=&quot;c1&quot;&gt;# 더 설명적인 변수 이름을 사용한다.
+&lt;/span&gt;        &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;towerWithNoDisksSelected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;# 어떤 원판이라도 빈 to 탑으로 이동이 가능하다.
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;largerDiskIsOnSmallerDisk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;continue&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 플레이어에게 이동 명령을 다시 요청한다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# 유효한 움직임이므로 선택된 탑을 반환한다.
+&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;askForPlayerMove&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;플러이어에게 질문 내용을 출력하고, 선택한 타워를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;탑의 &quot;시작&quot;과 &quot;끝&quot;의 글자 또는 QUIT를 입력하십시오.&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;(예: 탑 A에서 탑 B로 원판을 이동하려면 AB를 입력합니다.)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&amp;gt; &quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;terminateIfResponseIsQuit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;응답이 &apos;QUI&apos;인 경우 프로그램을 종료한다.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;QUIT&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;즐겁게 퍼즐을 풀어주셔서 감사합니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isValidTowerLetters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towerLetters&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;&apos;towerLetters&apos;가 유효하면 True를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;not&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;AC&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;BA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;BC&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;CB&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;AB, AC, BA, BC, CA, CB 중 하나를 입력하십시오.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;towerWithNoDisksSelected&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;selectedTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;&apos;selectedTower&apos;에 원판이 없으면 True를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;# from 탑은 비어 있을 수 없다.
+&lt;/span&gt;        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;원판이 없는 탑을 선택했습니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;largerDiskIsOnSmallerDisk&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;더 큰 원판이 더 작은 원판으로 이동할 경우 True를 반환한다.&quot;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;towers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;toTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fromTower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;][&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]:&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;더 작은 원판에 더 큰 원판을 올릴 수 없습니다.&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;  위 파이썬 스크립트에는 long &amp;amp; short 버전의 함수가 작성되어 있습니다. 저자가 short 버전을 극단적으로 작성한 것 같지만 여러분들이 보기에 어떠신가요? 무엇이 더 읽고 이해하기 편하신가요? long 버전은 총 34행이며, short 버전은 총 56행입니다. short 버전에 개별 함수들은 이해하기 편하지만 전체적인 프로그램의 흐름을 따라가기에는 더 복잡하게 느껴집니다. 또한 매번 새로운 네이밍과 독스트링을 활용한 추가 정보를 생성해야 합니다. 위 예시는 &lt;strong&gt;무조건 짧은 함수가 이상적이지 않다&lt;/strong&gt;라는 것을 보여줍니다. 매번 일률적으로 적용되는 이상적인 크기는 없을 것입니다. 그 보다는 상황에 맞게 적절한 사이즈를 잘 선택하는 것이 최선이라고 생각합니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;3-함수-파라미터와-인수&quot;&gt;3. 함수 파라미터와 인수&lt;/h1&gt;
+&lt;p&gt;  너무 많은 파라미터는 이상적이지는 좋지 않습니다. 0 ~ 3개 정도의 파라미터를 사용하는 규칙을 정해놓는 것이 좋습니다.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;기본 인수&lt;/strong&gt;&lt;br /&gt;
+  기본 인수를 사용하면 함수 파라미터의 복잡도를 감소시킬 수 있습니다. 기본 인수(default argument)는 함수를 호출할 때, 인수를 따로 입력하지 않아도 기본으로 사용되는 값을 의미합니다.&lt;/li&gt;
+  &lt;li&gt;*와 **를 사용해 함수에 인수 전달하기&lt;br /&gt;
+ &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h1 id=&quot;9-마치며&quot;&gt;9. 마치며…&lt;/h1&gt;
+&lt;p&gt;  파이썬을 활용하다보면 정말 생산적이고 훌룡한 언어임에는 틀림이 없다 생각합니다. 그러다보면 파이썬도 버그가 있을까? 특이한 점이 있을까? 의심하기 쉽지 않지만, 역시 파이썬도 인간이 개발한 언어이고 허점은 분명히 존재할 수 있습니다. 그렇기에 이런 사소한 부분도 숙지하고 있다면 혹시나 발생할 수 있는 에러에 대해 미리 대응할 수 있고 프로그래머로서 실력을 증가시킬 수 있을 것입니다!&lt;/p&gt;
+</description>
+        <pubDate>Wed, 14 Feb 2024 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/python/clean_code10/</link>
+        <guid isPermaLink="true">http://localhost:4000/python/clean_code10/</guid>
+        
+        <category>Python</category>
+        
+        <category>Coding</category>
+        
+        <category>Review</category>
+        
+        
+        <category>Python</category>
+        
+      </item>
     
       <item>
         <title>[파이썬] 파이썬의 이상한 점!?</title>
@@ -4616,83 +4779,6 @@ Write an SQL query to find the IDs of the invalid tweets. The tweet is invalid i
         <pubDate>Mon, 12 Jun 2023 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/data/weekly_memoir_6/</link>
         <guid isPermaLink="true">http://localhost:4000/data/weekly_memoir_6/</guid>
-        
-        <category>Data</category>
-        
-        <category>Memoir</category>
-        
-        
-        <category>Data</category>
-        
-      </item>
-    
-      <item>
-        <title>[회고록] 23년 5월 3주차: 에너지 절감(1/2)</title>
-        <description>&lt;p&gt;  안녕하세요. 요즘엔 &lt;strong&gt;데이터 분석을 통해 공장에서 사용하는 에너지 절감 프로젝트&lt;/strong&gt;를 수행중에 있습니다. 최근 에너지 원가 상승으로 인하여 에너지 비용이 증가하여 공장 입장에서는 부담이 되고 있는 상황입니다. 따라서 공장에서는 에너지 절감을 위해 다양한 활동을 수행하고 있고, 그 노력의 일환으로 데이터 분석을 통한 에너지 사용 절감안을 도출하고자 합니다. ‘23년 1년 프로젝트로 기획됐고 2월부터 시작해 현재 진행중에 있습니다. 보안 상 디테일한 부분을 얘기하긴 어렵지만 어떻게 데이터 분석 프로젝트를 진행하고 있는지 간략하게만 기록하겠습니다.
-&lt;br /&gt;&lt;br /&gt;
-  에너지 절감을 위하여 다양한 접근 방법이 있겠지만 우리는 다음과 같은 방식으로 단계로 데이터 분석 프로젝트를 진행했습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-에너지-파악&quot;&gt;1. 에너지 파악&lt;/h2&gt;
-&lt;p&gt;  우선, 공장에서 사용하고 있는 에너지 종류와 에너지 별 사용 목적에 대해 파악이 필요합니다. 어떤 에너지를 사용하고 있고, 공장에서 사용하고 있는 다양한 에너지 중 가장 중요도가 큰 에너지는 무엇인지, 어느 공정에 어떤 목적으로 사용되고 있는지 등에 대한 공정 파악이 필요합니다. 에너지 사용 공정 메커니즘에 대한 이해없는 데이터 분석을 통해 유효한 인사이트를 도출하기는 어렵기 때문입니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;사용 에너지 종류, 중요도(우선순위), 사용 목적 파악&lt;/li&gt;
-    &lt;li&gt;에너지 사용 공정에 대한 공정 메커니즘 파악&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;2-데이터-수집&quot;&gt;2. 데이터 수집&lt;/h2&gt;
-&lt;p&gt;  프로젝트 대상 공장에서 사용하고 있는 에너지에 대한 파악이 되면, 본격적인 데이터 분석을 위한 데이터 수집이 필요합니다. 중요한 것은 에너지 사용량을 데이터로 관리하고 있는지부터 알아야 합니다(데이터가 없다면 애초에 분석 프로젝트 진행이 불가합니다). 데이터가 있다면 어디에 어떻게 관리하고 있는지, 어떻게 데이터를 가져와서 분석할 것인지에 대한 논의가 필요합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;데이터 존재 여부 파악(에너지 사용량, 관련 공정 센싱, 품질 데이터 등)&lt;/li&gt;
-    &lt;li&gt;데이터 저장 위치, 형태 등 파악&lt;/li&gt;
-    &lt;li&gt;데이터 전처리 및 분석 데이터 마트 생성&lt;/li&gt;
-    &lt;li&gt;BI 분석 화면 개발&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;21-데이터-이슈&quot;&gt;2.1 데이터 이슈&lt;/h3&gt;
-&lt;p&gt;  현재 프로젝트 대상 공장에서는 공정/설비별로 사용하고 있는 에너지 사용량을 일/월 별로 기입하여 관리하고 있었고, 분석 데이터 마트를 생성하기 위해서는 엑셀로부터 데이터를 추출하는 프로그램을 짜야했습니다. 문제는 작업자가 일일이 수기로 입력한 데이터 이기에 오기입된 데이터도 많고 예외처리를 해야할 것이 정말 많았습니다. 이 오류를 처리하는데 애 많이 먹었습니다😭. 이에 더하여 외기온도 데이터가 필요한데 공장에서 수집하는 데이터가 없었기에, 공공기관데이터포털에서 제공하는 지역별 온도 데이터를 수집해서 대용으로 사용했습니다. rest api 호출하는 방식을 활용해 가져오는 데이터 추출 코드를 짜봤는데 재밌었습니다😄.&lt;/p&gt;
-
-&lt;h3 id=&quot;22-주의할-점&quot;&gt;2.2 주의할 점&lt;/h3&gt;
-&lt;p&gt;  데이터의 단위를 정확하게 확인해야 합니다. 특히, 공학, 자연과학 계열 전공자가 아니라 사회계열, 수리계열, 컴공계열 전공자라면 에너지(물질) 단위가 굉장히 헷갈릴 수 있습니다. 예를 들어, 유량 단위인지, 질량 단위인지 그리고 일별 사용량인지, 시간당 사용량인지 등 정확하게 파악이 필요합니다. 만약 단위를 제대로 감안하지 않은 채로 데이터 전처리하고 분석을 진행한다면 후에 계산이 잘못될 수 있으니 유의해야 합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-에너지-사용-현황-파악-문제점-도출&quot;&gt;3. 에너지 사용 현황 파악, 문제점 도출&lt;/h2&gt;
-&lt;p&gt;  앞의 과정은 데이터 분석을 위한 준비과정이었다면 여기서부턴 본격적인 데이터 분석 과정에 들어갑니다. 이번 프로젝트에서는 다음 절차로 진행했습니다.&lt;/p&gt;
-
-&lt;h3 id=&quot;31-분석-대상-순서-선정&quot;&gt;3.1 분석 대상, 순서 선정&lt;/h3&gt;
-&lt;p&gt;  공장에서는 다양한 에너지를 사용해 제품을 생산하기 때문에 우선순위를 선정하여 진행합니다. (물론 인력이 충분하고 여유가 있다면 모든 에너지에 대하여 한 번에 진행해도 됩니다. 다만, 현실적으로 매우 어렵죠) 데이터 현황분석을 통해 사용량이 가장 많고 산포가 큰 에너지 순으로 우선순의를 정하거나 혹은 클라이언트의 요청으로 우선순위를 정하게 됩니다. 에너지 사용 산포가 작거나, 중요도가 낮은 에너지의 경우 분석 대상에서 제외되는 경우도 있습니다. 분석 대상이 선정된다면 관련 공정 메커니즘에 대한 이해는 필수입니다! 대상 공정에서 에너지가 사용되는 목적과 공정/품질 관리 인자와 기준 존재 여부 등 에너지 관련 공정 메커니즘 파악이 필요합니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;분석 대상 및 우선순위 선정&lt;/li&gt;
-    &lt;li&gt;분석 대상 공정 메커니즘(에너지 관련) 파악&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;32-문제점-진단&quot;&gt;3.2 문제점 진단&lt;/h3&gt;
-&lt;p&gt;  분석 대상이 선정되면 문제점을 진단해야 합니다. 현재 에너지 사용량이 적정 수준을 벗어나 과다한 것은 아닌 지, 절감 요소는 존재하는지 판단해야 합니다. &lt;br /&gt;&lt;br /&gt;
-  그렇다면 &lt;strong&gt;판단 기준&lt;/strong&gt;은 무엇일까요?&lt;br /&gt;
-  가장 기본은 &lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;외생 변수&lt;/strong&gt;&lt;/span&gt; 기준으로 체크하는 것입니다. 보통 가정집에서도 전기 요금을 비교할 때, 동월 간 비교를 합니다. 왜일까요? 여름에 에어컨을 틀면서 전기 요금이 많이 청구되고 따라서 환절기와 하절기 간 전기 요금 비교는 무의미하기 때문입니다. 공장도 마찬가지입니다. 동일 기온, 동일 생산조건, 동일 생산량(투입량)을 기준으로 에너지 사용량을 비교해야 합니다. 예를 들어, 계절별로 에너지 사용량에 차이가 발생하는 경우 외기온도를 고정시킨 다음에 에너지 사용량의 산포를 확인해야 합니다. 따라서 특정 공정별 사용 에너지에 따라 외생변수를 잘 정의해야 할 필요가 있습니다. &lt;br /&gt;
-  다음으로는 &lt;span style=&quot;color:red&quot;&gt;&lt;strong&gt;공정 변경 혹은 운전 패턴 변경&lt;/strong&gt;&lt;/span&gt; 이력에 따른 에너지 사용량 변동을 파악하는 것입니다. 과거 공정 운전 패턴의 변경에 따라 에너지 사용량의 변화가 있는지 비교하여 현재 에너지 사용량에 대한 수준을 파악할 수 있습니다. 공정 운전 패턴 변경이 에너지 관점에서 낭비가 발생한다면 재검토해 볼 필요가 있을 수 있고 혹은 추가 개선 포인트를 도출해 낼 수 도 있을 겁니다. &lt;br /&gt;&lt;br /&gt;
-  판단 기준에 따라 현재 에너지 사용이 적절한 지 혹은 과거 대비 낭비요소가 있는 지 등 다양한 측면에서 문제점을 진단합니다. 만약 낭비요소가 존재한다면 다음 스텝으로 넘어가 에너지 사용량의 편차(산포) 발생 원인을 도출하는 작업을 하게 됩니다. 낭비요소 없이 현 수준이 최적 에너지 사용 상태라면 더 이상 분석을 진행하지 않습니다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;에너지 별 외생변수 파악&lt;/li&gt;
-    &lt;li&gt;공정 운전 패턴 변경이력 파악&lt;/li&gt;
-    &lt;li&gt;문제점 진단&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;321-주의사항&quot;&gt;3.2.1 주의사항&lt;/h4&gt;
-&lt;p&gt;  에너지 사용 문제점을 진단할 때 반드시 고려해야 할 부분이 바로 &lt;strong&gt;공정 품질&lt;/strong&gt;입니다. 에너지 사용량을 절감했지만 공정 품질을 만족하지 못한다면 이는 에너지 사용 과소 상태로 적절한 수준의 에너지 사용량이 아닙니다. 이 상태에서는 오히려 에너지를 더 투입하여 품질을 만족시켜야만 합니다. 반대로 현재 에너지 사용 수준에서 품질 관리 수준 대비 마진이 커 여유가 있다면, 에너지 과다 상태로 에너지 절감안 도출을 검토해 볼 수 있습니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;4-다음-회고록을-기약하며&quot;&gt;4. 다음 회고록을 기약하며…&lt;/h2&gt;
-&lt;p&gt;  회고록을 작성하다보니 처음 생각한 것 보다 내용이 너무 길어졌습니다. 현재 진행중인 프로젝트이기도 하고 남은 내용은 다음 회고록에 적을 수 있도록 하겠습니다. 그럼 이번 회고록은 여기서 마치도록 하겠습니다. 감사합니다!&lt;/p&gt;
-</description>
-        <pubDate>Sun, 21 May 2023 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/data/weekly_memoir_5/</link>
-        <guid isPermaLink="true">http://localhost:4000/data/weekly_memoir_5/</guid>
         
         <category>Data</category>
         
