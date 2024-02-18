@@ -250,4 +250,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code10/",
         "teaser": null
+      },{
+        "title": "[파이썬] 주석달기!",
+        "excerpt":"좋은 프로그래머가 되기 위해서는 주석을 꼼꼼하게 달고 작성한 프로그램에 대한 문서도 잘 작성할 줄 알아야 합니다. 따라서 이번 장에서는 주석과 문서를 효율적으로 작성하는 방법에 대해서 살펴보도록 하겠습니다. 이 포스트의 내용은 저자 Al Sweigart의 “클린 코드, 이제는 파이썬이다” 11장 내용임을 사전에 미리 밝힙니다!   프로그램을 개발하고 끝이 아니라 유지보수, 버그수정, 업데이트...","categories": ["Python"],
+        "tags": ["Python","Coding","Review"],
+        "url": "/python/clean_code11/",
+        "teaser": null
       }]
