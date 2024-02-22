@@ -256,4 +256,10 @@ var store = [{
         "tags": ["Python","Coding","Review"],
         "url": "/python/clean_code11/",
         "teaser": null
+      },{
+        "title": "[서버] 서버란?",
+        "excerpt":"데이터 분석가는 데이터 분석만 알고 잘하면 끝인 줄 알았는데 그게 아니더군요. 기초적인 컴퓨터 공학, IT 지식은 갖춰야 한다는 것을 뼈저리게 느꼈습니다. 다양한 분야에 대한 지식이 필요하겠지만 우선 서버에 대해서 공부해보고자 합니다.   기업, 조직마다 데이터를 분석하는 환경은 다양할 것입니다. 하지만 대부분의 규모가 있는 조직에서 서버 환경에서 데이터를 분석할 것이라고 생각합니다....","categories": ["Server"],
+        "tags": ["Computer","Server","ComputerScience"],
+        "url": "/server/server_basic1/",
+        "teaser": null
       }]
