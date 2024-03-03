@@ -6,7 +6,7 @@ categories:
 tags:
     - Computer
     - Server
-    - ComputerScience
+    - IT
 last_modified_at: 2024-02-22T21:10:00
 
 toc: true
