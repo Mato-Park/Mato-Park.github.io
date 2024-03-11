@@ -268,4 +268,10 @@ var store = [{
         "tags": ["Computer","Server","Network","IT"],
         "url": "/server/server_basic2/",
         "teaser": null
+      },{
+        "title": "[서버] 네트워크 관련 기초 지식에 대해 알아보자 (2/2)",
+        "excerpt":"데이터 분석가는 데이터 분석만 알고 잘하면 끝인 줄 알았는데 그게 아니더군요. 기초적인 컴퓨터 공학, IT 지식은 갖춰야 한다는 것을 뼈저리게 느꼈습니다. 다양한 분야에 대한 지식이 필요하겠지만 우선 네트워크에 대해서 공부해보고자 합니다.   지난 포스트에 이어서 네트워크 관련 기초 지식에 대해 작성해보겠습니다. 1. 라우팅   전세계의 인터넷은 어떻게 연결되어 있는 걸까요?...","categories": ["Server"],
+        "tags": ["Computer","Server","Network","IT"],
+        "url": "/server/server_basic3/",
+        "teaser": null
       }]

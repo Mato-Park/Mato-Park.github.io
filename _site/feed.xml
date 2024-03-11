@@ -5,9 +5,61 @@
     <description>조금씩 쌓아가다 보면 큰 산이 되겠지</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 03 Mar 2024 18:48:42 +0900</pubDate>
-    <lastBuildDate>Sun, 03 Mar 2024 18:48:42 +0900</lastBuildDate>
+    <pubDate>Mon, 11 Mar 2024 22:18:11 +0900</pubDate>
+    <lastBuildDate>Mon, 11 Mar 2024 22:18:11 +0900</lastBuildDate>
     <generator>Jekyll v4.3.1</generator>
+    
+      <item>
+        <title>[서버] 네트워크 관련 기초 지식에 대해 알아보자 (2/2)</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;데이터 분석가는 데이터 분석만 알고 잘하면 끝인 줄 알았는데 그게 아니더군요. 기초적인 컴퓨터 공학, IT 지식은 갖춰야 한다는 것을 뼈저리게 느꼈습니다. 다양한 분야에 대한 지식이 필요하겠지만 우선 네트워크에 대해서 공부해보고자 합니다.&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;  지난 포스트에 이어서 네트워크 관련 기초 지식에 대해 작성해보겠습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;1-라우팅&quot;&gt;1. 라우팅&lt;/h1&gt;
+&lt;p&gt;  전세계의 인터넷은 어떻게 연결되어 있는 걸까요? 인터넷은 수많은 라우터가 거미줄 형태로 얽혀 네트워크를 연결함으로써 만들어지게 됩니다. 이 라우터는 네트워크 상에서 IP 패킷을 버킷 릴레이하여 데이터를 주고 받게 됩니다. 이 버킷 릴레이를 바로 &lt;strong&gt;라우팅&lt;/strong&gt;이라 부릅니다. 즉, 우리는 라우터를 통해 우리가 사용하는 데스크톱 컴퓨터, 모바일 기기에서 인터넷에 연결해 사용할 수 있는 것입니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  그렇다면 라우터에서는 어떻게 데이터를 원하는 목적지에 보낼까요? 라우터에서는 미리 만들어진 &lt;strong&gt;라우팅 테이블&lt;/strong&gt;을 사용해 IP 패킷 송신지를 관리합니다. 라우팅 테이블은 ‘수신 네트워크’와 그 수신 네트워크에 대한 IP 주소 정보인 ‘넥스트 홉’으로 구성되어 있습니다. 라우터가 IP 패킷을 수신하게 되면 라우팅 테이블의 수신지 네트워크를 참조해 IP 패킷에 포함된 수신지 네트워크와 일치하면 그 곳으로 보내고 맞지 않으면 파기합니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  라우팅 테이블은 &lt;strong&gt;정적 라우팅&lt;/strong&gt;과 &lt;strong&gt;동적 라우팅&lt;/strong&gt; 두 종류의 방법을 사용해 만들어집니다. 정적 라우팅은 &lt;strong&gt;수동으로 라우팅 테이블을 만드는 방법&lt;/strong&gt;입니다. 반면, 동적 라우팅은 &lt;strong&gt;근처 라우터 사이에서 경로 정보를 교환하면서 자동으로 라우팅 테이블을 만드는 방법&lt;/strong&gt;입니다. 이때, 경로 정보를 교환하기 위한 프로토콜을 &lt;strong&gt;라우팅 프로토콜&lt;/strong&gt;이라 부릅니다. 정적 라우팅은 설정과 관리가 쉬워 소규모 네트워크 환경에서 주로 사용되고, 동적 라우팅은 네트워크 환경 변화에 대응하기 쉬우므로 중간 ~ 대규모 네트워크 환경에서 사용됩니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;2-arp&quot;&gt;2. ARP&lt;/h1&gt;
+&lt;p&gt;  &lt;strong&gt;ARP(Address Resolution Protocol)&lt;/strong&gt;는 컴퓨터에 물리적으로 할당된 물리적 주소인 MAC 주소와 OS에서 설정한 논리적 주소인 IP 주소를 묶어주는 역활을 합니다. 라우터를 경유할 때마다 MAC 주소는 변하기 때문에 IP 패킷만으로는 이더넷 프레임을 만들기 위한 정보가 부족합니다. 따라서 ARP를 사용해서 IP 주소로부터 MAC 주소를 구합니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  데이터를 송신하는 컴퓨터가 네트워크 층으로부터 IP 패킷을 받으면 우선 IP 주소가 같은 네트워크에 있는지 확이합니다. 같은 네트워크에 있다면 해당 IP 주소를 ARP에 문의(&lt;strong&gt;ARP 요청&lt;/strong&gt;)하고, 그 응답 결과(&lt;strong&gt;ARP 응답&lt;/strong&gt;)를 &lt;strong&gt;ARP 테이블&lt;/strong&gt;이라 불리는 메모리상의 테이블에 등록하고 이더넷 프레임을 만듭니다. 만약, IP 주소가 같은 네트워크에 없다면 기본 게이트웨이의 MAC 주소를 ARP에 문의하여 같은 처리를 수행합니다. 기본 게이트웨이란 자신 이외의 네트워크로 갈 때 사용하는 출구의 IP 주소이며, 주로 방화벽이나 라우터의 IP 주소가 기본 게이트웨이가 되는 경우가 많습니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;3-tcp--udp&quot;&gt;3. TCP &amp;amp; UDP&lt;/h1&gt;
+&lt;p&gt;  트랜스포트층에서는 통신 요건에 맞게 TCP와 UDP 각각 프로토콜을 제공합니다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;strong&gt;TCP(Transmission Control Process)&lt;/strong&gt;는 &lt;strong&gt;신뢰성&lt;/strong&gt;이 중요할 때에 사용되는 프로토콜입니다. TCP는 통신하는 컴퓨터 사이에서 응답을 주고받음으로써 통신 신뢰성을 높입니다. 따라서, 데이터를 빠뜨리면 안되는 서비스에서 주로 사용됩니다. &lt;strong&gt;UDP(User Datagram Protocol)&lt;/strong&gt;은 신뢰성보다는 &lt;strong&gt;속도(실시간성)&lt;/strong&gt;가 중요할 때에 사용되는 프로토콜입니다. UDP에서는 응답 절차를 생략하고 일방적으로 데이터를 보내서 통신의 즉시성을 높입니다. 따라서 실시간성이 필요한 서비스에서 주로 UDP를 사용합니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  TCP와 UDP는 포트 번호를 사용해 컴퓨터 안에 어떤 서비스에 데이터를 보낼지 결정합니다. 포트 번호는 0 ~ 65535(16비트) 범위로 숫자에 따라 용도가 정해져 있습니다. 0~1023은 &lt;strong&gt;기정 포트(well-known port)&lt;/strong&gt;로 웹서버나 메일 서버 등 일반적인 소프트웨어에서, 1024~49151은 &lt;strong&gt;등록 포트(registered port)&lt;/strong&gt;로 주로 메이커 특유의 서버 소프트웨어가 클라이언트의 요청을 대기할 때 사용합니다. 49512~65535는 &lt;strong&gt;동적 포트(dynamic port)&lt;/strong&gt;이며 서버가 클라이언트 소프트웨어를 식별하기 위해 사용됩니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;4-포트-번호&quot;&gt;4. 포트 번호&lt;/h1&gt;
+&lt;p&gt;  &lt;strong&gt;포트 번호&lt;/strong&gt;는 컴퓨터 내에서 작동하는 애플리케이션을 식별하기 위한 숫자입니다.&lt;/p&gt;
+
+&lt;h1 id=&quot;5-nat--napt&quot;&gt;5. NAT &amp;amp; NAPT&lt;/h1&gt;
+&lt;p&gt;  기업이나 가정에서 사용하는 사설 IP 주소를 인터넷에서 사용하는 공용 IP 주소로 변환하는 기술이 바로 &lt;strong&gt;NAT(Network Address Translation), NAPT(Network Address Port Translation)&lt;/strong&gt;입니다. 주로 LAN과 인터넷을 연결하는 라우터나 방화벽에서 수행합니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  NAT는 사설 IP 주소와 공인 IP 주소를 1:1로 묶어서 변환하며, 서버를 인터넷에 공개할 때 사용합니다. NAPT는 사설 IP주소와 공인 IP 주소를 n:1로 묶어서 변환하며, LAN에 있는 여러 컴퓨터로부터 인터넷에 연결할 때 사용합니다.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 11 Mar 2024 00:00:00 +0900</pubDate>
+        <link>http://localhost:4000/server/server_basic3/</link>
+        <guid isPermaLink="true">http://localhost:4000/server/server_basic3/</guid>
+        
+        <category>Computer</category>
+        
+        <category>Server</category>
+        
+        <category>Network</category>
+        
+        <category>IT</category>
+        
+        
+        <category>Server</category>
+        
+      </item>
     
       <item>
         <title>[서버] 네트워크 관련 기초 지식에 대해 알아보자 (1/2)</title>
@@ -54,6 +106,21 @@
     &lt;li&gt;이후 프레임을 주고 받을 때마다 주소 테이블을 업데이트하며, 일정 기간 동안 사용되지 않는 정보는 삭제합니다.&lt;/li&gt;
   &lt;/ol&gt;
 &lt;/blockquote&gt;
+
+&lt;h1 id=&quot;5-ip&quot;&gt;5. IP&lt;/h1&gt;
+&lt;p&gt;  &lt;strong&gt;IP(Internet Protocol)&lt;/strong&gt;에 의해 생성된 &lt;strong&gt;IP 패킷&lt;/strong&gt;은 전 세계의 다양한 네트워크를 경유해 목적지에 도달하게 됩니다. IP 패킷은 트랜스포트 층으로부터 받은 데이터(TCP 세그먼트, UDP 데이터그램)에 &lt;strong&gt;IP 헤더&lt;/strong&gt;를 붙여 만들어집니다. 쉬운 예를 들면, IP 패킷은 택배 물품, IP 헤더는 택배 전표와 같습니다. IP 헤더에 포함된 정보를 통해 전 세계 네트워크를 경유해 원하는 목적지에 도착하게 되는 것입니다. (추가로, 이더넷 프레임은 마지막 집 앞까지 운반하는 택배 배송원에 해당합니다.)&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;51-ip-주소&quot;&gt;5.1 IP 주소&lt;/h2&gt;
+&lt;p&gt;  조금 더 자세히 말하자면, IP에서는 통신할 상대를 식별하기 위해 &lt;strong&gt;IP 주소&lt;/strong&gt;라는 식별 번호를 사용해 컴퓨터를 식별합니다. IP 주소는 ‘192.168.1.1’, ‘172.16.25.255’ 같이 32비트를 8비트 씩 나누어 10진수로 표기합니다. 점(.)으로 구분한 그룹을 옥텟(octet)이라 부릅니다. IP 주소는 &lt;strong&gt;서브넷 마스크(Subnet Mask)&lt;/strong&gt;와 세트로 사용됩니다. IP 주소는 &lt;strong&gt;네트워크 부분&lt;/strong&gt;과 &lt;strong&gt;호스트 부분&lt;/strong&gt;으로 나뉘는데, 서브넷 마스크를 사용해 이를 구분할 수 있습니다. 네트워크 부분은 네트워크 그 자체를 호스트 부분은 해당 네트워크에 연결되어 있는 컴퓨터 자체를 나타냅니다. 서브넷 마스크에서 ‘1’은 네트워크 부분을 ‘0’은 호스트 부분을 나타내게 됩니다. 예를 들어, IP 주소가 ‘172.16.1.1’이고 서브넷 마스크가 ‘255.255.0.0’이라고 해보겠습니다. IP 주소에서 서브넷 마스크의 255에 해당하는 ‘172.16’이 네트워크 부분이 되고 나머지 ‘1.1’이 호스트부가 됩니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  서브넷 마스크 표기법에는 10진수 표기법과 CIDR 표기법이 있는데, 주로 10진수 표기법을 많이 사용하는 것 같습니다. 앞서 사용한 예시에서 볼 수 있듯이 ‘255.255.0.0’과 같이 32비트를 8비트로 나누어 10진수로 표기한 방법이 10진수 표기법입니다. CIDR 표기법은 ‘255.255.0.0’을 2진수로 변환하면 1이 16개이므로 ‘172.16.1.1/16’으로 표기합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;52-ip-분류&quot;&gt;5.2 IP 분류&lt;/h2&gt;
+&lt;p&gt;  IP 주소는 0.0.0.0 부터 255.255.255.255까지 2의 32제곱 개만큼 존재합니다. 하지만 IP 주소를 마음대로 쓸 수 없으며, &lt;strong&gt;용도와 사용 장소에 따라 어떻게 사용해야 하는지 정해져&lt;/strong&gt; 있습니다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  IP 주소는 용도에 따라 A부터 E 클래스 까지 5개의 클래스로 나눌 수 있습니다. 그 중 A, B, C 클래스가 일반적으로 사용되는 네트워크입니다. 이 3개의 클래스는 다시 네트워크 규모의 차이로 구분되는데, 클래스 A -&amp;gt; 클래스 B -&amp;gt; 클래스 C 순으로 규모가 작아집니다(D, E 클래스는 특수한 용도로 사용되며 잘 사용하진 않습니다). 예를 들면 클래스 A는 통신 사업자, 클래스 B는 대기업, 클래스 C는 중소 기업 혹은 가정 등에서 사용한다고 보시면 됩니다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;  앞서는 용도에 따른 분류였다면 사용 장소에 따라서도 분류합니다. IP 주소는 &lt;strong&gt;공인 IP 주소(global IP address)&lt;/strong&gt;와 &lt;strong&gt;사설 IP 주소(private IP address)&lt;/strong&gt;로 나눌 수 있습니다. 공인 IP 주소는 인터넷에서 유일한 IP 주소이며, ICANN이라는 민간 비영리 법인과 그 하부 조직에 의해 관리됩니다. 반면, 사설 IP 주소는 조직이나 가정 등의 LAN에서 자유롭게 할당할 수 있는 IP 주소입니다.&lt;/p&gt;
 </description>
         <pubDate>Sun, 03 Mar 2024 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/server/server_basic2/</link>
@@ -4346,314 +4413,6 @@ Return the result table in any order.&lt;/p&gt;
         <pubDate>Sat, 01 Jul 2023 00:00:00 +0900</pubDate>
         <link>http://localhost:4000/data/SQL_LeetCode3_Join2/</link>
         <guid isPermaLink="true">http://localhost:4000/data/SQL_LeetCode3_Join2/</guid>
-        
-        <category>Data</category>
-        
-        <category>SQL</category>
-        
-        <category>LeetCode</category>
-        
-        
-        <category>Data</category>
-        
-      </item>
-    
-      <item>
-        <title>[SQL] LeetCode 풀이: Basic Joins</title>
-        <description>&lt;p&gt;  안녕하세요. LeetCode SQL50 두번째 파트인 Basic Joins입니다. Join은 2개 이상의 테이블을 Key를 활용해 하나로 합치는 기능입니다. Join의 방법은 left, inner, outer 등이 있으며 굉장히 많이 활용되는 기능입니다.&lt;/p&gt;
-
-&lt;h1 id=&quot;2-basic-joins&quot;&gt;2. Basic Joins&lt;/h1&gt;
-&lt;h2 id=&quot;21-replace-employee-id-with-the-unique-identifier&quot;&gt;2.1 Replace Employee ID With The Unique Identifier&lt;/h2&gt;
-&lt;h3 id=&quot;211-table-description--question&quot;&gt;2.1.1 Table Description &amp;amp; Question&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt; description&lt;/p&gt;
-
-&lt;p&gt;table: Employees&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Colum Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;name&lt;/td&gt;
-      &lt;td&gt;varchar&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;id is the primary key for this table.&lt;br /&gt;
-Each row of this table contains the id and the name of an employee in a company.&lt;br /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;table: EmployeeUNI&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;unique_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;(id, unique_id) is the primary key for this table.&lt;br /&gt;
-Each row of this table contains the id and the corresponding unique id of an employee in the company.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt;&lt;br /&gt;
-Write an SQL query to show the unique ID of each user, If a user does not have a unique ID replace just show null.&lt;br /&gt;
-Return the result table in any order.&lt;/p&gt;
-&lt;h3 id=&quot;212-solution&quot;&gt;2.1.2 Solution&lt;/h3&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;unique_id&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;unique_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;          &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;Employees&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Join&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;EmployeeUNI&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;user_id를 key로 Empolyee테이블에 EmployeeUNI테이블의 unique_id를 붙이면 되는 아주 간단한 문제이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;213-good-to-know&quot;&gt;2.1.3 Good to Know&lt;/h3&gt;
-&lt;p&gt;Left Join 할 때, 매칭되는 값이 없는 경우에는 null로 붙는다.&lt;/p&gt;
-
-&lt;h2 id=&quot;22-product-sales-analysis-i&quot;&gt;2.2 Product Sales Analysis I&lt;/h2&gt;
-&lt;h3 id=&quot;221-table-description--question&quot;&gt;2.2.1 Table Description &amp;amp; Question&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt; description&lt;/p&gt;
-
-&lt;p&gt;table: Sales&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Colum Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;sale_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;product_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;year&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;quantity&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;price&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;(sale_id, year) is the primary key of this table.&lt;br /&gt;
-product_id is a foreign key to Product table.&lt;br /&gt;
-Each row of this table shows a sale on the product product_id in a certain year.&lt;br /&gt;
-Note that the price is per unit.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;table: Product&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;product_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;product_name&lt;/td&gt;
-      &lt;td&gt;varchar&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;product_id is the primary key of this table.&lt;br /&gt;
-Each row of this table indicates the product name of each product.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt;&lt;br /&gt;
-Write an SQL query that reports the product_name, year, and price for each sale_id in the Sales table.&lt;br /&gt;
-Return the result table in any order.&lt;/p&gt;
-
-&lt;h3 id=&quot;222-solution&quot;&gt;2.2.2 Solution&lt;/h3&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;year&lt;/span&gt;              &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;             &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;price&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product_name&lt;/span&gt;      &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;product_name&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Sales&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Join&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Product&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;product_id&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;위 문제와 마찬가지로 간단한 Join이라 부가설명 없이 넘어가도록 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;23-customer-who-visited-but-did-not-make-any-transactions&quot;&gt;2.3 Customer Who Visited but Did Not Make Any Transactions&lt;/h2&gt;
-&lt;h3 id=&quot;231-table-description--question&quot;&gt;2.3.1 Table Description &amp;amp; Question&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt; description&lt;/p&gt;
-
-&lt;p&gt;table: Visits&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;visit_id(PK)&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;customer_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This table contains information about the customers who visited the mall.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;table: Transactions&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;transaction_id(PK)&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;visit_id&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;amount&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This table contains information about the transactions made during the visit_id.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt; &lt;br /&gt;
-Write a SQL query to find the IDs of the users who visited without making any transactions and the number of times they made these types of visits.&lt;/p&gt;
-
-&lt;h3 id=&quot;232-solution&quot;&gt;2.3.2 Solution&lt;/h3&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;customer_id&lt;/span&gt;            &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;customer_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;Count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;customer_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;     &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count_no_trans&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Visits&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Join&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Transactions&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visit_id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visit_id&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;WHERE&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;isnull&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;visit_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;By&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;customer_id&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Join 하는 경우에도 WHERE 절이나 Group By를 통한 집계도 가능하다!&lt;/p&gt;
-
-&lt;h2 id=&quot;24-rising-temperature&quot;&gt;2.4 Rising Temperature&lt;/h2&gt;
-&lt;h3 id=&quot;241-table-descriptoin--question&quot;&gt;2.4.1 Table descriptoin &amp;amp; Question&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt; description&lt;/p&gt;
-
-&lt;p&gt;table: Weather&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Column Name&lt;/th&gt;
-      &lt;th&gt;Type&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;id(PK)&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;recordDate&lt;/td&gt;
-      &lt;td&gt;date&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;temperature&lt;/td&gt;
-      &lt;td&gt;int&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;This table contains information about the temperature on a certain day.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;Question&lt;/strong&gt; &lt;br /&gt;
-Write an SQL query to find all dates’ Id with higher temperatures compared to its previous dates (yesterday).&lt;br /&gt;
-Return the result table sorted by id in ascending order.&lt;/p&gt;
-
-&lt;h3 id=&quot;242-solution&quot;&gt;2.4.2 Solution&lt;/h3&gt;
-&lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;FROM&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Weather&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Left&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;Join&lt;/span&gt; 
-    &lt;span class=&quot;n&quot;&gt;Weather&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;on&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recordDate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DATE_ADD&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;recordDate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Interval&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DAY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;Where&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;temperature&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;동일 테이블에 Join하는 self table join이며, 어제보다 오늘 기온이 높은 날을 찾아야 한다. 그러기 위해선 오늘 온도와 어제 온도를 비교할 수 있어야 한다. 기본 아이디어는 어제 날짜를 마치 오늘인 것처럼 변환해서 Join하는 것이다. 위 SQL 구문에서 Key 부분을 풀어서 설명하자면, b 테이블 날짜에서 하루를 더해준 날짜와 a 테이블 날짜를 Join 하게 되면 a 테이블 입장에서 전날 데이터가 Join 되게 된다. 예를 들어, ‘2023년 6월 28일’에서 하루 더해주면 ‘2023년 6월 29일’이 되고 이를 기존 테이블에 Join 했을 때, ‘2023년 6월 29일’에 28일 데이터가 붙게 된다. 처음 문제를 보고 막막했는데 아이디어만 잘 낸다면 어렵지 않게 풀 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;143-good-to-know&quot;&gt;1.4.3 Good to Know&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATE_ADD&lt;/code&gt; 함수는 기준 날짜에 지정한 값만큼 더해주는 시간 함수이다. 첫번째 인수로는 기준 시간을 입력하고, 두번째 인수로 원하는 단위를 입력하면 된다. ‘Interval 1 DAY’는 하루만큼 더하라는 의미이며, second, month, year 등 다양한 인수를 넣어줄 수 있다.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 29 Jun 2023 00:00:00 +0900</pubDate>
-        <link>http://localhost:4000/data/SQL_LeetCode2/</link>
-        <guid isPermaLink="true">http://localhost:4000/data/SQL_LeetCode2/</guid>
         
         <category>Data</category>
         
